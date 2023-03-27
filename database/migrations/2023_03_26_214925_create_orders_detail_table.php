@@ -15,6 +15,10 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_amount');
             $table->timestamps();
+
+            $table->integer('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')
+                ->onDelete('cascade');
         });
     }
 

@@ -16,6 +16,10 @@ return new class extends Migration
             $table->unsignedInteger('total_price');
             $table->date('date');
             $table->timestamps();
+
+            $table->integer('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')
+                ->onDelete('cascade');
         });
     }
 
