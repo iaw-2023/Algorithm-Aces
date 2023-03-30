@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email', 30)->unique();
