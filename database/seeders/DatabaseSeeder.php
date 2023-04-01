@@ -12,12 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
+        $this->call(
+            [
                 BrandSeeder::class,
                 CategorySeeder::class,
                 ProductSeeder::class,
                 ClientSeeder::class,
-                OrderSeeder::class,
+                ShoppingCartSeeder::class,
                 OrderDetailSeeder::class
             ]
         );

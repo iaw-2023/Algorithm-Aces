@@ -13,17 +13,19 @@ class ClientSeeder extends Seeder
      */
     public function run(): void
     {
-        $clients = [
-            [
-                'email' => 'client1@gmail.com',
-            ],
-            [
-                'email' => 'client2@gmail.com',
-            ],
-            [
-                'email' => 'client3@gmail.com',
-            ],
-        ];
+        $clients = [];
+        $clientAmount = 10;
+
+        for ($i = 1; $i <= $clientAmount; $i++) {
+            $clientData = [
+                'email' => 'cliente' . $i . '@gmail.com',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            //Adds clientData at the end of clients
+            $clients[] = $clientData;
+        }
+
         DB::table('clients')->insert($clients);
     }
 }

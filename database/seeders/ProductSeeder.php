@@ -13,32 +13,26 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        $products = [
-            [
-                'name' => 'Product 1',
-                'size' => 'S',
-                'image' => 'product1.jpg',
-                'price' => 10,
-                'brand_id' => 1,
-                'category_id' => 1,
-            ],
-            [
-                'name' => 'Product 2',
-                'size' => 'M',
-                'image' => 'product2.jpg',
-                'price' => 20,
-                'brand_id' => 2,
-                'category_id' => 2,
-            ],
-            [
-                'name' => 'Product 3',
-                'size' => 'L',
-                'image' => 'product3.jpg',
-                'price' => 30,
-                'brand_id' => 3,
-                'category_id' => 3,
-            ],
-        ];
+        $products = [];
+        $productAmount = 10;
+
+        $sizes = ['S', 'M', 'L', 'XL'];
+        $maxSizeIndex = count($sizes) - 1;
+
+        for ($i = 1; $i <= $productAmount; $i++) {
+            $productData = [
+                'name' => 'Product ' . $i,
+                'size' => $sizes[rand(0, $maxSizeIndex)],
+                'image' => 'product' . $i . '.jpg',
+                'price' => rand(10, 50),
+                'brand_id' => $i,
+                'category_id' => $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            //Adds productData at the end of products
+            $products[] = $productData;
+        }
 
         DB::table('products')->insert($products);
     }

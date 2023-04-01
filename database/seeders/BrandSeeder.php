@@ -14,17 +14,19 @@ class BrandSeeder extends Seeder
      */
     public function run(): void
     {
-        $brands = [
-            [
-                'name' => 'Marca 1',
-            ],
-            [
-                'name' => 'Marca 2',
-            ],
-            [
-                'name' => 'Marca 3',
-            ],
-        ];
+        $brands = [];
+        $brandAmount = 10;
+
+        for ($i = 1; $i <= $brandAmount; $i++) {
+            $brandData = [
+                'name' => 'Marca ' . $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            //Adds brandData at the end of brands
+            $brands[] = $brandData;
+        }
+
         DB::table('brands')->insert($brands);
     }
 }

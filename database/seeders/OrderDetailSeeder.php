@@ -13,24 +13,22 @@ class OrderDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        $orderDetails = [
-            [
-                'product_amount' => 5,
-                'product_id'=>1,
-                'order_id'=> 1,
-            ],
-            [
-                'product_amount' => 3,
-                'product_id'=>2,
-                'order_id'=> 2,
-            ],
-            [
-                'product_amount' => 1,
-                'product_id'=>3,
-                'order_id'=> 3,
-            ],
-        ];
+        $ordersDetail = [];
+        $orderDetailAmount = 10;
+        $maxRandomProductAmount = 6;
 
-        DB::table('orders_detail')->insert($orderDetails);
+        for ($i = 1; $i <= $orderDetailAmount; $i++) {
+            $orderDetailData = [
+                'product_amount' => rand(1, $maxRandomProductAmount),
+                'product_id' => $i,
+                'shopping_cart_id' => $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            //Adds orderDetailData at the end of ordersDetail
+            $ordersDetail[] = $orderDetailData;
+        }
+
+        DB::table('orders_detail')->insert($ordersDetail);
     }
 }

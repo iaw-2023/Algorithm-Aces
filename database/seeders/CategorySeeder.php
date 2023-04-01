@@ -13,17 +13,19 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = [
-            [
-                'name' => 'Category 1',
-            ],
-            [
-                'name' => 'Category 2',
-            ],
-            [
-                'name' => 'Category 3',
-            ],
-        ];
+        $categories = [];
+        $categoryAmount = 10;
+
+        for ($i = 1; $i <= $categoryAmount; $i++) {
+            $categoryData = [
+                'name' => 'Categoria ' . $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            //Adds categoryData at the end of categories
+            $categories[] = $categoryData;
+        }
+
         DB::table('categories')->insert($categories);
     }
 }

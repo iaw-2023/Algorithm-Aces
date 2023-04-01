@@ -13,7 +13,7 @@ return new class extends Migration
     {
 
 
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('shopping_carts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('total_price');
             $table->date('date');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('shopping_carts');
     }
 };

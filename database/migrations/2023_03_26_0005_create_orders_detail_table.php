@@ -17,8 +17,8 @@ return new class extends Migration
             $table->timestamps();
 
 
-            $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders')
+            $table->integer('shopping_cart_id')->unsigned();
+            $table->foreign('shopping_cart_id')->references('id')->on('shopping_carts')
                 ->onDelete('cascade');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')
