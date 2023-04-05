@@ -6,7 +6,8 @@ El proyecto se trata de una tienda virtual orientada a ropa y calzado deportivo 
 
 ## Diagrama ER
 
-![Diagrama entidad-relación](public\assets\VirtualStoreERDiagramV1.0.jpg)
+![Diagrama entidad-relación](public/assets/VirtualStoreERDiagramV1.0.jpg)
+
 
 Como característica a notar en el diagrama, se puede ver que el carrito de compras registra un valor 'total_price' que representa el precio total del carrito al momento de confirmarlo. Cuando se guarda en la base de datos, esta entidad será inmutable.
 
@@ -39,7 +40,8 @@ The project is about a virtual store focused on sportswear and footwear, in whic
 
 ## ER Diagram
 
-![Diagrama entidad-relación](public\assets\VirtualStoreERDiagramV1.0.jpg)
+![Entity-relationship diagram](public/assets/VirtualStoreERDiagramV1.0.jpg)
+
 
 As a noteworthy feature in the diagram, it can be seen that the shopping cart records a 'total_price' value which represents the total price of the cart at the moment of confirmation. When saved in the database, this entity will be immutable.
 
