@@ -22,7 +22,7 @@ class ShoppingCart extends Model
     {
         return $this->belongsTo(Client::class);
     }
-    public function orderDetail()
+    public function ordersDetail()
     {
         return $this->hasMany(OrderDetail::class);
     }
