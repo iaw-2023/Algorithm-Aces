@@ -1,85 +1,62 @@
-## Pasos
+# Proyecto Inicial
 
-- clonar el repo https://github.com/iaw-2023/laravel-template y mantener como owner la organización de la materia.
-## parados en el directorio del repositorio recientemente clonado, ejecutar:
+## Idea a Implementar
 
-- `composer install`
-- `cp .env.example .env`
-- `php artisan key:generate`
-- `php artisan serve`
+El proyecto se trata de una tienda virtual orientada a ropa y calzado deportivo en el que el cliente puede recorrer la tienda viendo los productos disponibles añadirlos a su carrito de compras, el cuál puede modificar y eventualmente confirmar, haciendo efectiva su compra.
 
-Con el último comando, pueden acceder a http://127.0.0.1:8000/ y ver la cáscara de la aplicación Laravel
+## Diagrama ER
 
-### Requisitos
-
-- tener [composer](https://getcomposer.org/) instalado
-- tener [php](https://www.php.net/) instalado
+![Diagrama entidad-relación](public/assets/VirtualStoreERDiagramV1.0.jpg)
 
 
+Como característica a notar en el diagrama, se puede ver que el carrito de compras registra un valor 'total_price' que representa el precio total del carrito al momento de confirmarlo. Cuando se guarda en la base de datos, esta entidad será inmutable.
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Esto se decidió de esta manera, en oposición a la idea de dejar el precio total del carrito de manera computable dinámicamente a partir de los productos a los que está asociado, ya que si a un producto se le actualiza el precio, se verá afectado retroactivamente el precio de un carrito ya confirmado en el pasado, y no se quiere eso.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Actualizaciones e información de los datos
 
-## About Laravel
+Desde la vista de administrador, se permitirá que este pueda crear, modificar y eliminar cada registro para las entidades de categorías, marcas, productos, detalles de orden y carritos de compra.
+Los reportes que se podrán visualizar en la aplicación Laravel serán respectivos para cada tipo de usuario (El administrador tendrá su propia vista en la que puede hacer alta, baja y modificación de cada entidad y también verá las que están presentes en la base de datos).
+A través de la API de la aplicación Laravel se podrá obtener información de cada producto, categoría, marca, detalle de orden y carrito de compra.
+A través de la API de la aplicación Laravel se podrá crear el registro de un carrito de compra y sus detalles de orden asociados (ya que los usuarios finales harán compras y se deberá persistir esta información en la base de datos).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Visualización y Acceso a la Información
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+El usuario final (que en principio no tendrá login, pero se identificará con su email) podrá visualizar la totalidad de productos de la tienda y se podrá hacer búsquedas específicas utilizando filtros, por ejemplo, por marca, categoría, nombre, precio, etc.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Entre las acciones posibles, se incluye la posibilidad de realizar compras de productos, utilizando un carrito de compras que se puede modificar de manera libre, agregando y  eliminando del carrito los productos deseados previamente a la confirmación de su compra.
 
-## Learning Laravel
+En su primera sesión, se solicitará su email para su vinculación a sus carritos al momento de confirmar una compra con un carrito y en futuras sesiones se usará para ver los datos de sus propios carritos de compra hechos, como la fecha de su compra, cantidad de productos asociados y precio total del pedido.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<br>
+<br>
+<br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Initial Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Idea to Implement
 
-## Laravel Sponsors
+The project is about a virtual store focused on sportswear and footwear, in which the customer can browse the store, view the available products, add them to their shopping cart, which they can modify and eventually confirm, making their purchase effective.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## ER Diagram
 
-### Premium Partners
+![Entity-relationship diagram](public/assets/VirtualStoreERDiagramV1.0.jpg)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+As a noteworthy feature in the diagram, it can be seen that the shopping cart records a 'total_price' value which represents the total price of the cart at the moment of confirmation. When saved in the database, this entity will be immutable.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+This decision was made in contrast to the idea of leaving the total price of the cart computable dynamically based on the products it is associated with, as if a product's price is updated, it will retroactively affect the price of a cart already confirmed in the past, and that is not desired.
 
-## Code of Conduct
+## Data Updates and Information
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+From the administrator's view, it will be allowed to create, modify, and delete each record for the entities of categories, brands, products, orders details, and shopping carts. The reports that can be viewed in the Laravel application will be respective for each type of user (The administrator will have their own view where they can create, delete, and modify each entity and also see the ones present in the database).
 
-## Security Vulnerabilities
+Through the Laravel application API, information can be obtained for each product, category, brand, order detail, and shopping cart. Through the Laravel application API, it will be possible to create a record for a shopping cart and its associated order details (since end-users will make purchases and this information needs to be persisted in the database).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Information Visualization and Access
 
-## License
+The end-user (who initially won't have a login but will identify themselves with their email) will be able to view all the products in the store, and specific searches can be made using filters, for example, by brand, category, name, price, etc.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Among the possible actions, the possibility of making purchases of products is included, using a shopping cart that can be freely modified by adding and removing desired products before confirming the purchase.
+
+In their first session, their email will be requested for linking to their carts at the time of confirming a purchase with a cart, and in future sessions, it will be used to view the data of their own made shopping carts, such as the date of their purchase, the quantity of associated products, and the total price of the order.
