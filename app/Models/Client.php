@@ -11,7 +11,7 @@ class Client extends Model
 
     protected $fillable = ['email'];
 
-    public function orders()
+    public function shoppingCarts()
     {
         return $this->hasMany(ShoppingCart::class);
     }
