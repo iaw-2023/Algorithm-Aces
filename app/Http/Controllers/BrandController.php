@@ -31,7 +31,7 @@ class BrandController extends Controller
         //
     }
 
-    public function delete(Brand $brand)
+    public function destroy(Brand $brand)
     {
         //
     }

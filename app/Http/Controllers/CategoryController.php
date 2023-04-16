@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Http\Controllers\Controller;
+
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -11,7 +12,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        
         return CategoryResource::collection($categories);
     }
 
@@ -31,7 +31,7 @@ class CategoryController extends Controller
         //
     }
 
-    public function delete(Category $category)
+    public function destroy(Category $category)
     {
         //
     }
