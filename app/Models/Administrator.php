@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Administrator extends Authenticatable
 {
-    protected $fillable = ['user','password'];
+    protected $fillable = ['email','password'];
 
-    
+
 }
