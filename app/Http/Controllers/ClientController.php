@@ -22,16 +22,31 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $clientFields = [
+            'email' => [
+                'type' => 'email',
+                'label' => 'Email',
+                'required' => true
+            ],
+        ];
+
+        return response()->json(['fields' => $clientFields]);
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage and return the new client.
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'email' => 'required|email'
+        ]);
+
+        $client = Client::create($validatedData);
+        return new ClientResource($client);
     }
+
 
     /**
      * Display the specified resource.

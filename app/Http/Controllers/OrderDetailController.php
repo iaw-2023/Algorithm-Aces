@@ -22,16 +22,43 @@ class OrderDetailController extends Controller
      */
     public function create()
     {
-        //
+        $orderDetailFields = [
+            'product_amount' => [
+                'type' => 'number',
+                'label' => 'Product Amount',
+                'required' => true
+            ],
+            'shopping_cart_id' => [
+                'type' => 'number',
+                'label' => 'Shopping Cart ID',
+                'required' => true
+            ],
+            'product_id' => [
+                'type' => 'number',
+                'label' => 'Product ID',
+                'required' => true
+            ],
+        ];
+
+        return response()->json(['fields' => $orderDetailFields]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'product_amount' => 'required|numeric',
+            'shopping_cart_id' => 'required|numeric',
+            'product_id' => 'required|numeric',
+        ]);
+
+        $orderDetail = OrderDetail::create($validatedData);
+        return new OrderDetailResource($orderDetail);
     }
+
 
     /**
      * Display the specified resource.
