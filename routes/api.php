@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\OrderDetailController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\APIControllers\BrandController;
+use App\Http\Controllers\APIControllers\CategoryController;
+use App\Http\Controllers\APIControllers\ClientController;
+use App\Http\Controllers\APIControllers\OrderDetailController;
+use App\Http\Controllers\APIControllers\ProductController;
+use App\Http\Controllers\APIControllers\ShoppingCartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +41,7 @@ Route::middleware(['api'])->group(function () {
         Route::get('/{id}', [ProductController::class, 'show']);
     });
 
-    Route::prefix('order-detail')->group(function () {
+    Route::prefix('order-details')->group(function () {
         Route::get('/', [OrderDetailController::class, 'index']);
         Route::get('/{id}', [OrderDetailController::class, 'show']);
         Route::post('/', [OrderDetailController::class, 'store']);
@@ -49,7 +49,7 @@ Route::middleware(['api'])->group(function () {
         Route::delete('/{id}', [OrderDetailController::class, 'destroy']);
     });
 
-    Route::prefix('shopping-cart')->group(function () {
+    Route::prefix('shopping-carts')->group(function () {
         Route::get('/', [ShoppingCartController::class, 'index'])->name('index');
         Route::get('/{id}', [ShoppingCartController::class, 'show'])->name('show');
         Route::post('/', [ShoppingCartController::class, 'store'])->name('store');

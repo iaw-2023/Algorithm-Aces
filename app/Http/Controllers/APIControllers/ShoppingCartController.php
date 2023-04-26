@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\APIControllers;
 
 use App\Http\Resources\ShoppingCartResource;
 use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ShoppingCartController extends Controller
 {
