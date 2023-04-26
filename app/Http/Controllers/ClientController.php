@@ -36,11 +36,12 @@ class ClientController extends Controller
 
     /**
      * Store a newly created resource in storage and return the new client.
+     * The new client must have an email that is not present currently in the clients database
      */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email|unique:clients,email'
         ]);
 
         $client = Client::create($validatedData);
