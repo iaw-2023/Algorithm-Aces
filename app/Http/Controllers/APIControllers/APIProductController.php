@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\APIControllers;
 
-use App\Http\Resources\OrderDetailResource;
-use App\Models\OrderDetail;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class OrderDetailController extends Controller
+class APIProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $order_details = OrderDetail::all();
-        return OrderDetailResource::collection($order_details);
+        $products = Product::all();
+        return ProductResource::collection($products);
     }
 
     /**
@@ -38,8 +39,8 @@ class OrderDetailController extends Controller
      */
     public function show(string $id)
     {
-        $order_detail = OrderDetail::findOrFail($id);
-        return new OrderDetailResource($order_detail);
+        $product = Product::findOrFail($id);
+        return new ProductResource($product);
     }
 
     /**

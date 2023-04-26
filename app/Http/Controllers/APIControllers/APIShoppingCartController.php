@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\APIControllers;
 
-use App\Http\Resources\ClientResource;
-use App\Models\Client;
+use App\Http\Resources\ShoppingCartResource;
+use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ClientController extends Controller
+class APIShoppingCartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clients = Client::all();
-        return ClientResource::collection($clients);
+        $shopping_carts = ShoppingCart::all();
+        return ShoppingCartResource::collection($shopping_carts);
     }
 
     /**
@@ -38,8 +39,8 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        $client = Client::findOrFail($id);
-        return new ClientResource($client);
+        $shopping_cart = ShoppingCart::findOrFail($id);
+        return new ShoppingCartResource($shopping_cart);
     }
 
     /**

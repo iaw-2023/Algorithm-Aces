@@ -17,7 +17,6 @@ class ClientResource extends JsonResource
         return [
             'id' => $this->id,
             'email' => $this->email,
-            'shopping_carts' => ShoppingCartResource::collection($this->shoppingCarts),
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

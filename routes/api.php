@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\OrderDetailController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\APIControllers\APIBrandController;
+use App\Http\Controllers\APIControllers\APICategoryController;
+use App\Http\Controllers\APIControllers\APIClientController;
+use App\Http\Controllers\APIControllers\APIOrderDetailController;
+use App\Http\Controllers\APIControllers\APIProductController;
+use App\Http\Controllers\APIControllers\APIShoppingCartController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,54 +20,52 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/users', 'UserController@index');
-Route::post('/users', 'UserController@store');
-Route::put('/users/{id}', 'UserController@update');
-Route::delete('/users/{id}', 'UserController@destroy');
+Route::middleware(['api'])->group(function () {
+    Route::get('/users', 'UserController@index');
+    Route::post('/users', 'UserController@store');
+    Route::put('/users/{id}', 'UserController@update');
+    Route::delete('/users/{id}', 'UserController@destroy');
 
-Route::prefix('api')->group(function () {
     Route::prefix('brands')->group(function () {
-        Route::get('/', [BrandController::class, 'index']);
-        Route::get('/{id}', [BrandController::class, 'show']);
+        Route::get('/', [APIBrandController::class, 'index']);
+        Route::get('/{id}', [APIBrandController::class, 'show']);
     });
 
     Route::prefix('categories')->group(function () {
-        Route::get('/', [CategoryController::class, 'index']);
-        Route::get('/{id}', [CategoryController::class, 'show']);
+        Route::get('/', [APICategoryController::class, 'index']);
+        Route::get('/{id}', [APICategoryController::class, 'show']);
     });
 
     Route::prefix('products')->group(function () {
-        Route::get('/', [ProductController::class, 'index']);
-        Route::get('/{id}', [ProductController::class, 'show']);
+        Route::get('/', [APIProductController::class, 'index']);
+        Route::get('/{id}', [APIProductController::class, 'show']);
     });
 
-    Route::prefix('order-detail')->group(function () {
-        Route::get('/', [OrderDetailController::class, 'index']);
-        Route::get('/{id}', [OrderDetailController::class, 'show']);
-        Route::post('/', [OrderDetailController::class, 'store']);
-        Route::put('/{id}', [OrderDetailController::class, 'update']);
-        Route::delete('/{id}', [OrderDetailController::class, 'destroy']);
+    Route::prefix('order-details')->group(function () {
+        Route::get('/', [APIOrderDetailController::class, 'index']);
+        Route::get('/{id}', [APIOrderDetailController::class, 'show']);
+        Route::post('/', [APIOrderDetailController::class, 'store']);
+        Route::put('/{id}', [APIOrderDetailController::class, 'update']);
+        Route::delete('/{id}', [APIOrderDetailController::class, 'destroy']);
     });
 
-    Route::prefix('shopping-cart')->group(function () {
-        Route::get('/', [ShoppingCartController::class, 'index'])->name('index');
-        Route::get('/{id}', [ShoppingCartController::class, 'show'])->name('show');
-        Route::post('/', [ShoppingCartController::class, 'store'])->name('store');
-        Route::put('/{id}', [ShoppingCartController::class, 'update'])->name('update');
-        Route::delete('/{id}', [ShoppingCartController::class, 'destroy'])->name('destroy');
+    Route::prefix('shopping-carts')->group(function () {
+        Route::get('/', [APIShoppingCartController::class, 'index'])->name('index');
+        Route::get('/{id}', [APIShoppingCartController::class, 'show'])->name('show');
+        Route::post('/', [APIShoppingCartController::class, 'store'])->name('store');
+        Route::put('/{id}', [APIShoppingCartController::class, 'update'])->name('update');
+        Route::delete('/{id}', [APIShoppingCartController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('clients')->group(function ()  {
-        Route::get('/', [ClientController::class, 'index']);
-        Route::get('/{id}', [ClientController::class, 'show']);
-        Route::post('/', [ClientController::class, 'store']);
-        Route::put('/{id}', [ClientController::class, 'update']);
-        Route::delete('/{id}', [ClientController::class, 'destroy']);
+        Route::get('/', [APIClientController::class, 'index']);
+        Route::get('/{id}', [APIClientController::class, 'show']);
+        Route::post('/', [APIClientController::class, 'store']);
+        Route::put('/{id}', [APIClientController::class, 'update']);
+        Route::delete('/{id}', [APIClientController::class, 'destroy']);
     });
-
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-

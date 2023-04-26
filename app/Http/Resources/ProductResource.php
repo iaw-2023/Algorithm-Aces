@@ -22,7 +22,6 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'brand' => new BrandResource($this->brand),
             'category' => new CategoryResource($this->category),
-            'order_details'=> OrderDetailResource::collection($this->order_details),
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];
