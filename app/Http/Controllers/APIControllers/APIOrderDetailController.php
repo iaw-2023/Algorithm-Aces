@@ -7,7 +7,7 @@ use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class OrderDetailController extends Controller
+class APIOrderDetailController extends Controller
 {
     /**
      * Display a listing of the resource.

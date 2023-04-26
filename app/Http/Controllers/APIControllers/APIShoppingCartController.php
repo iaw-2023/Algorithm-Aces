@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\APIControllers;
 
-use App\Http\Resources\ClientResource;
-use App\Models\Client;
+use App\Http\Resources\ShoppingCartResource;
+use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ClientController extends Controller
+class APIShoppingCartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clients = Client::all();
-        return ClientResource::collection($clients);
+        $shopping_carts = ShoppingCart::all();
+        return ShoppingCartResource::collection($shopping_carts);
     }
 
     /**
@@ -23,40 +23,24 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $clientFields = [
-            'email' => [
-                'type' => 'email',
-                'label' => 'Email',
-                'required' => true
-            ],
-        ];
-
-        return response()->json(['fields' => $clientFields]);
+        //
     }
 
-
     /**
-     * Store a newly created resource in storage and return the new client.
-     * The new client must have an email that is not present currently in the clients database
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'email' => 'required|email|unique:clients,email'
-        ]);
-
-        $client = Client::create($validatedData);
-        return new ClientResource($client);
+        //
     }
-
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $client = Client::findOrFail($id);
-        return new ClientResource($client);
+        $shopping_cart = ShoppingCart::findOrFail($id);
+        return new ShoppingCartResource($shopping_cart);
     }
 
     /**

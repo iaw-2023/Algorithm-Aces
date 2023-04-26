@@ -7,7 +7,7 @@ use App\Http\Resources\BrandResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class BrandController extends Controller
+class APIBrandController extends Controller
 {
     public function index()
     {
