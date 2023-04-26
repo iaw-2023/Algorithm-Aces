@@ -18,7 +18,6 @@ class OrderDetailResource extends JsonResource
             'id' => $this->id,
             'product_amount' => $this->product_amount,
             'product' => new ProductResource($this->product),
-            'shopping_cart' => new ShoppingCartResource($this->shoppingCart),
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];
