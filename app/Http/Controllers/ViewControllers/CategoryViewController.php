@@ -14,7 +14,7 @@ class CategoryViewController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories', compact('categories'));
+        return view('CategoryViews.categories', compact('categories'));
     }
 
     /**
@@ -22,7 +22,7 @@ class CategoryViewController extends Controller
      */
     public function create()
     {
-        //
+        return view('CategoryViews.category-create');
     }
 
     /**
@@ -30,7 +30,16 @@ class CategoryViewController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+        ]);
 
+        Category::create([
+            'name' => $validatedData['name'],
+        ]);
+
+        return redirect()->route('categories.index')
+            ->with('success','Category created successfully');
     }
 
     /**

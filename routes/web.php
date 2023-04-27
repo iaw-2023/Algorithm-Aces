@@ -24,7 +24,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //CategoryView route
-Route::get('/categories', [CategoryViewController::class, 'index'])->name('categories.index');
-Route::get('/categories/{category}/edit', [CategoryViewController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{category}',[CategoryViewController::class, 'update'])-> name('categories.update');
-Route::delete('/categories/{category}', [CategoryViewController::class, 'destroy'])->name('categories.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/categories', [CategoryViewController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [App\Http\Controllers\ViewControllers\CategoryViewController::class, 'create'])->name('categories.create');
+    Route::get('/categories/{category}/edit', [CategoryViewController::class, 'edit'])->name('categories.edit');
+    Route::post('/categories', [App\Http\Controllers\ViewControllers\CategoryViewController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{category}', [CategoryViewController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [CategoryViewController::class, 'destroy'])->name('categories.destroy');
+});
+
