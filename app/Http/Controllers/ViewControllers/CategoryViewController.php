@@ -13,7 +13,8 @@ class CategoryViewController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('categories', compact('categories'));
     }
 
     /**
@@ -29,7 +30,7 @@ class CategoryViewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -45,7 +46,9 @@ class CategoryViewController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return response()->json([
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -53,7 +56,10 @@ class CategoryViewController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update([
+            'name' => $request -> input('name')
+        ]);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -61,6 +67,7 @@ class CategoryViewController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
