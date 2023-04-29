@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ViewControllers\BrandController;
 use App\Http\Controllers\ViewControllers\CategoryController;
+use App\Http\Controllers\ViewControllers\ClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -40,5 +41,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
     Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
+    Route::get('/clients',[ClientController::class,'index'])->name('clients.index');
 });
 
