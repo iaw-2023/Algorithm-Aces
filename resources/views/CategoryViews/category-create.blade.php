@@ -1,3 +1,4 @@
+@extends('layouts.create-form')
 <form method="POST" action="{{ route('categories.store') }}">
     @csrf
     <div class="form-group">
