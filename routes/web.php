@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ViewControllers\CategoryViewController;
+use App\Http\Controllers\ViewControllers\BrandController;
+use App\Http\Controllers\ViewControllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,11 +26,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //CategoryView route
 Route::middleware(['auth'])->group(function () {
-    Route::get('/categories', [CategoryViewController::class, 'index'])->name('categories.index');
-    Route::get('/categories/create', [App\Http\Controllers\ViewControllers\CategoryViewController::class, 'create'])->name('categories.create');
-    Route::get('/categories/{category}/edit', [CategoryViewController::class, 'edit'])->name('categories.edit');
-    Route::post('/categories', [App\Http\Controllers\ViewControllers\CategoryViewController::class, 'store'])->name('categories.store');
-    Route::put('/categories/{category}', [CategoryViewController::class, 'update'])->name('categories.update');
-    Route::delete('/categories/{category}', [CategoryViewController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [App\Http\Controllers\ViewControllers\CategoryController::class, 'create'])->name('categories.create');
+    Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::post('/categories', [App\Http\Controllers\ViewControllers\CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    Route::get('/brands', [BrandController::class, 'index'])->name('brands.index');
+    Route::get('/brands/create', [App\Http\Controllers\ViewControllers\BrandController::class, 'create'])->name('brands.create');
+    Route::get('/brands/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
+    Route::post('/brands', [App\Http\Controllers\ViewControllers\BrandController::class, 'store'])->name('brands.store');
+    Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
+    Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
+
 });
 

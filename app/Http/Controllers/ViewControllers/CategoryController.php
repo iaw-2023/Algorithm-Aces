@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryViewController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -55,10 +55,9 @@ class CategoryViewController extends Controller
      */
     public function edit(Category $category)
     {
-        return response()->json([
-            'category' => $category,
-        ]);
+        return view('CategoryViews.category-edit', compact('category'));
     }
+
 
     /**
      * Update the specified resource in storage.
