@@ -3,6 +3,7 @@
 use App\Http\Controllers\ViewControllers\BrandController;
 use App\Http\Controllers\ViewControllers\CategoryController;
 use App\Http\Controllers\ViewControllers\ClientController;
+use App\Http\Controllers\ViewControllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +43,18 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
 
     Route::get('/clients',[ClientController::class,'index'])->name('clients.index');
+
+    Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+
+
+
+
+
+
 });
 
