@@ -10,6 +10,10 @@ class Brand extends Model
         'name',
     ];
 
+    public static $rules = [
+        'name' => 'required|unique:brands,name|min:1|max:20'
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class);
