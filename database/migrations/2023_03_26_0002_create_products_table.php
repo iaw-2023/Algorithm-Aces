@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('size', 20);
             $table->string('image');
             $table->unsignedInteger('price');
+            $table->boolean('enable')->default(true);
+            $table->unsignedInteger('stock')->default(0);
             $table->timestamps();
 
             $table->integer('brand_id')->unsigned();
