@@ -9,7 +9,7 @@ class Category extends Model
 {
 
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','enable'];
     public static $rules = [
         'name' => 'required|regex:/^[a-zA-Z0-9\s]{1,20}$/|unique:categories'
     ];
