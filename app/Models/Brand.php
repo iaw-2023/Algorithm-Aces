@@ -11,7 +11,7 @@ class Brand extends Model
     ];
 
     public static $rules = [
-        'name' => 'required|unique:brands,name|min:1|max:20'
+        'name' => 'required|regex:/^[a-zA-Z0-9\s]{1,20}$/|unique:brands'
     ];
 
     public function products()

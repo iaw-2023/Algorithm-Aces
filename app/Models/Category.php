@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $fillable = ['name'];
     public static $rules = [
-        'name' => 'required|unique:categories,name|min:1|max:20'
+        'name' => 'required|regex:/^[a-zA-Z0-9\s]{1,20}$/|unique:categories'
     ];
 
     public function products()
