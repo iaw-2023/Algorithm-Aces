@@ -18,6 +18,7 @@ class Product extends Model
         'stock' => 'required|integer|min:1|max:9999',
         'brand_id' => 'required|exists:brands,id',
         'category_id' => 'required|exists:categories,id',
+        'enable' => 'required|boolean',
     ];
 
     public function brand()
