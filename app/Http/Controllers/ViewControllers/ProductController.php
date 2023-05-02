@@ -72,6 +72,19 @@ class ProductController extends Controller
             ->with('success', 'Product updated successfully');
     }
 
+    public function enable(Product $product){
+        $product->update(['enabled' => true]);
+
+        return redirect()-> route('products.index')
+            ->with('success', 'Product enabled successfully');
+    }
+    public function disable(Product $product){
+        $product->update(['enabled' => false]);
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product disabled successfully');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
