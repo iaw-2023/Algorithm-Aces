@@ -67,6 +67,19 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
+    public function enable(Category $category){
+        $category->update(['enabled' => true]);
+
+        return redirect()-> route('categories.index')
+            ->with('success', 'Category enabled successfully');
+    }
+    public function disable(Category $category){
+        $category->update(['enabled' => false]);
+
+        return redirect()->route('categories.index')
+            ->with('success', 'Category disabled successfully');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
