@@ -73,7 +73,9 @@
         </nav>
 
         <main class="py-4">
+            @yield('error-section')
             @yield('content')
+
         </main>
     </div>
 </body>
