@@ -29,7 +29,7 @@
                     <td>{{ $product->brand->name }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>
-                        <a href="{{ route('products.index') }}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                        <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-primary mr-1">Edit</a>
                         @if ($product->enable)
                             <form action="{{ route('products.disable', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to disable this product?')">
                                 @csrf
