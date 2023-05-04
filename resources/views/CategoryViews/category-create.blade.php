@@ -10,8 +10,8 @@
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Create Category</button>
+            <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this category?')">Create Category</button>
         </form>
-        @endsection
-    </div>
 
+    </div>
+@endsection
