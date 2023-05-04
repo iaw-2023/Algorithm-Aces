@@ -55,8 +55,9 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
-    {
-        return view('ProductViews.product-edit',compact('product'));
+    {   $categories = Category::all();
+        $brands = Brand::all();
+        return view('ProductViews.product-edit',compact('product','categories','brands'));
     }
 
     /**
