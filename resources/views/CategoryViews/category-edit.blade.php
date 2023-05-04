@@ -10,7 +10,7 @@
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" class="form-control" value="{{ $category->name }}">
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Update Category</button>
+            <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to save the changes?')" >Update Category</button>
         </form>
     </div>
 @endsection

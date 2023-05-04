@@ -44,7 +44,7 @@
             @endforeach
         </select>
     </div>
-    <button type="submit" class="btn btn-primary mt-2">Update Product</button>
+    <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to save the changes?')">Update Product</button>
 </form>
 </div>
 @endsection

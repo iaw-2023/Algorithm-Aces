@@ -9,7 +9,7 @@
                 <label for="name">Name:</label>
                 <input type="text" name="name" id="name" class="form-control" value="{{ $brand->name }}">
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Update Brand</button>
+            <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to save the changes?')" >Update Brand</button>
         </form>
     </div>
 @endsection
