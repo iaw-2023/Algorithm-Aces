@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 255);
+            $table->string('name', 30);
             $table->string('size', 20);
             $table->string('image');
             $table->unsignedInteger('price');
+            $table->boolean('enable')->default(true);
+            $table->unsignedInteger('stock')->default(0);
             $table->timestamps();
 
             $table->integer('brand_id')->unsigned();

@@ -21,6 +21,7 @@ class CategorySeeder extends Seeder
                 'name' => 'Categoria ' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'enable' => boolval(random_int(0, 1)),
             ];
             //Adds categoryData at the end of categories
             $categories[] = $categoryData;

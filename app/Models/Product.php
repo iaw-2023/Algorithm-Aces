@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'name', 'size', 'image', 'price', 'brand_id', 'category_id'
+        'name', 'size', 'image', 'price','stock','brand_id', 'category_id','enable',
+    ];
+
+    public static $rules = [
+        'name' => 'required|regex:/^[a-zA-Z0-9\s]{1,30}$/|unique:products',
+        'image' => 'required|string',
+        'size' => 'required|regex:/^[a-zA-Z0-9]{1,20}$/',
+        'price' => 'required|integer|min:0|max:9999',
+        'stock' => 'required|integer|min:1|max:9999',
+        'brand_id' => 'required|exists:brands,id',
+        'category_id' => 'required|exists:categories,id',
+        'enable' => 'required|boolean',
     ];
 
     public function brand()

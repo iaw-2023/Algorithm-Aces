@@ -30,13 +30,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-        ]);
+        $validatedData = $request->validate(Category::$rules);
 
-        Category::create([
-            'name' => $validatedData['name'],
-        ]);
+        Category::create($validatedData);
 
         return redirect()->route('categories.index')
             ->with('success','Category created successfully');
@@ -64,10 +60,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update([
-            'name' => $request -> input('name')
-        ]);
+        $validatedData = $request->validate(Category::$rules);
+
+        $category->update($validatedData);
+
         return redirect()->route('categories.index');
+    }
+
+    public function enable(Category $category){
+        $category->update(['enabled' => true]);
+
+        return redirect()-> route('categories.index')
+            ->with('success', 'Category enabled successfully');
+    }
+    public function disable(Category $category){
+        $category->update(['enabled' => false]);
+
+        return redirect()->route('categories.index')
+            ->with('success', 'Category disabled successfully');
     }
 
     /**
