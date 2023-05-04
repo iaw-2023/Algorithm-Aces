@@ -65,13 +65,13 @@ class BrandController extends Controller
     }
 
     public function enable(Brand $brand){
-        $brand->update(['enabled' => true]);
+        $brand->update(['enable' => true]);
 
         return redirect()-> route('brands.index')
             ->with('success', 'Brand enabled successfully');
     }
     public function disable(Brand $brand){
-        $brand->update(['enabled' => false]);
+        $brand->update(['enable' => false]);
 
         return redirect()-> route('brands.index')
             ->with('success', 'Brand disabled successfully');

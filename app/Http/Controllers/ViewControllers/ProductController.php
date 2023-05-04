@@ -73,13 +73,13 @@ class ProductController extends Controller
     }
 
     public function enable(Product $product){
-        $product->update(['enabled' => true]);
+        $product->update(['enable' => true]);
 
         return redirect()-> route('products.index')
             ->with('success', 'Product enabled successfully');
     }
     public function disable(Product $product){
-        $product->update(['enabled' => false]);
+        $product->update(['enable' => false]);
 
         return redirect()->route('products.index')
             ->with('success', 'Product disabled successfully');

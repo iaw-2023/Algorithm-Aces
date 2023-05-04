@@ -2,27 +2,42 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Brands</div>
-                    <div class="card-body">
-                        <ul>
-                            @foreach($brands as $brand)
-                                <li>
-                                    {{ $brand->name }}
-                                    <form action="{{ route('brands.destroy', $brand) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
-                                    <a href="{{ route('brands.edit', $brand) }}" class="btn btn-primary btn-sm">Editar</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="ml-2">Brands</h1>
+            <a href="{{ route('brands.create') }}" class="btn btn-primary mr-2">Create new brand</a>
+        </div>
+        <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Manage</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($brands as $brand)
+                <tr>
+                    <td>{{ $brand->name }}</td>
+                    <td>
+                        <a href="{{ route('brands.edit', $brand) }}" class="btn btn-primary btn-sm">Edit</a>
+                        @if ($brand->enable)
+                            <form action="{{ route('brands.disable', $brand) }}" method="POST" onsubmit="return confirm('Are you sure you want to disable this brand?')">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-success">Enabled</button>
+                            </form>
+                        @else
+                            <form action="{{ route('brands.enable', $brand) }}" method="POST" onsubmit="return confirm('Are you sure you want to enable this brand?')">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn btn-danger">Disabled</button>
+                            </form>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+        </table>
         </div>
     </div>
 @endsection

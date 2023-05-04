@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/brands', [App\Http\Controllers\ViewControllers\BrandController::class, 'store'])->name('brands.store');
     Route::put('/brands/{brand}', [BrandController::class, 'update'])->name('brands.update');
     Route::delete('/brands/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
+    Route::put('/brands/{brand}/disable', [BrandController::class, 'disable'])->name('brands.disable');
+    Route::put('/brands/{brand}/enable',  [BrandController::class, 'enable'])->name('brands.enable');
 
     Route::get('/clients',[ClientController::class,'index'])->name('clients.index');
 
@@ -50,7 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-
+    Route::put('/products/{product}/disable', [ProductController::class, 'disable'])->name('products.disable');
+    Route::put('/products/{product}/enable', [ProductController::class, 'enable'])->name('products.enable');
 
 
 
