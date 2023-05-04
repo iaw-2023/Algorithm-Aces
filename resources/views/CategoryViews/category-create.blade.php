@@ -12,6 +12,6 @@
             </div>
             <button type="submit" class="btn btn-primary mt-2">Create Category</button>
         </form>
-        @endsection
-    </div>
 
+    </div>
+@endsection
