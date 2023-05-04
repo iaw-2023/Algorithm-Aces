@@ -68,13 +68,13 @@ class CategoryController extends Controller
     }
 
     public function enable(Category $category){
-        $category->update(['enabled' => true]);
+        $category->update(['enable' => true]);
 
         return redirect()-> route('categories.index')
             ->with('success', 'Category enabled successfully');
     }
     public function disable(Category $category){
-        $category->update(['enabled' => false]);
+        $category->update(['enable' => false]);
 
         return redirect()->route('categories.index')
             ->with('success', 'Category disabled successfully');
