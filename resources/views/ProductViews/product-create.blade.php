@@ -47,7 +47,7 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Create Product</button>
+            <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this category?')">Create Product</button>
         </form>
     </div>
 @endsection
