@@ -10,7 +10,9 @@ class Client extends Model
 
 
     protected $fillable = ['email'];
-
+    public static $rules = [
+        'email' => 'required|email|unique:clients,email',
+    ];
     public function shoppingCarts()
     {
         return $this->hasMany(ShoppingCart::class);
