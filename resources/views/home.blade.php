@@ -1,5 +1,20 @@
 @extends('layouts.base')
 
+@section('dropdown-tables')
+<ul class="navbar-nav">
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Tables
+    </a>
+    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a>
+        <a class="dropdown-item" href="{{ route('brands.index') }}">Brands</a>
+        <a class="dropdown-item" href="{{ route('products.index') }}">Products</a>
+        <a class="dropdown-item" href="{{ route('clients.index') }}">Clients</a>
+    </div>
+    </li>
+</ul>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
