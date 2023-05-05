@@ -24,8 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::where('enable', true)->get();
+        $brands = Brand::where('enable', true)->get();
         return view('ProductViews.product-create',compact('categories','brands'));
     }
 
@@ -55,8 +55,9 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
-    {   $categories = Category::all();
-        $brands = Brand::all();
+    {
+        $categories = Category::where('enable', true)->get();
+        $brands = Brand::where('enable', true)->get();
         return view('ProductViews.product-edit',compact('product','categories','brands'));
     }
 
