@@ -8,9 +8,6 @@
 
         <form action="{{ route('products.store') }}" method="POST">
             @csrf
-
-
-
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" required>
@@ -48,6 +45,10 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this category?')">Create Product</button>
+
+            <a href="{{ route('products.index') }}" class="btn btn-secondary mt-2" onclick="return confirm('Are you sure you want to leave this page? Any changes you made will be lost.');">Go back</a>
+
+
         </form>
     </div>
 @endsection
