@@ -18,7 +18,7 @@ class CategorySeeder extends Seeder
 
         for ($i = 1; $i <= $categoryAmount; $i++) {
             $categoryData = [
-                'name' => 'Categoria ' . $i,
+                'name' => 'Category' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
                 'enable' => boolval(random_int(0, 1)),

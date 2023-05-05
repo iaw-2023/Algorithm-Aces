@@ -18,7 +18,7 @@ class ClientSeeder extends Seeder
 
         for ($i = 1; $i <= $clientAmount; $i++) {
             $clientData = [
-                'email' => 'cliente' . $i . '@gmail.com',
+                'email' => 'client' . $i . '@gmail.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
