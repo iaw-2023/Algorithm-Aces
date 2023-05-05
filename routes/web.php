@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
     Route::put('/products/{product}/disable', [ProductController::class, 'disable'])->name('products.disable');
     Route::put('/products/{product}/enable', [ProductController::class, 'enable'])->name('products.enable');
-
+    Route::put('/products/{product}/edit-stock', [ProductController::class, 'editStock'])->name('products.edit-stock');
 
 
 

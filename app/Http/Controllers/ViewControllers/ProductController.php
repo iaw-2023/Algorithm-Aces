@@ -87,6 +87,17 @@ class ProductController extends Controller
             ->with('success', 'Product disabled successfully');
     }
 
+    public function editStock(Request $request, Product $product){
+
+
+        $newStock = $product-> stock + $request->stock;
+        $product->update(['stock' => $newStock]);
+
+
+        return redirect()->route('products.index')
+            ->with('success', 'Stock changed successfully');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
