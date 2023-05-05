@@ -14,6 +14,7 @@
                 <th>Size</th>
                 <th>Image</th>
                 <th>Price</th>
+                <th>Stock</th>
                 <th>Brand</th>
                 <th>Category</th>
                 <th>Manage</th>
@@ -26,6 +27,7 @@
                     <td>{{ $product->size }}</td>
                     <td>{{ $product->image }}</td>
                     <td>{{ $product->price }}</td>
+                    <td>{{ $product->stock }}</td>
                     <td>{{ $product->brand->name }}</td>
                     <td>{{ $product->category->name }}</td>
                     <td>
