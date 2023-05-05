@@ -11,6 +11,8 @@
                 <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
             </div>
             <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this category?')">Create Category</button>
+            <a href="{{ route('categories.index') }}" class="btn btn-secondary mt-2" onclick="return confirm('Are you sure you want to leave this page? Any changes you made will be lost.');">Go back</a>
+
         </form>
 
     </div>
