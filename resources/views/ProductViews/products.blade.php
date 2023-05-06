@@ -57,8 +57,10 @@
                                         <button type="submit" class="btn btn-primary">Apply Stock</button>
                                     </div>
                                 </div>
+                                @error($product->id)
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </form>
-
                         </td>
                     </tr>
                 @endforeach
