@@ -18,31 +18,37 @@ class APIOrderDetailController extends Controller
         return OrderDetailResource::collection($order_details);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $orderDetailFields = [
-            'product_amount' => [
-                'type' => 'number',
-                'label' => 'Product Amount',
-                'required' => true
-            ],
-            'shopping_cart_id' => [
-                'type' => 'number',
-                'label' => 'Shopping Cart ID',
-                'required' => true
-            ],
-            'product_id' => [
-                'type' => 'number',
-                'label' => 'Product ID',
-                'required' => true
-            ],
-        ];
+/**
+ * Show the form for creating a new order detail in JSON format.
+ * Product amount must be at least 1
+ * Shopping Cart ID must be of a shopping cart already in the database
+ * Product ID must be of a product already in the database 
+ */
+public function create()
+{
+    $orderDetailFields = [
+        'product_amount' => [
+            'type' => 'number',
+            'label' => 'Product Amount',
+            'required' => true
+        ],
+        'shopping_cart_id' => [
+            'type' => 'number',
+            'label' => 'Shopping Cart ID',
+            'required' => true
+        ],
+        'product_id' => [
+            'type' => 'number',
+            'label' => 'Product ID',
+            'required' => true
+        ],
+    ];
 
-        return response()->json(['fields' => $orderDetailFields]);
-    }
+    return response()->json([
+        'fields' => $orderDetailFields,
+    ]);
+}
+
 
 
     /**
@@ -50,14 +56,7 @@ class APIOrderDetailController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'product_amount' => 'required|numeric',
-            'shopping_cart_id' => 'required|numeric',
-            'product_id' => 'required|numeric',
-        ]);
-
-        $orderDetail = OrderDetail::create($validatedData);
-        return new OrderDetailResource($orderDetail);
+        //
     }
 
 

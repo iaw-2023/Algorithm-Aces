@@ -44,25 +44,21 @@ Route::middleware(['api'])->group(function () {
     Route::prefix('order-details')->group(function () {
         Route::get('/', [APIOrderDetailController::class, 'index']);
         Route::get('/{id}', [APIOrderDetailController::class, 'show']);
-        Route::post('/', [APIOrderDetailController::class, 'store']);
-        Route::put('/{id}', [APIOrderDetailController::class, 'update']);
-        Route::delete('/{id}', [APIOrderDetailController::class, 'destroy']);
+        Route::get('/create', [APIOrderDetailController::class, 'create']);
     });
 
     Route::prefix('shopping-carts')->group(function () {
         Route::get('/', [APIShoppingCartController::class, 'index'])->name('index');
         Route::get('/{id}', [APIShoppingCartController::class, 'show'])->name('show');
+        Route::get('/create', [APIShoppingCartController::class, 'create']);
         Route::post('/', [APIShoppingCartController::class, 'store'])->name('store');
-        Route::put('/{id}', [APIShoppingCartController::class, 'update'])->name('update');
-        Route::delete('/{id}', [APIShoppingCartController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('clients')->group(function ()  {
         Route::get('/', [APIClientController::class, 'index']);
         Route::get('/{id}', [APIClientController::class, 'show']);
+        Route::get('/create', [APIClientController::class, 'create']);
         Route::post('/', [APIClientController::class, 'store']);
-        Route::put('/{id}', [APIClientController::class, 'update']);
-        Route::delete('/{id}', [APIClientController::class, 'destroy']);
     });
 });
 
