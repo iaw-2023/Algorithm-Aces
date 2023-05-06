@@ -89,13 +89,19 @@ class ProductController extends Controller
 
     public function editStock(Request $request, Product $product){
 
+            $newStock = $product->stock + $request->stock;
 
-        $newStock = $product-> stock + $request->stock;
-        $product->update(['stock' => $newStock]);
+            if ($newStock < 0) {
+                $newStock = 0;
+            } elseif ($newStock > 9999) {
+                return redirect()->back()->withErrors([$product->id => 'Stock cannot exceed 9999']);
 
+                //return redirect()->back()->withErrors(['stock' => 'Stock cannot exceed 9999']);
+            }
+            $product->update(['stock' => $newStock]);
+            return redirect()->route('products.index')
+                ->with('success', 'Stock changed successfully');
 
-        return redirect()->route('products.index')
-            ->with('success', 'Stock changed successfully');
     }
 
     /**
