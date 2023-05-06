@@ -24,8 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::where('enable', true)->get();
+        $brands = Brand::where('enable', true)->get();
         return view('ProductViews.product-create',compact('categories','brands'));
     }
 
@@ -55,8 +55,9 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
-    {   $categories = Category::all();
-        $brands = Brand::all();
+    {
+        $categories = Category::where('enable', true)->get();
+        $brands = Brand::where('enable', true)->get();
         return view('ProductViews.product-edit',compact('product','categories','brands'));
     }
 
@@ -84,6 +85,23 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')
             ->with('success', 'Product disabled successfully');
+    }
+
+    public function editStock(Request $request, Product $product){
+
+            $newStock = $product->stock + $request->stock;
+
+            if ($newStock < 0) {
+                $newStock = 0;
+            } elseif ($newStock > 9999) {
+                return redirect()->back()->withErrors([$product->id => 'Stock cannot exceed 9999']);
+
+                //return redirect()->back()->withErrors(['stock' => 'Stock cannot exceed 9999']);
+            }
+            $product->update(['stock' => $newStock]);
+            return redirect()->route('products.index')
+                ->with('success', 'Stock changed successfully');
+
     }
 
     /**

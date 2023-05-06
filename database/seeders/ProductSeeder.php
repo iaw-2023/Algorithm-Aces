@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
 
         for ($i = 1; $i <= $productAmount; $i++) {
             $productData = [
-                'name' => 'Product ' . $i,
+                'name' => 'Product' . $i,
                 'size' => $sizes[rand(0, $maxSizeIndex)],
                 'image' => 'product' . $i . '.jpg',
                 'price' => rand(10,50),

@@ -18,7 +18,7 @@ class BrandSeeder extends Seeder
 
         for ($i = 1; $i <= $brandAmount; $i++) {
             $brandData = [
-                'name' => 'Marca ' . $i,
+                'name' => 'Brand' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
                 'enable' => boolval(random_int(0, 1)),
