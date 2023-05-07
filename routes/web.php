@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Auth::routes();
-
-
+Auth::routes(['register' => false]);
 
 //CategoryView route
 Route::middleware(['auth'])->group(function () {
