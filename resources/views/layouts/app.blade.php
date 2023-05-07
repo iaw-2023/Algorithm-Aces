@@ -1,4 +1,15 @@
 <!doctype html>
+<style>
+    .navbar {
+        width: 100%;
+    }
+    .navbar-logo {
+        width: inherit;
+        height: auto;
+        max-height: 40px;
+    }
+</style>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -21,6 +32,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" class="navbar-logo">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
