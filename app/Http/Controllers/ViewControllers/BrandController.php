@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ViewControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BrandController extends Controller
 {
@@ -58,9 +59,20 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        $validatedData = $request->validate(Brand::$rules);
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s ]{1,20}$/',
+                Rule::unique('brands')->ignore($brand->id)
+            ],
+        ]);
+        $rules = Brand::$rules;
+        unset($rules['name']);
+
+        $validatedData = array_merge($validatedData, $request->validate($rules));
 
         $brand->update($validatedData);
+
         return redirect()->route('brands.index');
     }
 

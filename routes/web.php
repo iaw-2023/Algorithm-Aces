@@ -18,16 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => false]);
 
 //CategoryView route
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/', [ProductController::class, 'index'])->name('home');
+    Route::get('/home', [ProductController::class, 'index'])->name('home');
+
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('/categories/create', [App\Http\Controllers\ViewControllers\CategoryController::class, 'create'])->name('categories.create');
     Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
