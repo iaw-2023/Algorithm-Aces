@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
 {
@@ -61,18 +62,29 @@ class ProductController extends Controller
         return view('ProductViews.product-edit',compact('product','categories','brands'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+
     public function update(Request $request, Product $product)
     {
-        $validatedData = $request->validate(Product::$rules);
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s ]{1,30}$/',
+                Rule::unique('products')->ignore($product->id)
+            ],
+        ]);
+
+        $rules = Product::$rules;
+        unset($rules['name']);
+
+        $validatedData = array_merge($validatedData, $request->validate($rules));
 
         $product->update($validatedData);
 
         return redirect()->route('products.index')
             ->with('success', 'Product updated successfully');
     }
+
 
     public function enable(Product $product){
         $product->update(['enable' => true]);
