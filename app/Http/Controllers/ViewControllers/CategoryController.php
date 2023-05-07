@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ViewControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -60,7 +61,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $validatedData = $request->validate(Category::$rules);
+        $validatedData = $request->validate([
+            'name' => [
+                'required',
+                'regex:/^[a-zA-Z0-9\s ]{1,20}$/',
+                Rule::unique('brands')->ignore($category->id)
+            ],
+        ]);
+
+        $rules = Category::$rules;
+        unset($rules['name']);
+
+        $validatedData = array_merge($validatedData, $request->validate($rules));
 
         $category->update($validatedData);
 
