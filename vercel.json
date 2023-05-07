@@ -16,7 +16,7 @@
         }
     ],
     "env": {
-        "APP_NAME": "Vercel Laravel IAW",
+        "APP_NAME": "La Loria Store",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "VERCEL_DEMO_MODE": "true",
