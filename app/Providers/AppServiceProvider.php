@@ -23,5 +23,14 @@ class AppServiceProvider extends ServiceProvider
         if($this->app->environment('production')) {
             URL::forceScheme('https');
         }
+
+        $this->routes(function () {
+            Route::middleware('api')
+                ->prefix('rest')
+                ->group(base_path('routes/api.php'));
+
+            Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+        });
     }
 }
