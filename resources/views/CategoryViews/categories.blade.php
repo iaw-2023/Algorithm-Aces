@@ -42,6 +42,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$categories->onEachSide(1)->links()}}
             </div>
         </div>
     @endsection

@@ -38,6 +38,7 @@
             @endforeach
         </tbody>
         </table>
+        {{$brands->onEachSide(1)->links()}}
         </div>
     </div>
 @endsection

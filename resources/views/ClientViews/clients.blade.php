@@ -17,6 +17,7 @@
             @endforeach
         </tbody>
         </table>
+        {{$clients->onEachSide(1)->links()}}
         </div>
     </div>
 @endsection
