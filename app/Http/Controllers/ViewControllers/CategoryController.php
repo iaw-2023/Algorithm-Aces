@@ -79,17 +79,15 @@ class CategoryController extends Controller
         return redirect()->route('categories.index');
     }
 
-    public function enable(Category $category){
-        $category->update(['enable' => true]);
-
-        return redirect()-> route('categories.index')
-            ->with('success', 'Category enabled successfully');
-    }
-    public function disable(Category $category){
-        $category->update(['enable' => false]);
-
-        return redirect()->route('categories.index')
-            ->with('success', 'Category disabled successfully');
+    public function setEnable(Request $request, Category $category)
+    {
+        $enable = $request->input('switch-state') === 'on';
+    
+        $category->update(['enable' => $enable]);
+    
+        $message = $enable ? 'Category enabled successfully' : 'Category disabled successfully';
+    
+        return redirect()->route('categories.index')->with('success', $message);
     }
 
     /**

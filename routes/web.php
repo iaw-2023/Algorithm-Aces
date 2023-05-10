@@ -33,8 +33,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', [App\Http\Controllers\ViewControllers\CategoryController::class, 'store'])->name('categories.store');
         Route::put('/{category}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-        Route::put('/{category}/disable', [CategoryController::class, 'disable'])->name('categories.disable');
-        Route::put('/{category}/enable', [CategoryController::class, 'enable'])->name('categories.enable');
+        Route::put('/{category}/set-enable',  [CategoryController::class, 'setEnable'])->name('categories.set-enable');
     });
 
     Route::prefix('brands')->group(function () {

@@ -13,6 +13,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Manage</th>
+                            <th>Enable</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,21 +23,18 @@
                                 <td>
                                     <a href="{{ route('categories.edit', $category) }}"
                                         class="btn btn-primary btn-sm">Edit</a>
-                                    @if ($category->enable)
-                                        <form action="{{ route('categories.disable', $category) }}" method="POST"
-                                            onsubmit="return confirm('Are you sure you want to disable this category?')">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-success">Enabled</button>
-                                        </form>
-                                    @else
-                                        <form action="{{ route('categories.enable', $category) }}" method="POST"
-                                            onsubmit="return confirm('Are you sure you want to enable this category?')">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-danger">Disabled</button>
-                                        </form>
-                                    @endif
+                                </td>
+                                <td>
+                                <form method="POST" action="{{ route('categories.set-enable', $category) }}"
+                                    onsubmit="return confirm('Are you sure you want to save this change?')">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="toggle-switch" name="switch-state" {{ $category->enable ? 'checked' : '' }}>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </form>
+
                                 </td>
                             </tr>
                         @endforeach
