@@ -30,7 +30,7 @@
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="toggle-switch" name="switch-state" {{ $brand->enable ? 'checked' : '' }}>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </form>
 
                     </td>
