@@ -1,5 +1,5 @@
 # LA GLORIA STORE
-![LA GLORIA STORE](public\images\logo.jpeg)
+![LA GLORIA STORE](public/images/logo.jpeg)
 
 ## Links de interés
 - [Página oficial](algorithm-aces-algorithm-aces.vercel.app)
@@ -34,11 +34,11 @@ En el [siguiente link](https://www.postman.com/downloads/) podrás acceder su po
 - Configurar la petición: Puedes crear una nueva petición haciendo clic en el botón "New" en la esquina superior izquierda de la pantalla. En la ventana que se abre, selecciona el tipo de petición que quieres enviar (GET, POST, PUT, DELETE, etc.), ingresa la URL de la API que deseas y agrega los parámetros necesarios en la pestaña "Params" o en el cuerpo de la petición.
 - ![Crear nueva solicitud HTTP](public/assets/APITutorial/createnewrequest.png)
 - ![Seleccionar el tipo de la solicitud HTTP](public/assets/APITutorial/selectHTTPrequesttype.png)
-- ![Escribir la URL del endpoint](public\assets\APITutorial\typetheresourceURL.png)
+- ![Escribir la URL del endpoint](public/assets/APITutorial/typetheresourceURL.png)
 - Enviar la petición: Una vez que la petición está configurada, haz clic en el botón "Send" para enviarla a la API. Postman mostrará la respuesta que devuelve la API en la pestaña "Body", junto con el código de estado y otros detalles de la respuesta.
-- ![Respuesta del servicio](public\assets\APITutorial\httpgetresponse.png)
+- ![Respuesta del servicio](public/assets/APITutorial/httpgetresponse.png)
 - Es posible que para ciertas solicitudes de tipo POST, necesites tener previamente credenciales de usuario válido del servidor. Para configurar estos datos en postman, revisa la sección Authorization y selecciona el tipo Basic Auth. Luego, rellena las credenciales con las de un usuario válido.
-- ![Ejemplo de solicitud POST con credenciales de autorizacion](public\assets\APITutorial\setauthpostman.png)
+- ![Ejemplo de solicitud POST con credenciales de autorizacion](public/assets/APITutorial/setauthpostman.png)
 - Inspeccionar la respuesta: Si quieres inspeccionar más detalles de la respuesta, puedes cambiar a las pestañas "Headers", "Cookies" o "Tests". La pestaña "Headers" muestra los encabezados de la respuesta, la pestaña "Cookies" muestra las cookies que se establecen en la respuesta y la pestaña "Tests" te permite escribir pruebas automatizadas para verificar la respuesta.
 - Guardar la petición: Si quieres guardar la petición para usarla más tarde, puedes hacer clic en el botón "Save" en la esquina superior derecha de la pantalla (O usa Crtl + S). Postman te permitirá guardar la petición en una colección existente o en una nueva colección.
 
@@ -112,11 +112,11 @@ En su primera sesión, se solicitará su email para su vinculación a sus carrit
 
 # Aclaraciones y Problemas conocidos:
 - En Mozilla firefox, si le das *don't show again* en el cuadro de dialogo al editar entidades, luego estos botones pueden no funcionar debido al funcionamiento.
-![Mozilla](public\assets\mozilladialogissue.png)
+![Mozilla](public/assets/mozilladialogissue.png)
 Este problema está relacionado al manejo de cookies del navegador y para solucionarlo, se debe eliminar la preferencia de no permitir más cuadros de diálogo en el sitio.
 
 - En la versión actual, al actualizar el estado activado/desactivado de las entidades Marca, Categoría y Producto, se recomienda actualizar uno a la vez ya que los botones de guardado solo tienen en cuenta a su fila correspondiente.
-![Update](public\assets\saveupdateissue.png)
+![Update](public/assets/saveupdateissue.png)
 En la imagen, guardar con el botón señalado hará que se actualice correspondientemente la Categoría 2, y las demás no se verán alteradas aunque se haya cambiado su estado temporalmente.
 
 - Los datos de prueba actualmente son de práctica, pero son totalmente funcionales en cuanto a las funcionalidades que el sistema puede proveer. Si se desea, se puede configurar un conjunto de datos de prueba verosímil y similares a través de un seeding.
@@ -131,7 +131,7 @@ En la imagen, guardar con el botón señalado hará que se actualice correspondi
 <br>
 
 # LA GLORIA STORE
-![LA GLORIA STORE](public\images\logo.jpeg)
+![LA GLORIA STORE](public/images/logo.jpeg)
 
 ## Links of Interest
 - [Official Page](algorithm-aces-algorithm-aces.vercel.app)
@@ -161,13 +161,13 @@ Through the Laravel application API, information can be obtained for each produc
 - Download and install Postman: The first thing you need to do is download and install Postman on your computer. Postman is a free tool that allows you to send HTTP requests to an API and see the responses it returns. In the [following link](https://www.postman.com/downloads/), you can access their download portal.
 
 - Configure the request: You can create a new request by clicking the "New" button in the top left corner of the screen. In the window that opens, select the type of request you want to send (GET, POST, PUT, DELETE, etc.), enter the URL of the API you want, and add the necessary parameters in the "Params" tab or in the body of the request.
-- ![Create new HTTP request](public\assets\APITutorial\createnewrequest.png)
-- ![Select HTTP request type](public\assets\APITutorial\selectHTTPrequesttype.png)
-- ![Type the resource URL](public\assets\APITutorial\typetheresourceURL.png)
+- ![Create new HTTP request](public/assets/APITutorial/createnewrequest.png)
+- ![Select HTTP request type](public/assets/APITutorial/selectHTTPrequesttype.png)
+- ![Type the resource URL](public/assets/APITutorial/typetheresourceURL.png)
 - Send the request: Once the request is configured, click the "Send" button to send it to the API. Postman will show the response that the API returns in the "Body" tab, along with the status code and other details of the response.
-- ![Service response](public\assets\APITutorial\httpgetresponse.png)
+- ![Service response](public/assets/APITutorial/httpgetresponse.png)
 - For certain POST requests, you may need to have valid user credentials from the server beforehand. To configure this data in Postman, review the Authorization section and select the Basic Auth type. Then, fill in the credentials with those of a valid user.
-- ![POST request with authorization credentials](public\assets\APITutorial\setauthpostman.png)
+- ![POST request with authorization credentials](public/assets/APITutorial/setauthpostman.png)
 - Inspect the response: If you want to inspect more details of the response, you can switch to the "Headers", "Cookies" or "Tests" tabs. The "Headers" tab shows the headers of the response, the "Cookies" tab shows the cookies that are set in the response, and the "Tests" tab allows you to write automated tests to verify the response.
 - Save the request: If you want to save the request for later use, you can click the "Save" button in the top right corner of the screen (Or use Crtl + S). Postman will allow you to save the request in an existing collection or in a new collection.
 
@@ -234,11 +234,11 @@ In their first session, their email will be requested for linking to their carts
 
 ## Clarifications and Known Issues:
 - In Mozilla Firefox, if you click "don't show again" in the dialog box when editing entities, then these buttons may not function properly due to cookie handling.
-![Mozilla](public\assets\mozilladialogissue.png)
+![Mozilla](public/assets/mozilladialogissue.png)
 This issue is related to the browser's cookie handling and to resolve it, the preference to disallow further dialog boxes on the site must be removed.
 
 - In the current version, when updating the active/inactive state of the Brand, Category, and Product entities, it is recommended to update one at a time since the save buttons only take into account their corresponding row.
-![Update](public\assets\saveupdateissue.png)
+![Update](public/assets/saveupdateissue.png)
 In the image, saving with the highlighted button will update Category 2 accordingly, and the others will not be affected even though their state has been temporarily changed.
 
 - The test data currently in place is for practice purposes, but is fully functional in terms of the system's provided functionalities. If desired, a plausible and similar set of test data can be configured through seeding.
