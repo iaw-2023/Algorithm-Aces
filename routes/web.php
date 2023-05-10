@@ -32,7 +32,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
         Route::post('/', [App\Http\Controllers\ViewControllers\CategoryController::class, 'store'])->name('categories.store');
         Route::put('/{category}', [CategoryController::class, 'update'])->name('categories.update');
-        Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
         Route::put('/{category}/set-enable',  [CategoryController::class, 'setEnable'])->name('categories.set-enable');
     });
 
@@ -42,7 +41,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{brand}/edit', [BrandController::class, 'edit'])->name('brands.edit');
         Route::post('/', [App\Http\Controllers\ViewControllers\BrandController::class, 'store'])->name('brands.store');
         Route::put('/{brand}', [BrandController::class, 'update'])->name('brands.update');
-        Route::delete('/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
         Route::put('/{brand}/set-enable',  [BrandController::class, 'setEnable'])->name('brands.set-enable');
     });
 
@@ -56,7 +54,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', [ProductController::class, 'store'])->name('products.store');
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
-        Route::delete('/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
         Route::put('/{product}/disable', [ProductController::class, 'disable'])->name('products.disable');
         Route::put('/{product}/enable', [ProductController::class, 'enable'])->name('products.enable');
         Route::put('/{product}/edit-stock', [ProductController::class, 'editStock'])->name('products.edit-stock');
