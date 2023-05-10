@@ -1,4 +1,9 @@
-# Proyecto Inicial
+# LA GLORIA STORE
+![LA GLORIA STORE](public\images\logo.jpeg)
+
+## Links de interés
+- [Página oficial](algorithm-aces-algorithm-aces.vercel.app)
+- [Nuestra API (Swagger UI)](#)
 
 ## Idea a Implementar
 
@@ -96,6 +101,15 @@ En el [siguiente link](https://www.postman.com/downloads/) podrás acceder su po
     curl -o response.txt https://api.example.com/data
     ```
 
+## Visualización y Acceso a la Información
+
+El usuario final (que en principio no tendrá login, pero se identificará con su email) podrá visualizar la totalidad de productos de la tienda y se podrá hacer búsquedas específicas utilizando filtros, por ejemplo, por marca, categoría, nombre, precio, etc.
+
+Entre las acciones posibles, se incluye la posibilidad de realizar compras de productos, utilizando un carrito de compras que se puede modificar de manera libre, agregando y  eliminando del carrito los productos deseados previamente a la confirmación de su compra.
+
+En su primera sesión, se solicitará su email para su vinculación a sus carritos al momento de confirmar una compra con un carrito y en futuras sesiones se usará para ver los datos de sus propios carritos de compra hechos, como la fecha de su compra, cantidad de productos asociados y precio total del pedido.
+
+
 # Aclaraciones y Problemas conocidos:
 - En Mozilla firefox, si le das *don't show again* en el cuadro de dialogo al editar entidades, luego estos botones pueden no funcionar debido al funcionamiento.
 ![Mozilla](public\assets\mozilladialogissue.png)
@@ -112,21 +126,16 @@ En la imagen, guardar con el botón señalado hará que se actualice correspondi
 
 - Baja lógica: Ya que no vamos a tener eliminaciones en la base de datos del lado del admin, se requiere una manera de inhabilitar las entidades de manera lógica para no generar eliminaciones en cascada y generar pérdida de la información. Resolvimos esto con una variable booleana enable en los modelos.
 
-
-
-## Visualización y Acceso a la Información
-
-El usuario final (que en principio no tendrá login, pero se identificará con su email) podrá visualizar la totalidad de productos de la tienda y se podrá hacer búsquedas específicas utilizando filtros, por ejemplo, por marca, categoría, nombre, precio, etc.
-
-Entre las acciones posibles, se incluye la posibilidad de realizar compras de productos, utilizando un carrito de compras que se puede modificar de manera libre, agregando y  eliminando del carrito los productos deseados previamente a la confirmación de su compra.
-
-En su primera sesión, se solicitará su email para su vinculación a sus carritos al momento de confirmar una compra con un carrito y en futuras sesiones se usará para ver los datos de sus propios carritos de compra hechos, como la fecha de su compra, cantidad de productos asociados y precio total del pedido.
-
 <br>
 <br>
 <br>
 
-# Initial Project
+# LA GLORIA STORE
+![LA GLORIA STORE](public\images\logo.jpeg)
+
+## Links of Interest
+- [Official Page](algorithm-aces-algorithm-aces.vercel.app)
+- [Our API (Swagger UI)](#)
 
 ## Idea to Implement
 
@@ -147,99 +156,8 @@ From the administrator's view, it will be allowed to create, modify, and delete 
 
 Through the Laravel application API, information can be obtained for each product, category, brand, order detail, and shopping cart. Through the Laravel application API, it will be possible to create a record for a shopping cart and its associated order details (since end-users will make purchases and this information needs to be persisted in the database).
 
-## Information Visualization and Access
-
-The end-user (who initially won't have a login but will identify themselves with their email) will be able to view all the products in the store, and specific searches can be made using filters, for example, by brand, category, name, price, etc.
-
-Among the possible actions, the possibility of making purchases of products is included, using a shopping cart that can be freely modified by adding and removing desired products before confirming the purchase.
-
-In their first session, their email will be requested for linking to their carts at the time of confirming a purchase with a cart, and in future sessions, it will be used to view the data of their own made shopping carts, such as the date of their purchase, the quantity of associated products, and the total price of the order.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# How to test our Web Service
-## Postman
+## How to test our Web Service
+### Postman
 - Download and install Postman: The first thing you need to do is download and install Postman on your computer. Postman is a free tool that allows you to send HTTP requests to an API and see the responses it returns. In the [following link](https://www.postman.com/downloads/), you can access their download portal.
 
 - Configure the request: You can create a new request by clicking the "New" button in the top left corner of the screen. In the window that opens, select the type of request you want to send (GET, POST, PUT, DELETE, etc.), enter the URL of the API you want, and add the necessary parameters in the "Params" tab or in the body of the request.
@@ -253,7 +171,7 @@ In their first session, their email will be requested for linking to their carts
 - Inspect the response: If you want to inspect more details of the response, you can switch to the "Headers", "Cookies" or "Tests" tabs. The "Headers" tab shows the headers of the response, the "Cookies" tab shows the cookies that are set in the response, and the "Tests" tab allows you to write automated tests to verify the response.
 - Save the request: If you want to save the request for later use, you can click the "Save" button in the top right corner of the screen (Or use Crtl + S). Postman will allow you to save the request in an existing collection or in a new collection.
 
-## Windows PowerShell
+### Windows PowerShell
 - Open PowerShell: you can open PowerShell by pressing Windows + X and then choosing Windows PowerShell from the list.
 - Send a Request to the API Endpoint: the Invoke-RestMethod cmdlet is used in PowerShell to send HTTP requests to a RESTful web service or an API endpoint. Here is an example of how to use it to send a GET request to an API endpoint:
 
@@ -286,7 +204,7 @@ In their first session, their email will be requested for linking to their carts
     ```
     $response = Invoke-RestMethod -Uri http://localhost:8000/api/clients -Method Post -Credential $cred -Headers $headers -Body $body
     ```
-## For Linux Users: Using Terminal (Ubuntu)
+### For Linux Users: Using Terminal (Ubuntu)
 - Open Terminal: you can open the terminal by pressing Ctrl + Alt + T on your keyboard.
 - Send a Request to the API Endpoint: we use the curl command in Linux to send HTTP requests to an API endpoint.
 Here's an example of how to send a GET request to an API endpoint:
@@ -305,3 +223,27 @@ Here's an example of how to send a GET request to an API endpoint:
     ```
     curl -o response.txt https://api.example.com/data
     ```
+
+## Information Visualization and Access
+
+The end-user (who initially won't have a login but will identify themselves with their email) will be able to view all the products in the store, and specific searches can be made using filters, for example, by brand, category, name, price, etc.
+
+Among the possible actions, the possibility of making purchases of products is included, using a shopping cart that can be freely modified by adding and removing desired products before confirming the purchase.
+
+In their first session, their email will be requested for linking to their carts at the time of confirming a purchase with a cart, and in future sessions, it will be used to view the data of their own made shopping carts, such as the date of their purchase, the quantity of associated products, and the total price of the order.
+
+## Clarifications and Known Issues:
+- In Mozilla Firefox, if you click "don't show again" in the dialog box when editing entities, then these buttons may not function properly due to cookie handling.
+![Mozilla](public\assets\mozilladialogissue.png)
+This issue is related to the browser's cookie handling and to resolve it, the preference to disallow further dialog boxes on the site must be removed.
+
+- In the current version, when updating the active/inactive state of the Brand, Category, and Product entities, it is recommended to update one at a time since the save buttons only take into account their corresponding row.
+![Update](public\assets\saveupdateissue.png)
+In the image, saving with the highlighted button will update Category 2 accordingly, and the others will not be affected even though their state has been temporarily changed.
+
+- The test data currently in place is for practice purposes, but is fully functional in terms of the system's provided functionalities. If desired, a plausible and similar set of test data can be configured through seeding.
+
+# Decisions Made:
+- Note that an integer can be inserted into the stock field. If it is positive, it will be added, if it is negative, it will be subtracted, and it will reach 0 or 9999. This was done this way because a button to set the number could generate inconsistent cases (if a user bought items that reduced the stock in the time window between when the admin edits the stock, it could result in lost information as it sets it).
+
+- Logical Deletion: Since we will not have deletions in the database on the admin side, a way to disable entities logically is required to avoid generating cascading deletions and generating information loss. We solved this with a boolean variable "enable" in the models.
