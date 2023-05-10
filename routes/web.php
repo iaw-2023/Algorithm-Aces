@@ -54,8 +54,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', [ProductController::class, 'store'])->name('products.store');
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::put('/{product}', [ProductController::class, 'update'])->name('products.update');
-        Route::put('/{product}/disable', [ProductController::class, 'disable'])->name('products.disable');
-        Route::put('/{product}/enable', [ProductController::class, 'enable'])->name('products.enable');
+        Route::put('/{product}/set-enable',  [ProductController::class, 'setEnable'])->name('products.set-enable');
         Route::put('/{product}/edit-stock', [ProductController::class, 'editStock'])->name('products.edit-stock');
     });
 });

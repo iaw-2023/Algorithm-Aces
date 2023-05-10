@@ -86,17 +86,16 @@ class ProductController extends Controller
     }
 
 
-    public function enable(Product $product){
-        $product->update(['enable' => true]);
 
-        return redirect()-> route('products.index')
-            ->with('success', 'Product enabled successfully');
-    }
-    public function disable(Product $product){
-        $product->update(['enable' => false]);
-
-        return redirect()->route('products.index')
-            ->with('success', 'Product disabled successfully');
+    public function setEnable(Request $request, Product $product)
+    {
+        $enable = $request->input('switch-state') === 'on';
+    
+        $product->update(['enable' => $enable]);
+    
+        $message = $enable ? 'Product enabled successfully' : 'Product disabled successfully';
+    
+        return redirect()->route('products.index')->with('success', $message);
     }
 
     public function editStock(Request $request, Product $product){

@@ -18,6 +18,7 @@
                     <th>Brand</th>
                     <th>Category</th>
                     <th>Manage</th>
+                    <th>Enable</th>
                     <th>Apply Stock</th>
                 </tr>
                 </thead>
@@ -33,19 +34,17 @@
                         <td>{{ $product->category->name }}</td>
                         <td>
                             <a href="{{ route('products.edit', $product) }}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                            @if ($product->enable)
-                                <form action="{{ route('products.disable', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to disable this product?')">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-success">Enabled</button>
-                                </form>
-                            @else
-                                <form action="{{ route('products.enable', $product) }}" method="POST" onsubmit="return confirm('Are you sure you want to enable this product?')">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-danger">Disabled</button>
-                                </form>
-                            @endif
+                        </td>
+                        <td>
+                            <form method="POST" action="{{ route('products.set-enable', $product) }}"
+                                onsubmit="return confirm('Are you sure you want to save this change?')">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggle-switch" name="switch-state" {{ $product->enable ? 'checked' : '' }}>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
                         </td>
                         <td>
                             <form action="{{ route('products.edit-stock', $product) }}" method="POST">
