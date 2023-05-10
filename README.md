@@ -2,7 +2,7 @@
 ![LA GLORIA STORE](public/images/logo.jpeg)
 
 ## Links de interés
-- [Página oficial](algorithm-aces-algorithm-aces.vercel.app)
+- [Página oficial](http://algorithm-aces-algorithm-aces.vercel.app)
 - [Nuestra API (Swagger UI)](#)
 
 ## Idea a Implementar
@@ -134,7 +134,7 @@ En la imagen, guardar con el botón señalado hará que se actualice correspondi
 ![LA GLORIA STORE](public/images/logo.jpeg)
 
 ## Links of Interest
-- [Official Page](algorithm-aces-algorithm-aces.vercel.app)
+- [Official Page](http://algorithm-aces-algorithm-aces.vercel.app)
 - [Our API (Swagger UI)](#)
 
 ## Idea to Implement
