@@ -44,8 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/', [App\Http\Controllers\ViewControllers\BrandController::class, 'store'])->name('brands.store');
         Route::put('/{brand}', [BrandController::class, 'update'])->name('brands.update');
         Route::delete('/{brand}', [BrandController::class, 'destroy'])->name('brands.destroy');
-        Route::put('/{brand}/disable', [BrandController::class, 'disable'])->name('brands.disable');
-        Route::put('/{brand}/enable',  [BrandController::class, 'enable'])->name('brands.enable');
+        Route::put('/{brand}/set-enable',  [BrandController::class, 'setEnable'])->name('brands.set-enable');
     });
 
     Route::prefix('/clients')->group(function () {
