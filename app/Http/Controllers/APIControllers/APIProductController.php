@@ -5,9 +5,9 @@ namespace App\Http\Controllers\APIControllers;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\APIControllers\BaseAPIController;
 
-class APIProductController extends Controller
+class APIProductController extends BaseAPIController
 {
     /**
      * Display a listing of the resource.

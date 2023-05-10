@@ -5,9 +5,9 @@ namespace App\Http\Controllers\APIControllers;
 use App\Models\Brand;
 use App\Http\Resources\BrandResource;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\APIControllers\BaseAPIController;
 
-class APIBrandController extends Controller
+class APIBrandController extends BaseAPIController
 {
     public function index()
     {

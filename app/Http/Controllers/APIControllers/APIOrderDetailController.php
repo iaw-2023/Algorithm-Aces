@@ -5,9 +5,9 @@ namespace App\Http\Controllers\APIControllers;
 use App\Http\Resources\OrderDetailResource;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\APIControllers\BaseAPIController;
 
-class APIOrderDetailController extends Controller
+class APIOrderDetailController extends BaseAPIController
 {
     /**
      * Display a listing of the resource.

@@ -6,9 +6,9 @@ namespace App\Http\Controllers\APIControllers;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\APIControllers\BaseAPIController;
 
-class APICategoryController extends Controller
+class APICategoryController extends BaseAPIController
 {
     public function index()
     {

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\APIControllers;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\APIControllers\BaseAPIController;
 
-class APIClientController extends Controller
+class APIClientController extends BaseAPIController
 {
     /**
      * Display a listing of the resource.

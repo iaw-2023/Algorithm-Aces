@@ -7,12 +7,11 @@ use App\Models\ShoppingCart;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\APIControllers\BaseAPIController;
 
-
-class APIShoppingCartController extends Controller
+class APIShoppingCartController extends BaseAPIController
 {
     /**
      * Display a listing of the resource.
