@@ -5,6 +5,36 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     title="ClientResource",
+ *     description="Client resource",
+ *     @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         description="The client ID",
+ *         example="3"
+ *     ),
+ *     @OA\Property(
+ *         property="email",
+ *         type="string",
+ *         description="The client email",
+ *         example="john.doe@gmail.com"
+ *     ),
+ *     @OA\Property(
+ *         property="created_at",
+ *         type="string",
+ *         format="date-time",
+ *         description="The datetime when the client was created"
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         type="string",
+ *         format="date-time",
+ *         description="The datetime when the client was last updated"
+ *     ),
+ * )
+ */
 class ClientResource extends JsonResource
 {
     /**
