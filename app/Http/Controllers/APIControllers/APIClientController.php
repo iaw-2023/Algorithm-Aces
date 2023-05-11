@@ -9,8 +9,21 @@ use App\Http\Controllers\APIControllers\BaseAPIController;
 
 class APIClientController extends BaseAPIController
 {
-    /**
-     * Display a listing of the resource.
+
+        /**
+     * @OA\Get(
+     *      path="/clients",
+     *      operationId="index",
+     *      tags={"Clients"},
+     *      summary="Get list of clients",
+     *      description="Returns list of clients",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       )
+     *     )
+     *
+     * Returns list of clients
      */
     public function index()
     {
