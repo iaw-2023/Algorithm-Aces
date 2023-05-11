@@ -28,7 +28,7 @@
         "VIEW_COMPILED_PATH": "/tmp/views",
 
         "CACHE_DRIVER": "array",
-        "LOG_CHANNEL": "stderr",
+        "LOG_CHANNEL": "stack",
         "SESSION_DRIVER": "database",
         "SSR_TEMP_PATH": "/tmp/ssr",
         "NODE_PATH": "node"
