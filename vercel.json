@@ -16,7 +16,7 @@
         },
         {
             "src": "/docs/(.*)",
-            "dest": "/docs/$1"
+            "dest": "/public/docs/$1"
         }
     ],
     "env": {
