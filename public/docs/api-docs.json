@@ -1,0 +1,229 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "LA GLORIA STORE API",
+        "description": "THE OFFICIAL LA GLORIA F.C. STORE",
+        "contact": {
+            "email": "dieztomasjoaquin@gmail.com"
+        },
+        "version": "1.0.0",
+        "x-logo": {
+            "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+        }
+    },
+    "paths": {
+        "/rest/clients": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get all the clients",
+                "description": "Get a list of all the clients in the database",
+                "operationId": "12933d30537a7ea414c6230b02190aa4",
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ClientResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Store a newly created resource in storage and return the new client.",
+                "description": "Create a new client in the database with the given email address and return the newly created client. The email address must not be already present in the clients database.",
+                "operationId": "8caae381effbc89b26e5b05f80c86798",
+                "requestBody": {
+                    "description": "Client email address.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "The email address of the new client. Must not be already present in the clients database.",
+                                        "type": "string",
+                                        "example": "john.doe@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Newly created client.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ClientResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "description": "Validation errors.",
+                                            "properties": {
+                                                "email": {
+                                                    "description": "The email validation error.",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/clients/create": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Show the form for creating a new client",
+                "description": "Returns a JSON object with the form fields for creating a new client.",
+                "operationId": "bd89493e086bbc5784ca7b96900b49b4",
+                "responses": {
+                    "200": {
+                        "description": "JSON object with the form fields for creating a new client.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "fields": {
+                                            "description": "The form fields for creating a new client.",
+                                            "properties": {
+                                                "email": {
+                                                    "description": "The email field.",
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "example": "email"
+                                                        },
+                                                        "label": {
+                                                            "type": "string",
+                                                            "example": "Email"
+                                                        },
+                                                        "required": {
+                                                            "type": "boolean",
+                                                            "example": true
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/clients/{id}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Retrieve a specific client",
+                "description": "Retrieves a specific client by ID.",
+                "operationId": "cef38ba85e3b7ba811283a3bd1261750",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the client to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClientResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Client not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ClientResource": {
+                "title": "ClientResource",
+                "description": "Client resource",
+                "properties": {
+                    "id": {
+                        "description": "The client ID",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "email": {
+                        "description": "The client email",
+                        "type": "string",
+                        "example": "john.doe@gmail.com"
+                    },
+                    "created_at": {
+                        "description": "The datetime when the client was created",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "The datetime when the client was last updated",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
