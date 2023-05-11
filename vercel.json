@@ -13,7 +13,7 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
-        }
+        },
         {
             "src": "/docs/(.*)",
             "dest": "/docs/$1"
