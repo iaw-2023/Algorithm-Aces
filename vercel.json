@@ -20,7 +20,7 @@
         }
     ],
     "env": {
-        "APP_NAME": "La Gloria Store",
+        "APP_NAME": "La Gloria F.C. Store",
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "VERCEL_DEMO_MODE": "true",
