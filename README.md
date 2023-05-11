@@ -27,6 +27,12 @@ A través de la API de la aplicación Laravel se podrá crear el registro de un 
 
 
 ## Cómo probar nuestro servicio Web
+Ten en cuenta que nuestros recursos se deben acceder con el prefijo /rest/ 
+
+Por ejemplo:
+```
+    https://algorithm-aces-algorithm-aces.vercel.app/rest/brands/
+```
 
 ### Postman 
 - Descargar e instalar Postman: Lo primero que debes hacer es descargar e instalar Postman en tu ordenador. Postman es una herramienta gratuita que te permite enviar peticiones HTTP a una API y ver las respuestas que devuelve.
@@ -157,6 +163,14 @@ From the administrator's view, it will be allowed to create, modify, and delete 
 Through the Laravel application API, information can be obtained for each product, category, brand, order detail, and shopping cart. Through the Laravel application API, it will be possible to create a record for a shopping cart and its associated order details (since end-users will make purchases and this information needs to be persisted in the database).
 
 ## How to test our Web Service
+Please note that our resources must be accessed with the prefix /rest/.
+
+For example:
+```
+    https://algorithm-aces-algorithm-aces.vercel.app/rest/brands/
+```
+
+
 ### Postman
 - Download and install Postman: The first thing you need to do is download and install Postman on your computer. Postman is a free tool that allows you to send HTTP requests to an API and see the responses it returns. In the [following link](https://www.postman.com/downloads/), you can access their download portal.
 
