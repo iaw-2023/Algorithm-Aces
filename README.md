@@ -1,9 +1,9 @@
 # LA GLORIA STORE
-![LA GLORIA STORE](public/images/logo.jpeg)
+![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.jpeg)
 
 ## Links de interés
-- [Página oficial](http://algorithm-aces-algorithm-aces.vercel.app)
-- [Nuestra API (Swagger UI)](#)
+- [Página oficial](https://la-gloria-store-algorithm-aces.vercel.app/)
+- [Prueba nuestra API! (Swagger UI)](https://la-gloria-store-algorithm-aces.vercel.app/rest/documentation/)
 
 ## Idea a Implementar
 
@@ -137,11 +137,11 @@ En la imagen, guardar con el botón señalado hará que se actualice correspondi
 <br>
 
 # LA GLORIA STORE
-![LA GLORIA STORE](public/images/logo.jpeg)
+![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.jpeg)
 
-## Links of Interest
-- [Official Page](http://algorithm-aces-algorithm-aces.vercel.app)
-- [Our API (Swagger UI)](#)
+- [Official Page](https://la-gloria-store-algorithm-aces.vercel.app/)
+- [Try our API! (Swagger UI)](https://la-gloria-store-algorithm-aces.vercel.app/rest/documentation/)
+
 
 ## Idea to Implement
 
