@@ -45,6 +45,37 @@ class APIShoppingCartController extends BaseAPIController
     }
 
 /**
+ * Retrieves a specific shopping cart by ID.
+ *
+ * @OA\Get(
+ *     path="/rest/shopping-carts/{id}",
+ *     summary="Retrieve a specific shopping cart",
+ *     tags={"Shopping Carts"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID of the shopping cart to retrieve",
+ *         required=true,
+ *         @OA\Schema(type="integer")
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="Shopping cart retrieved successfully",
+ *         @OA\JsonContent(ref="#/components/schemas/ShoppingCartResource")
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="Shopping cart not found"
+ *     )
+ * )
+ */
+    public function show(string $id)
+    {
+        $shopping_cart = ShoppingCart::findOrFail($id);
+        return new ShoppingCartResource($shopping_cart);
+    }
+
+/**
  * @OA\Get(
  *      path="/rest/shopping-carts/create",
  *      summary="Show the form for creating a new shopping cart in JSON format.",

@@ -684,6 +684,42 @@
                 }
             }
         },
+        "/rest/shopping-carts/{id}": {
+            "get": {
+                "tags": [
+                    "Shopping Carts"
+                ],
+                "summary": "Retrieve a specific shopping cart",
+                "description": "Retrieves a specific shopping cart by ID.",
+                "operationId": "1203cfd3a43bd23396f9c9066f616b2e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the shopping cart to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Shopping cart retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShoppingCartResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Shopping cart not found"
+                    }
+                }
+            }
+        },
         "/rest/shopping-carts/create": {
             "get": {
                 "tags": [
