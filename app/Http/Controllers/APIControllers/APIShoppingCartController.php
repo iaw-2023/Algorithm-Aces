@@ -13,21 +13,94 @@ use App\Http\Controllers\APIControllers\BaseAPIController;
 
 class APIShoppingCartController extends BaseAPIController
 {
-    /**
-     * Display a listing of the resource.
-     */
+/**
+ * @OA\Get(
+ *      path="/rest/shopping-carts",
+ *      tags={"Shopping Carts"},
+ *      summary="Display a listing of the resource.",
+ *      description="Returns a collection of shopping carts.",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *          @OA\JsonContent(ref="#/components/schemas/ShoppingCartResource")
+ *      ),
+ *      @OA\Response(
+ *          response=401,
+ *          description="Unauthorized",
+ *      ),
+ *      @OA\Response(
+ *          response=403,
+ *          description="Forbidden",
+ *      ),
+ *      @OA\Response(
+ *          response=404,
+ *          description="Resource Not Found",
+ *      )
+ * )
+ */
     public function index()
     {
         $shopping_carts = ShoppingCart::all();
         return ShoppingCartResource::collection($shopping_carts);
     }
 
-    /**
-     * Show the form for creating a new shopping cart in JSON format.
-     * Order Details array must have at least one element
-     * The Client ID must be of a client already in the database
-     * Total price must be at least 0 included
-     */
+/**
+ * @OA\Get(
+ *      path="/rest/shopping-carts/create",
+ *      summary="Show the form for creating a new shopping cart in JSON format.",
+ *      description="Order Details array must have at least one element. The Client ID must be of a client already in the database. Total price must be at least 0 included",
+ *      tags={"Shopping Carts"},
+ *      @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *          @OA\JsonContent(
+ *              @OA\Property(
+ *                  property="fields",
+ *                  type="object",
+ *                  @OA\Property(
+ *                      property="total_price",
+ *                      type="number",
+ *                      description="Total price of the shopping cart",
+ *                      example=94
+ *                  ),
+ *                  @OA\Property(
+ *                      property="date",
+ *                      type="string",
+ *                      format="date",
+ *                      description="Date of the shopping cart",
+ *                      example="2023-05-12"
+ *                  ),
+ *                  @OA\Property(
+ *                      property="client_id",
+ *                      type="integer",
+ *                      description="Client ID of the shopping cart",
+ *                      example=1
+ *                  ),
+ *                  @OA\Property(
+ *                      property="order_details",
+ *                      type="array",
+ *                      description="Array of Order Details objects",
+ *                      @OA\Items(
+ *                          type="object",
+ *                          @OA\Property(
+ *                              property="product_id",
+ *                              type="integer",
+ *                              description="Product ID of the Order Detail",
+ *                              example=2
+ *                          ),
+ *                          @OA\Property(
+ *                              property="quantity",
+ *                              type="integer",
+ *                              description="Quantity of the Order Detail",
+ *                              example=3
+ *                          )
+ *                      )
+ *                  )
+ *              )
+ *          )
+ *      )
+ * )
+ */
     public function create()
     {
         $shoppingCartFields = [
@@ -59,10 +132,108 @@ class APIShoppingCartController extends BaseAPIController
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     * Validates the stock consistency for each product sold 
-     */
+/**
+ * Store a newly created resource in storage.
+ *
+ * @OA\Post(
+ *      path="/rest/shopping-carts",
+ *      tags={"Shopping Carts"},
+ *      summary="Create a new shopping cart",
+ *      description="Creates a new shopping cart with the given data. Validates the stock consistency for each product sold and updates the stock accordingly. The total price must be computed by the client.",
+ *      @OA\RequestBody(
+ *          required=true,
+ *          description="Request body containing the shopping cart and order details data",
+ *          @OA\JsonContent(
+ *              type="object",
+ *              required={"total_price", "date", "client_id", "order_details"},
+ *              @OA\Property(
+ *                  property="total_price",
+ *                  type="number",
+ *                  description="The total price of the shopping cart",
+ *                  example=50
+ *              ),
+ *              @OA\Property(
+ *                  property="date",
+ *                  type="string",
+ *                  format="date",
+ *                  description="The date of the shopping cart in YYYY-MM-DD format",
+ *                  example="2022-05-12"
+ *              ),
+ *              @OA\Property(
+ *                  property="client_id",
+ *                  type="integer",
+ *                  description="The ID of the client that owns the shopping cart",
+ *                  example=1
+ *              ),
+ *              @OA\Property(
+ *                  property="order_details",
+ *                  type="array",
+ *                  description="The array of order details for the shopping cart",
+ *                  @OA\Items(
+ *                      type="object",
+ *                      required={"product_id", "quantity"},
+ *                      @OA\Property(
+ *                          property="product_id",
+ *                          type="integer",
+ *                          description="The ID of the product to be added to the shopping cart",
+ *                          example=1
+ *                      ),
+ *                      @OA\Property(
+ *                          property="quantity",
+ *                          type="integer",
+ *                          description="The quantity of the product to be added to the shopping cart",
+ *                          example=2
+ *                      )
+ *                  ),
+ *              ),
+ *          ),
+ *      ),
+ *      @OA\Response(
+ *          response=201,
+ *          description="Shopping cart created successfully",
+ *          @OA\JsonContent(
+ *              @OA\Property(
+ *                  property="data",
+ *                  type="object",
+ *                  ref="#/components/schemas/ShoppingCartResource"
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=422,
+ *          description="Unprocessable Entity",
+ *          @OA\JsonContent(
+ *              @OA\Property(
+ *                  property="message",
+ *                  type="string",
+ *                  description="The error message describing why the request was unprocessable"
+ *              ),
+ *              @OA\Property(
+ *                  property="errors",
+ *                  type="object",
+ *                  description="The validation errors",
+ *                  additionalProperties={
+ *                      "type": "array",
+ *                      "items": {
+ *                          "type": "string"
+ *                      }
+ *                  }
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=500,
+ *          description="Internal Server Error",
+ *          @OA\JsonContent(
+ *              @OA\Property(
+ *                  property="message",
+ *                  type="string",
+ *                  description="The error message describing the internal server error"
+ *              )
+ *          )
+ *      )
+ * )
+ */
     public function store(Request $request)
     {
         try {

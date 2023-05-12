@@ -10,12 +10,60 @@ use App\Http\Controllers\APIControllers\BaseAPIController;
 
 class APICategoryController extends BaseAPIController
 {
+ /**
+ * @OA\Get(
+ *     path="/rest/categories",
+ *     summary="Get all categories",
+ *     description="Returns a list of all categories",
+ *     tags={"Categories"},
+ *     @OA\Response(
+ *         response=200,
+ *         description="List of categories",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/CategoryResource")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="No categories found"
+ *     )
+ * )
+ */
     public function index()
     {
         $categories = Category::all();
         return CategoryResource::collection($categories);
     }
 
+/**
+ * @OA\Get(
+ *     path="/rest/categories/{id}",
+ *     summary="Get category by ID",
+ *     description="Returns a single category by ID",
+ *     tags={"Categories"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="The ID of the category",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Category details",
+ *         @OA\JsonContent(
+ *             ref="#/components/schemas/CategoryResource"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Category not found"
+ *     )
+ * )
+ */
     public function show($id)
     {
         $category = Category::findOrFail($id);

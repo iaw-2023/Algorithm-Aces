@@ -158,7 +158,7 @@ class APIClientController extends BaseAPIController
  * Retrieves a specific client by ID.
  *
  * @OA\Get(
- *     path="/api/clients/{id}",
+ *     path="/rest/clients/{id}",
  *     summary="Retrieve a specific client",
  *     tags={"Clients"},
  *     @OA\Parameter(
@@ -166,7 +166,7 @@ class APIClientController extends BaseAPIController
  *         in="path",
  *         description="ID of the client to retrieve",
  *         required=true,
- *         @OA\Schema(type="string")
+ *         @OA\Schema(type="integer")
  *     ),
  *     @OA\Response(
  *         response="200",

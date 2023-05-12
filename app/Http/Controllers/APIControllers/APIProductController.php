@@ -9,9 +9,35 @@ use App\Http\Controllers\APIControllers\BaseAPIController;
 
 class APIProductController extends BaseAPIController
 {
-    /**
-     * Display a listing of the resource.
-     */
+/**
+ * Display a listing of the resource.
+ *
+ * @OA\Get(
+ *      path="/rest/products",
+ *      tags={"Products"},
+ *      summary="Display a listing of products",
+ *      description="Get all products with their details",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Success",
+ *          @OA\JsonContent(
+ *              @OA\Property(
+ *                  property="data",
+ *                  type="array",
+ *                  @OA\Items(ref="#/components/schemas/ProductResource")
+ *              )
+ *          )
+ *      ),
+ *      @OA\Response(
+ *          response=401,
+ *          description="Unauthenticated",
+ *      ),
+ *      @OA\Response(
+ *          response=403,
+ *          description="Unauthorized",
+ *      ),
+ * )
+ */
     public function index()
     {
         $products = Product::all();
@@ -34,9 +60,34 @@ class APIProductController extends BaseAPIController
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+/**
+ * @OA\Get(
+ *     path="/rest/products/{id}",
+ *     summary="Show a single product",
+ *     description="Display the specified product.",
+ *     operationId="showProduct",
+ *     tags={"Products"},
+ *     @OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID of the product to show",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer",
+ *             example=1
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response="200",
+ *         description="Successful operation",
+ *         @OA\JsonContent(ref="#/components/schemas/ProductResource")
+ *     ),
+ *     @OA\Response(
+ *         response="404",
+ *         description="Product not found"
+ *     )
+ * )
+ */
     public function show(string $id)
     {
         $product = Product::findOrFail($id);

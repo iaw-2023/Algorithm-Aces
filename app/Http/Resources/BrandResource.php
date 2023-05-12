@@ -5,6 +5,40 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @OA\Schema(
+ *     schema="BrandResource",
+ *     type="object",
+ *     title="Brand resource",
+ *     description="Represents a Brand",
+ *     @OA\Property(
+ *         property="id",
+ *         description="The brand's ID",
+ *         type="integer",
+ *         example=1
+ *     ),
+ *     @OA\Property(
+ *         property="name",
+ *         description="The brand's name",
+ *         type="string",
+ *         example="Nike"
+ *     ),
+ *     @OA\Property(
+ *         property="created_at",
+ *         description="The datetime when the brand was created",
+ *         type="string",
+ *         format="date-time",
+ *         example="2023-05-11 13:42:56"
+ *     ),
+ *     @OA\Property(
+ *         property="updated_at",
+ *         description="The datetime when the brand was last updated",
+ *         type="string",
+ *         format="date-time",
+ *         example="2023-05-11 13:42:56"
+ *     ),
+ * )
+ */
 class BrandResource extends JsonResource
 {
     /**

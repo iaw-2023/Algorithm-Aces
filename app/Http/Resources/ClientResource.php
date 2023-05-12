@@ -7,8 +7,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @OA\Schema(
+ *     schema="ClientResource",
  *     title="ClientResource",
- *     description="Client resource",
+ *     type="object",
+ *     description="Represents a Client",
  *     @OA\Property(
  *         property="id",
  *         type="integer",
