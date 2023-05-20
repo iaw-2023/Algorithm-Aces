@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use mysql_xdevapi\Table;
 
 class BrandSeeder extends Seeder
 {
@@ -19,9 +18,10 @@ class BrandSeeder extends Seeder
 
         for ($i = 1; $i <= $brandAmount; $i++) {
             $brandData = [
-                'name' => 'Marca ' . $i,
+                'name' => 'Brand' . $i,
                 'created_at' => now(),
                 'updated_at' => now(),
+                'enable' => boolval(random_int(0, 1)),
             ];
             //Adds brandData at the end of brands
             $brands[] = $brandData;
