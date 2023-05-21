@@ -189,12 +189,12 @@ class APIClientController extends BaseAPIController
     /**
  * @OA\Get(
  *     path="/rest/clients/email/{email}",
- *     summary="Obtener un cliente por correo electrónico",
+ *     summary="Get client by email",
  *     tags={"Clients"},
  *     @OA\Parameter(
  *         name="email",
  *         in="path",
- *         description="Correo electrónico del cliente",
+ *         description="Client's email",
  *         required=true,
  *         @OA\Schema(
  *             type="string"
@@ -202,14 +202,14 @@ class APIClientController extends BaseAPIController
  *     ),
  *     @OA\Response(
  *         response=200,
- *         description="Cliente encontrado",
+ *         description="Client found",
  *         @OA\JsonContent(
  *             ref="#/components/schemas/ClientResource"
  *         )
  *     ),
  *     @OA\Response(
  *         response=404,
- *         description="Cliente no encontrado"
+ *         description="Client not found"
  *     )
  * )
  */
