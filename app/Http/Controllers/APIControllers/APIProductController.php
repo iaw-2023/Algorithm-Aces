@@ -116,7 +116,7 @@ class APIProductController extends BaseAPIController
  *         description="OK",
  *         @OA\JsonContent(
  *             type="array",
- *             @OA\Items(ref="#/components/schemas/Product")
+ *             @OA\Items(ref="#/components/schemas/ProductResource")
  *         )
  *     ),
  *     @OA\Response(
@@ -160,7 +160,7 @@ class APIProductController extends BaseAPIController
  *         description="OK",
  *         @OA\JsonContent(
  *             type="array",
- *             @OA\Items(ref="#/components/schemas/Product")
+ *             @OA\Items(ref="#/components/schemas/ProductResource")
  *         )
  *     ),
  *     @OA\Response(

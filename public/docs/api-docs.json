@@ -327,13 +327,13 @@
                 "tags": [
                     "Clients"
                 ],
-                "summary": "Obtener un cliente por correo electrónico",
+                "summary": "Get client by email",
                 "operationId": "01db18d1750534da7f33c98b233ec498",
                 "parameters": [
                     {
                         "name": "email",
                         "in": "path",
-                        "description": "Correo electrónico del cliente",
+                        "description": "Client's email",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -342,7 +342,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Cliente encontrado",
+                        "description": "Client found",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -352,7 +352,7 @@
                         }
                     },
                     "404": {
-                        "description": "Cliente no encontrado"
+                        "description": "Client not found"
                     }
                 }
             }
@@ -526,7 +526,7 @@
                 }
             }
         },
-        "/rest/products/{id}": {
+        "/rest/products/id/{id}": {
             "get": {
                 "tags": [
                     "Products"
@@ -559,6 +559,110 @@
                     },
                     "404": {
                         "description": "Product not found"
+                    }
+                }
+            }
+        },
+        "/rest/products/brand/{brandName}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get products filtering by brand name",
+                "description": "Returns a list of products based on the provided brand name.",
+                "operationId": "8d1e995bdd6f271d30de511b4afdcbdc",
+                "parameters": [
+                    {
+                        "name": "brandName",
+                        "in": "path",
+                        "description": "The name of the brand",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The brand doesnt exist"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/products/category/{categoryName}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get products ",
+                "description": "Returns a list of products based on the provided category name.",
+                "operationId": "85106f6f2c5d19b3c4844b9025efe1ed",
+                "parameters": [
+                    {
+                        "name": "categoryName",
+                        "in": "path",
+                        "description": "The name of the category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The category doesnt exist."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
