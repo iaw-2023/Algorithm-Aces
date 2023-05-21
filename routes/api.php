@@ -52,7 +52,8 @@ Route::middleware(['api'])->group(function () {
 
     Route::prefix('clients')->group(function ()  {
         Route::get('/', [APIClientController::class, 'index']);
-        Route::get('/{id}', [APIClientController::class, 'show']);
+        Route::get('/id/{id}', [APIClientController::class, 'show']);
+        Route::get('/email/{email}',[APIClientController::class, 'getClientByEmail']);
         Route::get('/create', [APIClientController::class, 'create']);
         Route::post('/', [APIClientController::class, 'store']);
     });

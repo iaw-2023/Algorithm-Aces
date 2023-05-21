@@ -158,7 +158,7 @@ class APIClientController extends BaseAPIController
  * Retrieves a specific client by ID.
  *
  * @OA\Get(
- *     path="/rest/clients/{id}",
+ *     path="/rest/clients/id/{id}",
  *     summary="Retrieve a specific client",
  *     tags={"Clients"},
  *     @OA\Parameter(
@@ -182,6 +182,40 @@ class APIClientController extends BaseAPIController
     public function show(string $id)
     {
         $client = Client::findOrFail($id);
+        return new ClientResource($client);
+    }
+
+
+    /**
+ * @OA\Get(
+ *     path="/rest/clients/email/{email}",
+ *     summary="Obtener un cliente por correo electrónico",
+ *     tags={"Clients"},
+ *     @OA\Parameter(
+ *         name="email",
+ *         in="path",
+ *         description="Correo electrónico del cliente",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Cliente encontrado",
+ *         @OA\JsonContent(
+ *             ref="#/components/schemas/ClientResource"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Cliente no encontrado"
+ *     )
+ * )
+ */
+    public function getClientByEmail(string $email)
+    {
+        $client = Client::where('email', $email)->first();
         return new ClientResource($client);
     }
 

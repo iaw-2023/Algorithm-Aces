@@ -286,14 +286,14 @@
                 }
             }
         },
-        "/rest/clients/{id}": {
+        "/rest/clients/id/{id}": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Retrieve a specific client",
                 "description": "Retrieves a specific client by ID.",
-                "operationId": "ea897ac0b320fe981c2a59ed08c49de1",
+                "operationId": "6dda62dab8474b03d2ea808e9393085c",
                 "parameters": [
                     {
                         "name": "id",
@@ -318,6 +318,41 @@
                     },
                     "404": {
                         "description": "Client not found"
+                    }
+                }
+            }
+        },
+        "/rest/clients/email/{email}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Obtener un cliente por correo electrónico",
+                "operationId": "01db18d1750534da7f33c98b233ec498",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "Correo electrónico del cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cliente encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClientResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cliente no encontrado"
                     }
                 }
             }
