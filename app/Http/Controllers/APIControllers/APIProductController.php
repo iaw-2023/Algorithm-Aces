@@ -4,6 +4,8 @@ namespace App\Http\Controllers\APIControllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\APIControllers\BaseAPIController;
 
@@ -62,7 +64,7 @@ class APIProductController extends BaseAPIController
 
 /**
  * @OA\Get(
- *     path="/rest/products/{id}",
+ *     path="/rest/products/id/{id}",
  *     summary="Show a single product",
  *     description="Display the specified product.",
  *     operationId="showProduct",
@@ -90,8 +92,96 @@ class APIProductController extends BaseAPIController
  */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail(id);
         return new ProductResource($product);
+    }
+
+/**
+ * @OA\Get(
+ *     path="/rest/products/brand/{brandName}",
+ *     summary="Get products filtering by brand name",
+ *     description="Returns a list of products based on the provided brand name.",
+ *     tags={"Products"},
+ *     @OA\Parameter(
+ *         name="brandName",
+ *         in="path",
+ *         description="The name of the brand",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/Product")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Not found",
+ *         @OA\JsonContent(
+ *             @OA\Property(
+ *                 property="message",
+ *                 type="string",
+ *                 example="The brand doesnt exist"
+ *             )
+ *         )
+ *     ),
+ * )
+ */
+    public function getProductsByBrand(string $brandName)
+    {
+        $brand = Brand::where('name', $brandName)->firstOrFail();
+        $products = Product::where('brand_id', $brand->id)->get();
+
+        return ProductResource::collection($products);
+    }
+
+    /**
+ * @OA\Get(
+ *     path="/rest/products/category/{categoryName}",
+ *     summary="Get products ",
+ *     description="Returns a list of products based on the provided category name.",
+ *     tags={"Products"},
+ *     @OA\Parameter(
+ *         name="categoryName",
+ *         in="path",
+ *         description="The name of the category",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/Product")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Not found",
+ *         @OA\JsonContent(
+ *             @OA\Property(
+ *                 property="message",
+ *                 type="string",
+ *                 example="The category doesnt exist."
+ *             )
+ *         )
+ *     ),
+ * )
+ */
+    public function getProductsByCategory(string $categoryName)
+    {
+        $category = Category::where('name', $categoryName)->firstOrFail();
+        $products = Product::where('category_id', $category->id)->get();
+
+        return ProductResource::collection($products);
     }
 
     /**
