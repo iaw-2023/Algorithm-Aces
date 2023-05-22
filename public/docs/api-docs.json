@@ -454,7 +454,7 @@
                 }
             }
         },
-        "/rest/order-details/{id}": {
+        "/rest/order-details/id/{id}": {
             "get": {
                 "tags": [
                     "Order Details"
@@ -823,14 +823,14 @@
                 }
             }
         },
-        "/rest/shopping-carts/{id}": {
+        "/rest/shopping-carts/id/{id}": {
             "get": {
                 "tags": [
                     "Shopping Carts"
                 ],
                 "summary": "Retrieve a specific shopping cart",
                 "description": "Retrieves a specific shopping cart by ID.",
-                "operationId": "1203cfd3a43bd23396f9c9066f616b2e",
+                "operationId": "57ba606c56007a652a1d3e0623b55d46",
                 "parameters": [
                     {
                         "name": "id",

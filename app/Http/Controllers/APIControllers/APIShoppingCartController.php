@@ -48,7 +48,7 @@ class APIShoppingCartController extends BaseAPIController
  * Retrieves a specific shopping cart by ID.
  *
  * @OA\Get(
- *     path="/rest/shopping-carts/{id}",
+ *     path="/rest/shopping-carts/id/{id}",
  *     summary="Retrieve a specific shopping cart",
  *     tags={"Shopping Carts"},
  *     @OA\Parameter(

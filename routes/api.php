@@ -41,13 +41,13 @@ Route::middleware(['api'])->group(function () {
 
     Route::prefix('order-details')->group(function () {
         Route::get('/', [APIOrderDetailController::class, 'index']);
-        Route::get('/{id}', [APIOrderDetailController::class, 'show']);
+        Route::get('/id/{id}', [APIOrderDetailController::class, 'show']);
         Route::get('/create', [APIOrderDetailController::class, 'create']);
     });
 
     Route::prefix('shopping-carts')->group(function () {
         Route::get('/', [APIShoppingCartController::class, 'index'])->name('index');
-        Route::get('/{id}', [APIShoppingCartController::class, 'show'])->name('show');
+        Route::get('/id/{id}', [APIShoppingCartController::class, 'show'])->name('show');
         Route::get('/create', [APIShoppingCartController::class, 'create']);
         Route::post('/', [APIShoppingCartController::class, 'store'])->name('store');
     });

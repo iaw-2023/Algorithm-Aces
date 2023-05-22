@@ -137,7 +137,7 @@ public function create()
 
 /**
  * @OA\Get(
- *      path="/rest/order-details/{id}",
+ *      path="/rest/order-details/id/{id}",
  *      operationId="getOrderDetailById",
  *      tags={"Order Details"},
  *      summary="Get a single order detail",
