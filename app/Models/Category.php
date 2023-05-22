@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $fillable = ['name','enable'];
     public static $rules = [
-        'name' => 'required|regex:/^[a-zA-Z0-9\s ]{1,20}$/|unique:categories',
+        'name' => 'required|regex:/^[a-zA-ZáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙäëïöüÄËÏÖÜâêîôûÂÊÎÔÛñÑ0-9\s ]{1,20}$/|unique:categories',
         'enable' => 'boolean',
     ];
 
