@@ -13,7 +13,7 @@ class APIOrderDetailController extends BaseAPIController
  * @OA\Get(
  *     path="/rest/order-details",
  *     summary="Get a list of all order details",
- *     description="Returns a list of all order details in the application",
+ *     description="Returns a paginated list of all order details in the application",
  *     tags={"Order Details"},
  *     @OA\Response(
  *         response="200",
@@ -38,7 +38,7 @@ class APIOrderDetailController extends BaseAPIController
  */
     public function index()
     {
-        $order_details = OrderDetail::all();
+        $order_details = OrderDetail::paginate(9);
         return OrderDetailResource::collection($order_details);
     }
 

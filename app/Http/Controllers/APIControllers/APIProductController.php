@@ -18,7 +18,7 @@ class APIProductController extends BaseAPIController
  *      path="/rest/products",
  *      tags={"Products"},
  *      summary="Display a listing of products",
- *      description="Get all products with their details",
+ *      description="Get a paginated list of products with their details",
  *      @OA\Response(
  *          response=200,
  *          description="Success",
@@ -42,7 +42,7 @@ class APIProductController extends BaseAPIController
  */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(9);
         return ProductResource::collection($products);
     }
 

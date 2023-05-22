@@ -15,7 +15,7 @@ class APIClientController extends BaseAPIController
  *     path="/rest/clients",
  *     tags={"Clients"},
  *     summary="Get all the clients",
- *     description="Get a list of all the clients in the database",
+ *     description="Get a paginated list of all the clients in the database",
  *     @OA\Response(
  *         response=200,
  *         description="Successful Operation",
@@ -28,7 +28,7 @@ class APIClientController extends BaseAPIController
  */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::paginate(9);
         return ClientResource::collection($clients);
     }
 
