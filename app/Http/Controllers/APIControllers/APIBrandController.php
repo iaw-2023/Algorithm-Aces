@@ -39,7 +39,7 @@ public function index()
 
  /**
  * @OA\Get(
- *     path="/rest/brands/{id}",
+ *     path="/rest/brands/id/{id}",
  *     tags={"Brand"},
  *     summary="Get a brand by ID",
  *     description="Returns a single brand by its ID",

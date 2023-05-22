@@ -40,14 +40,14 @@
                 }
             }
         },
-        "/rest/brands/{id}": {
+        "/rest/brands/id/{id}": {
             "get": {
                 "tags": [
                     "Brand"
                 ],
                 "summary": "Get a brand by ID",
                 "description": "Returns a single brand by its ID",
-                "operationId": "7428292740aad6cb46add1fca717cbb2",
+                "operationId": "c6a53233f1aa1d5a8500e2665700a828",
                 "parameters": [
                     {
                         "name": "id",
@@ -104,14 +104,14 @@
                 }
             }
         },
-        "/rest/categories/{id}": {
+        "/rest/categories/id/{id}": {
             "get": {
                 "tags": [
                     "Categories"
                 ],
                 "summary": "Get category by ID",
                 "description": "Returns a single category by ID",
-                "operationId": "61609f8e2e4c5e96ff6ec1fcca428059",
+                "operationId": "c30155fb7d3fec06ec6ea24e269cfff5",
                 "parameters": [
                     {
                         "name": "id",
@@ -620,7 +620,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Get products ",
+                "summary": "Get products filtering by category name",
                 "description": "Returns a list of products based on the provided category name.",
                 "operationId": "85106f6f2c5d19b3c4844b9025efe1ed",
                 "parameters": [

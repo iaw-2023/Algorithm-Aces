@@ -38,7 +38,7 @@ class APICategoryController extends BaseAPIController
 
 /**
  * @OA\Get(
- *     path="/rest/categories/{id}",
+ *     path="/rest/categories/id/{id}",
  *     summary="Get category by ID",
  *     description="Returns a single category by ID",
  *     tags={"Categories"},

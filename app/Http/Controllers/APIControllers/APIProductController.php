@@ -143,7 +143,7 @@ class APIProductController extends BaseAPIController
     /**
  * @OA\Get(
  *     path="/rest/products/category/{categoryName}",
- *     summary="Get products ",
+ *     summary="Get products filtering by category name",
  *     description="Returns a list of products based on the provided category name.",
  *     tags={"Products"},
  *     @OA\Parameter(

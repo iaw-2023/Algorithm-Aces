@@ -24,12 +24,12 @@ Route::middleware(['api'])->group(function () {
 
     Route::prefix('brands')->group(function () {
         Route::get('/', [APIBrandController::class, 'index']);
-        Route::get('/{id}', [APIBrandController::class, 'show']);
+        Route::get('/id/{id}', [APIBrandController::class, 'show']);
     });
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [APICategoryController::class, 'index']);
-        Route::get('/{id}', [APICategoryController::class, 'show']);
+        Route::get('/id/{id}', [APICategoryController::class, 'show']);
     });
 
     Route::prefix('products')->group(function () {
