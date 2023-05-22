@@ -19,7 +19,7 @@
                     <th>Category</th>
                     <th>Manage</th>
                     <th>Enable</th>
-                    <th>Apply Stock</th>
+                    <th>Manage Stock</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="input-group">
-                                    <input type="text" name="stock" class="form-control" placeholder="New Stock" required oninvalid="this.setCustomValidity('Only numbers are allowed')" oninput="this.setCustomValidity('')" pattern="-?[0-9]*">
+                                    <input type="text" name="stock" class="form-control" placeholder="Stock to add/remove" required oninvalid="this.setCustomValidity('Only numbers are allowed')" oninput="this.setCustomValidity('')" pattern="-?[0-9]*">
 
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-primary">Apply Stock</button>

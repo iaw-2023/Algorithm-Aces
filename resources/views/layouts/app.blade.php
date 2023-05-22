@@ -30,7 +30,7 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
+        <div class="container"> 
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="https://2.bp.blogspot.com/-_Tx3nbVr5mM/U7ctz8a3LDI/AAAAAAAAAkM/YDDEPDIHjVE/s1600/escudoo.png" alt="Logo" class="navbar-logo">
                 {{ config('app.name', 'Laravel') }}
