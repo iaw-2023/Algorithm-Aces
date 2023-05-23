@@ -92,7 +92,7 @@ class APIProductController extends BaseAPIController
  */
     public function show(string $id)
     {
-        $product = Product::findOrFail(id);
+        $product = Product::findOrFail($id);
         return new ProductResource($product);
     }
 
