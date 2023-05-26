@@ -99,7 +99,7 @@ class APIProductController extends BaseAPIController
 /**
  * @OA\Get(
  *     path="/rest/products/brand/{brandName}",
- *     summary="Get products filtering by brand name",
+ *     summary="Get a paginated list of products filtering by brand name",
  *     description="Returns a list of products based on the provided brand name.",
  *     tags={"Products"},
  *     @OA\Parameter(
@@ -135,7 +135,7 @@ class APIProductController extends BaseAPIController
     public function getProductsByBrand(string $brandName)
     {
         $brand = Brand::where('name', $brandName)->firstOrFail();
-        $products = Product::where('brand_id', $brand->id)->get();
+        $products = Product::where('brand_id', $brand->id)->paginate(9);
 
         return ProductResource::collection($products);
     }
@@ -143,7 +143,7 @@ class APIProductController extends BaseAPIController
     /**
  * @OA\Get(
  *     path="/rest/products/category/{categoryName}",
- *     summary="Get products filtering by category name",
+ *     summary="Get a paginated list of products filtering by category name",
  *     description="Returns a list of products based on the provided category name.",
  *     tags={"Products"},
  *     @OA\Parameter(
@@ -179,7 +179,7 @@ class APIProductController extends BaseAPIController
     public function getProductsByCategory(string $categoryName)
     {
         $category = Category::where('name', $categoryName)->firstOrFail();
-        $products = Product::where('category_id', $category->id)->get();
+        $products = Product::where('category_id', $category->id)->paginate(9);
 
         return ProductResource::collection($products);
     }
