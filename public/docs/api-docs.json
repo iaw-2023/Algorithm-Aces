@@ -568,7 +568,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Get products filtering by brand name",
+                "summary": "Get a paginated list of products filtering by brand name",
                 "description": "Returns a list of products based on the provided brand name.",
                 "operationId": "8d1e995bdd6f271d30de511b4afdcbdc",
                 "parameters": [
@@ -620,7 +620,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Get products filtering by category name",
+                "summary": "Get a paginated list of products filtering by category name",
                 "description": "Returns a list of products based on the provided category name.",
                 "operationId": "85106f6f2c5d19b3c4844b9025efe1ed",
                 "parameters": [
