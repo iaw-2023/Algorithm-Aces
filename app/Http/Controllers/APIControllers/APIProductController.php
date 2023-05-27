@@ -184,6 +184,67 @@ class APIProductController extends BaseAPIController
         return ProductResource::collection($products);
     }
 
+
+ /**
+ * @OA\Get(
+ *     path="/rest/products/category/{categoryName}/brand/{brandName}",
+ *     summary="Get products by category and brand",
+ *     description="Retrieves a paginated list of products belonging to a specific category and brand.",
+ *     operationId="getProductsByCategoryAndBrand",
+ *     tags={"Products"},
+ *     @OA\Parameter(
+ *         name="categoryName",
+ *         in="path",
+ *         description="Category name",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Parameter(
+ *         name="brandName",
+ *         in="path",
+ *         description="Brand name",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="List of products retrieved successfully",
+ *         @OA\JsonContent(
+ *             type="array",
+ *             @OA\Items(ref="#/components/schemas/ProductResource")
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Not found",
+ *         @OA\JsonContent(
+ *             @OA\Property(
+ *                 property="message",
+ *                 type="string",
+ *                 example="The category or brand doesnt exist."
+ *             )
+ *         )
+ *     ),
+ * )
+ */
+    public function getProductsByCategoryAndBrand(string $categoryName, string $brandName)
+    {
+        $category = Category::where('name', $categoryName)->firstOrFail();
+        $brand = Brand::where('name', $brandName)->firstOrFail();
+    
+        $products = Product::where([
+            ['category_id', $category->id],
+            ['brand_id', $brand->id],
+        ])->paginate(9);
+    
+        return ProductResource::collection($products);
+    }
+    
+
     /**
      * Show the form for editing the specified resource.
      */

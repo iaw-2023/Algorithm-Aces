@@ -37,6 +37,7 @@ Route::middleware(['api'])->group(function () {
         Route::get('/id/{id}', [APIProductController::class, 'show']);
         Route::get('/brand/{brand}', [APIProductController::class, 'getProductsByBrand']);
         Route::get('/category/{category}', [APIProductController::class, 'getProductsByCategory']);
+        Route::get('/category/{category}/brand/{brand}', [APIProductController::class, 'getProductsByCategoryAndBrand']);
     });
 
     Route::prefix('order-details')->group(function () {

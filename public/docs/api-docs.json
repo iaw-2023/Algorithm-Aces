@@ -667,6 +667,67 @@
                 }
             }
         },
+        "/rest/products/category/{categoryName}/brand/{brandName}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get products by category and brand",
+                "description": "Retrieves a paginated list of products belonging to a specific category and brand.",
+                "operationId": "getProductsByCategoryAndBrand",
+                "parameters": [
+                    {
+                        "name": "categoryName",
+                        "in": "path",
+                        "description": "Category name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brandName",
+                        "in": "path",
+                        "description": "Brand name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of products retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The category or brand doesnt exist."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/rest/shopping-carts": {
             "get": {
                 "tags": [
