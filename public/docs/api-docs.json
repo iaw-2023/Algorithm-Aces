@@ -18,7 +18,7 @@
                     "Brand"
                 ],
                 "summary": "Get all brands",
-                "description": "Returns a paginated list of all brands",
+                "description": "Returns a list of all brands",
                 "operationId": "6497956451bb6ed13ec486c1576f8253",
                 "responses": {
                     "200": {
@@ -82,7 +82,7 @@
                     "Categories"
                 ],
                 "summary": "Get all categories",
-                "description": "Returns a paginated list of all categories",
+                "description": "Returns a list of all categories",
                 "operationId": "6123f24a834bf0cdb03f669352d73bcc",
                 "responses": {
                     "200": {

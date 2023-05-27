@@ -14,7 +14,7 @@ class APIBrandController extends BaseAPIController
  *     path="/rest/brands",
  *     tags={"Brand"},
  *     summary="Get all brands",
- *     description="Returns a paginated list of all brands",
+ *     description="Returns a list of all brands",
  *     @OA\Response(
  *         response=200,
  *         description="Successful operation",
@@ -31,7 +31,7 @@ class APIBrandController extends BaseAPIController
  */
 public function index()
 {
-    $brands = Brand::paginate(9);
+    $brands = Brand::all();
 
     return BrandResource::collection($brands);
 }
