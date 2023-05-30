@@ -41,6 +41,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         description="The price of the product"
  *     ),
  *     @OA\Property(
+ *         property="stock",
+ *         type="number",
+ *         format="integer",
+ *         description="The stock of the product"
+ *     ),
+ *     @OA\Property(
  *         property="brand",
  *         ref="#/components/schemas/BrandResource",
  *         description="The brand of the product"
@@ -79,6 +85,7 @@ class ProductResource extends JsonResource
             'size' => $this->size,
             'image' => $this->image,
             'price' => $this->price,
+            'price' => $this->stock,
             'brand' => new BrandResource($this->brand),
             'category' => new CategoryResource($this->category),
             'created_at' => $this->created_at->toDateTimeString(),
