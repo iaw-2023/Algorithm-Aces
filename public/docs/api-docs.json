@@ -1001,6 +1001,10 @@
                         "type": "string",
                         "example": "Nike"
                     },
+                    "enable": {
+                        "description": "The enabled state of the brand",
+                        "type": "boolean"
+                    },
                     "created_at": {
                         "description": "The datetime when the brand was created",
                         "type": "string",
@@ -1029,6 +1033,10 @@
                         "description": "The name of the category",
                         "type": "string",
                         "example": "Shoes"
+                    },
+                    "enable": {
+                        "description": "The enabled state of the category",
+                        "type": "boolean"
                     },
                     "created_at": {
                         "description": "The date and time when the category was created",
@@ -1126,6 +1134,15 @@
                         "description": "The price of the product",
                         "type": "number",
                         "format": "float"
+                    },
+                    "enable": {
+                        "description": "The enabled state of the product",
+                        "type": "boolean"
+                    },
+                    "stock": {
+                        "description": "The stock of the product",
+                        "type": "number",
+                        "format": "integer"
                     },
                     "brand": {
                         "$ref": "#/components/schemas/BrandResource"
