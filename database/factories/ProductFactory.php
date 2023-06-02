@@ -23,17 +23,22 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $nameOptions = [
+            $this->faker->colorName . ' ' . $this->faker->word,
+            $this->faker->firstName . "'s " . $this->faker->randomElement(['Classic', 'Premium', 'Deluxe']) . ' ' . $this->faker->word,
+            $this->faker->randomElement(['Organic', 'Natural', 'Handmade']) . ' ' . $this->faker->word,
+            $this->faker->randomNumber(2) . ' ' . $this->faker->randomElement(['Pack', 'Set', 'Bundle']) . ' of ' . $this->faker->word,
+        ];
+    
+        $name = $this->faker->randomElement($nameOptions);
+        $name = substr($name, 0, 30); // Limit name to 30 characters
+    
         return [
-            'name' => $this->faker->randomElement([
-                $this->faker->colorName . ' ' . $this->faker->word,
-                $this->faker->firstName . "'s " . $this->faker->randomElement(['Classic', 'Premium', 'Deluxe']) . ' ' . $this->faker->word,
-                $this->faker->randomElement(['Organic', 'Natural', 'Handmade']) . ' ' . $this->faker->word,
-                $this->faker->randomNumber(2) . ' ' . $this->faker->randomElement(['Pack', 'Set', 'Bundle']) . ' of ' . $this->faker->word,
-            ]),
+            'name' => $name,
             'image' => $this->faker->imageUrl(),
             'size' => $this->faker->regexify('[a-zA-Z0-9]{1,20}'),
             'price' => $this->faker->numberBetween(0, 9999),
-            'stock' => $this->faker->numberBetween(1, 9999),
+            'stock' => $this->faker->numberBetween(10, 20),
             'brand_id' => function () {
                 return Brand::inRandomOrder()->first()->id;
             },
@@ -43,4 +48,5 @@ class ProductFactory extends Factory
             'enable' => $this->faker->boolean,
         ];
     }
+    
 }
