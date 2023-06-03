@@ -69,7 +69,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => [
                 'required',
-                'regex:/^[a-zA-Z0-9\s ]{1,30}$/',
+                'regex:/^[a-zA-ZáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙäëïöüÄËÏÖÜâêîôûÂÊÎÔÛñÑ0-9\s ]{1,30}$/',
                 Rule::unique('products')->ignore($product->id)
             ],
         ]);

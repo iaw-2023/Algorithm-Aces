@@ -18,7 +18,7 @@
                     "Brand"
                 ],
                 "summary": "Get all brands",
-                "description": "Returns a list of all brands",
+                "description": "Returns a paginated list of all brands",
                 "operationId": "6497956451bb6ed13ec486c1576f8253",
                 "responses": {
                     "200": {
@@ -40,14 +40,14 @@
                 }
             }
         },
-        "/rest/brands/{id}": {
+        "/rest/brands/id/{id}": {
             "get": {
                 "tags": [
                     "Brand"
                 ],
                 "summary": "Get a brand by ID",
                 "description": "Returns a single brand by its ID",
-                "operationId": "7428292740aad6cb46add1fca717cbb2",
+                "operationId": "c6a53233f1aa1d5a8500e2665700a828",
                 "parameters": [
                     {
                         "name": "id",
@@ -82,7 +82,7 @@
                     "Categories"
                 ],
                 "summary": "Get all categories",
-                "description": "Returns a list of all categories",
+                "description": "Returns a paginated list of all categories",
                 "operationId": "6123f24a834bf0cdb03f669352d73bcc",
                 "responses": {
                     "200": {
@@ -104,14 +104,14 @@
                 }
             }
         },
-        "/rest/categories/{id}": {
+        "/rest/categories/id/{id}": {
             "get": {
                 "tags": [
                     "Categories"
                 ],
                 "summary": "Get category by ID",
                 "description": "Returns a single category by ID",
-                "operationId": "61609f8e2e4c5e96ff6ec1fcca428059",
+                "operationId": "c30155fb7d3fec06ec6ea24e269cfff5",
                 "parameters": [
                     {
                         "name": "id",
@@ -146,7 +146,7 @@
                     "Clients"
                 ],
                 "summary": "Get all the clients",
-                "description": "Get a list of all the clients in the database",
+                "description": "Get a paginated list of all the clients in the database",
                 "operationId": "12933d30537a7ea414c6230b02190aa4",
                 "responses": {
                     "200": {
@@ -286,14 +286,14 @@
                 }
             }
         },
-        "/rest/clients/{id}": {
+        "/rest/clients/id/{id}": {
             "get": {
                 "tags": [
                     "Clients"
                 ],
                 "summary": "Retrieve a specific client",
                 "description": "Retrieves a specific client by ID.",
-                "operationId": "ea897ac0b320fe981c2a59ed08c49de1",
+                "operationId": "6dda62dab8474b03d2ea808e9393085c",
                 "parameters": [
                     {
                         "name": "id",
@@ -322,13 +322,48 @@
                 }
             }
         },
+        "/rest/clients/email/{email}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get client by email",
+                "operationId": "01db18d1750534da7f33c98b233ec498",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "Client's email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ClientResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Client not found"
+                    }
+                }
+            }
+        },
         "/rest/order-details": {
             "get": {
                 "tags": [
                     "Order Details"
                 ],
                 "summary": "Get a list of all order details",
-                "description": "Returns a list of all order details in the application",
+                "description": "Returns a paginated list of all order details in the application",
                 "operationId": "65c1a0b9ac70c18ba1cf5235a0d2e19a",
                 "responses": {
                     "200": {
@@ -419,7 +454,7 @@
                 }
             }
         },
-        "/rest/order-details/{id}": {
+        "/rest/order-details/id/{id}": {
             "get": {
                 "tags": [
                     "Order Details"
@@ -461,7 +496,7 @@
                     "Products"
                 ],
                 "summary": "Display a listing of products",
-                "description": "Get all products with their details",
+                "description": "Get a paginated list of products with their details",
                 "operationId": "a2e6f3dd87f8986f420c13f1b2244d16",
                 "responses": {
                     "200": {
@@ -491,7 +526,7 @@
                 }
             }
         },
-        "/rest/products/{id}": {
+        "/rest/products/id/{id}": {
             "get": {
                 "tags": [
                     "Products"
@@ -528,13 +563,117 @@
                 }
             }
         },
+        "/rest/products/brand/{brandName}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get a paginated list of products filtering by brand name",
+                "description": "Returns a list of products based on the provided brand name.",
+                "operationId": "8d1e995bdd6f271d30de511b4afdcbdc",
+                "parameters": [
+                    {
+                        "name": "brandName",
+                        "in": "path",
+                        "description": "The name of the brand",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The brand doesnt exist"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/rest/products/category/{categoryName}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get a paginated list of products filtering by category name",
+                "description": "Returns a list of products based on the provided category name.",
+                "operationId": "85106f6f2c5d19b3c4844b9025efe1ed",
+                "parameters": [
+                    {
+                        "name": "categoryName",
+                        "in": "path",
+                        "description": "The name of the category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The category doesnt exist."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/rest/shopping-carts": {
             "get": {
                 "tags": [
                     "Shopping Carts"
                 ],
                 "summary": "Display a listing of the resource.",
-                "description": "Returns a collection of shopping carts.",
+                "description": "Returns a paginated collection of shopping carts.",
                 "operationId": "c57e5c04877034b17ccee2157a1dceaf",
                 "responses": {
                     "200": {
@@ -684,14 +823,14 @@
                 }
             }
         },
-        "/rest/shopping-carts/{id}": {
+        "/rest/shopping-carts/id/{id}": {
             "get": {
                 "tags": [
                     "Shopping Carts"
                 ],
                 "summary": "Retrieve a specific shopping cart",
                 "description": "Retrieves a specific shopping cart by ID.",
-                "operationId": "1203cfd3a43bd23396f9c9066f616b2e",
+                "operationId": "57ba606c56007a652a1d3e0623b55d46",
                 "parameters": [
                     {
                         "name": "id",

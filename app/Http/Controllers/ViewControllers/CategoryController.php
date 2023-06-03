@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => [
                 'required',
-                'regex:/^[a-zA-Z0-9\s ]{1,20}$/',
+                'regex:/^[a-zA-ZáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙäëïöüÄËÏÖÜâêîôûÂÊÎÔÛñÑ0-9\s ]{1,20}$/',
                 Rule::unique('brands')->ignore($category->id)
             ],
         ]);

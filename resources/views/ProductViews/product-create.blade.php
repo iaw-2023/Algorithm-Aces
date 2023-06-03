@@ -44,7 +44,7 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this category?')">Create Product</button>
+            <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this product?')">Create Product</button>
 
             <a href="{{ route('products.index') }}" class="btn btn-secondary mt-2" onclick="return confirm('Are you sure you want to leave this page? Any changes you made will be lost.');">Go back</a>
 

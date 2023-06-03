@@ -15,7 +15,7 @@ class APIClientController extends BaseAPIController
  *     path="/rest/clients",
  *     tags={"Clients"},
  *     summary="Get all the clients",
- *     description="Get a list of all the clients in the database",
+ *     description="Get a paginated list of all the clients in the database",
  *     @OA\Response(
  *         response=200,
  *         description="Successful Operation",
@@ -28,7 +28,7 @@ class APIClientController extends BaseAPIController
  */
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::paginate(9);
         return ClientResource::collection($clients);
     }
 
@@ -158,7 +158,7 @@ class APIClientController extends BaseAPIController
  * Retrieves a specific client by ID.
  *
  * @OA\Get(
- *     path="/rest/clients/{id}",
+ *     path="/rest/clients/id/{id}",
  *     summary="Retrieve a specific client",
  *     tags={"Clients"},
  *     @OA\Parameter(
@@ -182,6 +182,40 @@ class APIClientController extends BaseAPIController
     public function show(string $id)
     {
         $client = Client::findOrFail($id);
+        return new ClientResource($client);
+    }
+
+
+    /**
+ * @OA\Get(
+ *     path="/rest/clients/email/{email}",
+ *     summary="Get client by email",
+ *     tags={"Clients"},
+ *     @OA\Parameter(
+ *         name="email",
+ *         in="path",
+ *         description="Client's email",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Client found",
+ *         @OA\JsonContent(
+ *             ref="#/components/schemas/ClientResource"
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response=404,
+ *         description="Client not found"
+ *     )
+ * )
+ */
+    public function getClientByEmail(string $email)
+    {
+        $client = Client::where('email', $email)->first();
         return new ClientResource($client);
     }
 

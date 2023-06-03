@@ -18,7 +18,7 @@ class APIShoppingCartController extends BaseAPIController
  *      path="/rest/shopping-carts",
  *      tags={"Shopping Carts"},
  *      summary="Display a listing of the resource.",
- *      description="Returns a collection of shopping carts.",
+ *      description="Returns a paginated collection of shopping carts.",
  *      @OA\Response(
  *          response=200,
  *          description="Successful operation",
@@ -40,7 +40,7 @@ class APIShoppingCartController extends BaseAPIController
  */
     public function index()
     {
-        $shopping_carts = ShoppingCart::all();
+        $shopping_carts = ShoppingCart::paginate(9);
         return ShoppingCartResource::collection($shopping_carts);
     }
 
@@ -48,7 +48,7 @@ class APIShoppingCartController extends BaseAPIController
  * Retrieves a specific shopping cart by ID.
  *
  * @OA\Get(
- *     path="/rest/shopping-carts/{id}",
+ *     path="/rest/shopping-carts/id/{id}",
  *     summary="Retrieve a specific shopping cart",
  *     tags={"Shopping Carts"},
  *     @OA\Parameter(

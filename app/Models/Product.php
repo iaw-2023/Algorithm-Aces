@@ -11,7 +11,7 @@ class Product extends Model
     ];
 
     public static $rules = [
-        'name' => 'required|regex:/^[a-zA-Z0-9\s ]{1,30}$/|unique:products',
+        'name' => 'required|regex:/^[a-zA-ZáéíóúÁÉÍÓÚàèìòùÀÈÌÒÙäëïöüÄËÏÖÜâêîôûÂÊÎÔÛñÑ0-9\s ]{1,30}$/|unique:products',
         'image' => 'required|string',
         'size' => 'required|regex:/^[a-zA-Z0-9]{1,20}$/',
         'price' => 'required|integer|min:0|max:9999',
