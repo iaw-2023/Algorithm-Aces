@@ -983,6 +983,45 @@
                     }
                 }
             }
+        },
+        "/rest/shopping-carts/history/{id}": {
+            "get": {
+                "tags": [
+                    "Shopping Carts"
+                ],
+                "summary": "Retrieve client's shopping cart history",
+                "description": "Retrieves the shopping cart history for a specific client.",
+                "operationId": "clientHistory",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ShoppingCartResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Client not found"
+                    }
+                }
+            }
         }
     },
     "components": {
