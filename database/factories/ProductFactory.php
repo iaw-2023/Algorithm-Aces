@@ -45,8 +45,8 @@ class ProductFactory extends Factory
             'category_id' => function () {
                 return Category::inRandomOrder()->first()->id;
             },
-            'enable' => $this->faker->boolean,
+            'enable' => $this->faker->boolean(90), // 90% chances of being enabled
         ];
     }
-    
 }
+    
