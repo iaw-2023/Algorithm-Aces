@@ -984,7 +984,7 @@
                 }
             }
         },
-        "/rest/shopping-carts/history/{id}": {
+        "/rest/shopping-carts/history/{email}": {
             "get": {
                 "tags": [
                     "Shopping Carts"
@@ -994,9 +994,9 @@
                 "operationId": "clientHistory",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "email",
                         "in": "path",
-                        "description": "Client ID",
+                        "description": "Client email",
                         "required": true,
                         "schema": {
                             "type": "string"

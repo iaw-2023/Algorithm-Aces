@@ -50,7 +50,7 @@ Route::middleware(['api'])->group(function () {
         Route::get('/', [APIShoppingCartController::class, 'index'])->name('index');
         Route::get('/id/{id}', [APIShoppingCartController::class, 'show'])->name('show');
         Route::get('/create', [APIShoppingCartController::class, 'create']);
-        Route::get('/history/{id}', [APIShoppingCartController::class, 'clientHistory'])->name('clientHistory');
+        Route::get('/history/{email}', [APIShoppingCartController::class, 'clientHistory'])->name('clientHistory');
         Route::post('/', [APIShoppingCartController::class, 'store'])->name('store');
        
     });

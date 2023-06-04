@@ -328,14 +328,14 @@ class APIShoppingCartController extends BaseAPIController
  * Retrieve client's shopping cart history.
  *
  * @OA\Get(
- *     path="/rest/shopping-carts/history/{id}",
+ *     path="/rest/shopping-carts/history/{email}",
  *     operationId="clientHistory",
  *     summary="Retrieve client's shopping cart history",
  *     description="Retrieves the shopping cart history for a specific client.",
  *     tags={"Shopping Carts"},
  *     @OA\Parameter(
- *         name="id",
- *         description="Client ID",
+ *         name="email",
+ *         description="Client email",
  *         required=true,
  *         in="path",
  *         @OA\Schema(
@@ -356,9 +356,9 @@ class APIShoppingCartController extends BaseAPIController
  *     )
  * )
  */
-    public function clientHistory(string $id)
+    public function clientHistory(string $email)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::where('email', $email)->first();
 
         $shoppingCarts = $client->shoppingCarts()->orderBy('date')->get();
 
