@@ -41,6 +41,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         description="The price of the product"
  *     ),
  *     @OA\Property(
+ *         property="enable",
+ *         type="boolean",
+ *         description="The enabled state of the product"
+ *     ),
+ *     @OA\Property(
  *         property="stock",
  *         type="number",
  *         format="integer",
@@ -85,6 +90,8 @@ class ProductResource extends JsonResource
             'size' => $this->size,
             'image' => $this->image,
             'price' => $this->price,
+            'enable' => $this->enable,
+            'stock' => $this->stock,
             'brand' => new BrandResource($this->brand),
             'category' => new CategoryResource($this->category),
             'created_at' => $this->created_at->toDateTimeString(),

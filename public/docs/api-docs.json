@@ -800,7 +800,7 @@
                                         "items": {
                                             "required": [
                                                 "product_id",
-                                                "quantity"
+                                                "product_amount"
                                             ],
                                             "properties": {
                                                 "product_id": {
@@ -808,8 +808,8 @@
                                                     "type": "integer",
                                                     "example": 1
                                                 },
-                                                "quantity": {
-                                                    "description": "The quantity of the product to be added to the shopping cart",
+                                                "product_amount": {
+                                                    "description": "The amount of the product to be added to the shopping cart",
                                                     "type": "integer",
                                                     "example": 2
                                                 }
@@ -963,8 +963,8 @@
                                                                 "type": "integer",
                                                                 "example": 2
                                                             },
-                                                            "quantity": {
-                                                                "description": "Quantity of the Order Detail",
+                                                            "product_amount": {
+                                                                "description": "Amount of the Order Detail",
                                                                 "type": "integer",
                                                                 "example": 3
                                                             }
@@ -1001,6 +1001,10 @@
                         "type": "string",
                         "example": "Nike"
                     },
+                    "enable": {
+                        "description": "The enabled state of the brand",
+                        "type": "boolean"
+                    },
                     "created_at": {
                         "description": "The datetime when the brand was created",
                         "type": "string",
@@ -1029,6 +1033,10 @@
                         "description": "The name of the category",
                         "type": "string",
                         "example": "Shoes"
+                    },
+                    "enable": {
+                        "description": "The enabled state of the category",
+                        "type": "boolean"
                     },
                     "created_at": {
                         "description": "The date and time when the category was created",
@@ -1126,6 +1134,15 @@
                         "description": "The price of the product",
                         "type": "number",
                         "format": "float"
+                    },
+                    "enable": {
+                        "description": "The enabled state of the product",
+                        "type": "boolean"
+                    },
+                    "stock": {
+                        "description": "The stock of the product",
+                        "type": "number",
+                        "format": "integer"
                     },
                     "brand": {
                         "$ref": "#/components/schemas/BrandResource"
