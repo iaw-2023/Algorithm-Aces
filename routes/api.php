@@ -44,6 +44,7 @@ Route::middleware(['api'])->group(function () {
         Route::get('/', [APIOrderDetailController::class, 'index']);
         Route::get('/id/{id}', [APIOrderDetailController::class, 'show']);
         Route::get('/create', [APIOrderDetailController::class, 'create']);
+        Route::get('/shopping-cart/{shoppingCartId}', [APIOrderDetailController::class, 'getOrderDetailsByShoppingCart']);
     });
 
     Route::prefix('shopping-carts')->group(function () {

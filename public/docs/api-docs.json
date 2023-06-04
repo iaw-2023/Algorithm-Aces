@@ -490,6 +490,45 @@
                 }
             }
         },
+        "/rest/order-details/shopping-cart/{shoppingCartId}": {
+            "get": {
+                "tags": [
+                    "Order Details"
+                ],
+                "summary": "Get order details by shopping cart",
+                "description": "Get the order details associated with a specific shopping cart.",
+                "operationId": "ed91ef1700d80037e5e216a345ee6688",
+                "parameters": [
+                    {
+                        "name": "shoppingCartId",
+                        "in": "path",
+                        "description": "Shopping cart ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved order details",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrderDetailResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Shopping cart not found"
+                    }
+                }
+            }
+        },
         "/rest/products": {
             "get": {
                 "tags": [
