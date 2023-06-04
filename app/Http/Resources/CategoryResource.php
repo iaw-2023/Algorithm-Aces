@@ -25,6 +25,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         example="Shoes"
  *     ),
  *     @OA\Property(
+ *         property="enable",
+ *         type="boolean",
+ *         description="The enabled state of the category"
+ *     ),
+ *     @OA\Property(
  *         property="created_at",
  *         type="string",
  *         format="date-time",
@@ -50,6 +55,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'enable' => $this->enable,
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

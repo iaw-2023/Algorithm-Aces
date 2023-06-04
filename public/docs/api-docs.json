@@ -18,7 +18,7 @@
                     "Brand"
                 ],
                 "summary": "Get all brands",
-                "description": "Returns a paginated list of all brands",
+                "description": "Returns a list of all brands",
                 "operationId": "6497956451bb6ed13ec486c1576f8253",
                 "responses": {
                     "200": {
@@ -82,7 +82,7 @@
                     "Categories"
                 ],
                 "summary": "Get all categories",
-                "description": "Returns a paginated list of all categories",
+                "description": "Returns a list of all categories",
                 "operationId": "6123f24a834bf0cdb03f669352d73bcc",
                 "responses": {
                     "200": {
@@ -667,6 +667,67 @@
                 }
             }
         },
+        "/rest/products/category/{categoryName}/brand/{brandName}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get products by category and brand",
+                "description": "Retrieves a paginated list of products belonging to a specific category and brand.",
+                "operationId": "getProductsByCategoryAndBrand",
+                "parameters": [
+                    {
+                        "name": "categoryName",
+                        "in": "path",
+                        "description": "Category name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brandName",
+                        "in": "path",
+                        "description": "Brand name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of products retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProductResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The category or brand doesnt exist."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/rest/shopping-carts": {
             "get": {
                 "tags": [
@@ -739,7 +800,7 @@
                                         "items": {
                                             "required": [
                                                 "product_id",
-                                                "quantity"
+                                                "product_amount"
                                             ],
                                             "properties": {
                                                 "product_id": {
@@ -747,8 +808,8 @@
                                                     "type": "integer",
                                                     "example": 1
                                                 },
-                                                "quantity": {
-                                                    "description": "The quantity of the product to be added to the shopping cart",
+                                                "product_amount": {
+                                                    "description": "The amount of the product to be added to the shopping cart",
                                                     "type": "integer",
                                                     "example": 2
                                                 }
@@ -902,8 +963,8 @@
                                                                 "type": "integer",
                                                                 "example": 2
                                                             },
-                                                            "quantity": {
-                                                                "description": "Quantity of the Order Detail",
+                                                            "product_amount": {
+                                                                "description": "Amount of the Order Detail",
                                                                 "type": "integer",
                                                                 "example": 3
                                                             }
@@ -940,6 +1001,10 @@
                         "type": "string",
                         "example": "Nike"
                     },
+                    "enable": {
+                        "description": "The enabled state of the brand",
+                        "type": "boolean"
+                    },
                     "created_at": {
                         "description": "The datetime when the brand was created",
                         "type": "string",
@@ -968,6 +1033,10 @@
                         "description": "The name of the category",
                         "type": "string",
                         "example": "Shoes"
+                    },
+                    "enable": {
+                        "description": "The enabled state of the category",
+                        "type": "boolean"
                     },
                     "created_at": {
                         "description": "The date and time when the category was created",
@@ -1065,6 +1134,15 @@
                         "description": "The price of the product",
                         "type": "number",
                         "format": "float"
+                    },
+                    "enable": {
+                        "description": "The enabled state of the product",
+                        "type": "boolean"
+                    },
+                    "stock": {
+                        "description": "The stock of the product",
+                        "type": "number",
+                        "format": "integer"
                     },
                     "brand": {
                         "$ref": "#/components/schemas/BrandResource"
