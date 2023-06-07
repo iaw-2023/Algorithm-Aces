@@ -14,7 +14,7 @@ class APICategoryController extends BaseAPIController
  * @OA\Get(
  *     path="/rest/categories",
  *     summary="Get all categories",
- *     description="Returns a paginated list of all categories",
+ *     description="Returns a list of all categories",
  *     tags={"Categories"},
  *     @OA\Response(
  *         response=200,
@@ -32,7 +32,7 @@ class APICategoryController extends BaseAPIController
  */
     public function index()
     {
-        $categories = Category::paginate(9);
+        $categories = Category::all();
         return CategoryResource::collection($categories);
     }
 
@@ -41,7 +41,7 @@ class APICategoryController extends BaseAPIController
  *     path="/rest/categories/id/{id}",
  *     summary="Get category by ID",
  *     description="Returns a single category by ID",
- *     tags={"Categories"},
+ *     tags={"Categories"}, 
  *     @OA\Parameter(
  *         name="id",
  *         in="path",

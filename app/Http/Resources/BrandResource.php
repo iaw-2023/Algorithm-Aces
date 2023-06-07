@@ -24,6 +24,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *         example="Nike"
  *     ),
  *     @OA\Property(
+ *         property="enable",
+ *         type="boolean",
+ *         description="The enabled state of the brand"
+ *     ),
+ *     @OA\Property(
  *         property="created_at",
  *         description="The datetime when the brand was created",
  *         type="string",
@@ -51,6 +56,7 @@ class BrandResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'enable' => $this->enable,
             'created_at' => $this->created_at->toDateTimeString(),
             'updated_at' => $this->updated_at->toDateTimeString(),
         ];

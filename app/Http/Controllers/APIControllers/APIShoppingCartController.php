@@ -120,9 +120,9 @@ class APIShoppingCartController extends BaseAPIController
  *                              example=2
  *                          ),
  *                          @OA\Property(
- *                              property="quantity",
+ *                              property="product_amount",
  *                              type="integer",
- *                              description="Quantity of the Order Detail",
+ *                              description="Amount of the Order Detail",
  *                              example=3
  *                          )
  *                      )
@@ -202,7 +202,7 @@ class APIShoppingCartController extends BaseAPIController
  *                  description="The array of order details for the shopping cart",
  *                  @OA\Items(
  *                      type="object",
- *                      required={"product_id", "quantity"},
+ *                      required={"product_id", "product_amount"},
  *                      @OA\Property(
  *                          property="product_id",
  *                          type="integer",
@@ -210,9 +210,9 @@ class APIShoppingCartController extends BaseAPIController
  *                          example=1
  *                      ),
  *                      @OA\Property(
- *                          property="quantity",
+ *                          property="product_amount",
  *                          type="integer",
- *                          description="The quantity of the product to be added to the shopping cart",
+ *                          description="The amount of the product to be added to the shopping cart",
  *                          example=2
  *                      )
  *                  ),
