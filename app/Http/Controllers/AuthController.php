@@ -24,9 +24,8 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
-
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -41,11 +40,12 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $client = Auth::guard('api')->user();
+        $client = auth()->guard('api')->user();
         return $this->respondWithToken($token, $client);
     }
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $request->validate([
             'email' => 'required|string|email|max:255|unique:clients,email',
             'password' => 'required|string|min:6',
@@ -56,7 +56,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::guard('api')->login($client);
+        $token = auth()->guard('api')->login($client);
 
         return response()->json([
             'status' => 'success',
@@ -81,7 +81,7 @@ class AuthController extends Controller
     public function refresh()
     {
         $token = auth()->guard('api')->refresh();
-        $client = Auth::guard('api')->user();
+        $client = auth()->guard('api')->user();
         return $this->respondWithToken($token, $client);
     }
 
@@ -100,7 +100,7 @@ class AuthController extends Controller
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',
-                'expires_in' => auth()->factory()->getTTL() * 60
+                'expires_in' => auth()->guard('api')->factory()->getTTL() * 60
             ]
         ]);
     }
