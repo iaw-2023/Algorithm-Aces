@@ -53,7 +53,7 @@ class AuthController extends Controller
 
         $client = Client::create([
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password),
         ]);
 
         $token = auth()->guard('api')->login($client);
