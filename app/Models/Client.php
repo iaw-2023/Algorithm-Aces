@@ -25,6 +25,7 @@ class Client extends Authenticatable implements JWTSubject
 
     public static $rules = [
         'email' => 'required|email|unique:clients,email',
+        'password' => 'required|string',
     ];
 
     public function shoppingCarts()
