@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email', 30)->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
