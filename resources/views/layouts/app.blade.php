@@ -26,6 +26,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="{{ asset('js/enhanceDescription.js') }}" defer></script>
+
+    <!-- Styles -->
+    @stack('styles')
 </head>
 <body>
 <div id="app">

@@ -1,5 +1,8 @@
 @extends('layouts.create-form')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/scrollableDescription.css') }}">
+@endpush
 
 @section('content')
     <div class="container">
@@ -10,11 +13,18 @@
             @csrf
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" required>
+                <input type="text" name="name" class="form-control" id="name" onchange=enhanceCheckEnable() value="{{ old('name') }}" required>
             </div>
             <div class="form-group">
                 <label for="image">Image</label>
                 <input type="text" name="image" class="form-control" id="image" value="{{ old('image') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <div class="input-group">
+                    <textarea name="description" class="form-control" id="description" required>{{ old('description') }}</textarea>
+                    <button type="button" class="btn btn-primary ml-2" id="enhance-button" onclick="enhanceDescription()">Enhance Description</button>
+                </div>
             </div>
             <div class="form-group">
                 <label for="size">Size</label>
@@ -47,8 +57,6 @@
             <button type="submit" class="btn btn-primary mt-2" onclick="return confirm('Are you sure you want to create this product?')">Create Product</button>
 
             <a href="{{ route('products.index') }}" class="btn btn-secondary mt-2" onclick="return confirm('Are you sure you want to leave this page? Any changes you made will be lost.');">Go back</a>
-
-
         </form>
     </div>
 @endsection
