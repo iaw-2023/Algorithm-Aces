@@ -6,7 +6,6 @@ use App\Http\Resources\ShoppingCartResource;
 use App\Models\ShoppingCart;
 use App\Models\OrderDetail;
 use App\Models\Product;
-use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -321,48 +320,6 @@ class APIShoppingCartController extends BaseAPIController
         $product = Product::findOrFail($orderDetailData['product_id']);
         $product->stock -= $orderDetailData['product_amount'];
         $product->save();
-    }
-
-
-/**
- * Retrieve client's shopping cart history.
- *
- * @OA\Get(
- *     path="/rest/shopping-carts/history/{email}",
- *     operationId="clientHistory",
- *     summary="Retrieve client's shopping cart history",
- *     description="Retrieves the shopping cart history for a specific client.",
- *     tags={"Shopping Carts"},
- *     @OA\Parameter(
- *         name="email",
- *         description="Client email",
- *         required=true,
- *         in="path",
- *         @OA\Schema(
- *             type="string"
- *         )
- *     ),
- *     @OA\Response(
- *         response=200,
- *         description="Successful operation",
- *         @OA\JsonContent(
- *             type="array",
- *             @OA\Items(ref="#/components/schemas/ShoppingCartResource")
- *         )
- *     ),
- *     @OA\Response(
- *         response=404,
- *         description="Client not found"
- *     )
- * )
- */
-    public function clientHistory(string $email)
-    {
-        $client = Client::where('email', $email)->first();
-
-        $shoppingCarts = $client->shoppingCarts()->orderBy('date')->get();
-
-        return $shoppingCarts;
     }
 
     /**

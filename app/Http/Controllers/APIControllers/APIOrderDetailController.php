@@ -4,10 +4,7 @@ namespace App\Http\Controllers\APIControllers;
 
 use App\Http\Resources\OrderDetailResource;
 use App\Models\OrderDetail;
-use App\Models\ShoppingCart;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-
 use App\Http\Controllers\APIControllers\BaseAPIController;
 
 class APIOrderDetailController extends BaseAPIController
@@ -171,43 +168,6 @@ public function create()
         return new OrderDetailResource($order_detail);
     }
 
-/**
- * @OA\Get(
- *     path="/rest/order-details/shopping-cart/{shoppingCartId}",
- *     summary="Get order details by shopping cart",
- *     description="Get the order details associated with a specific shopping cart.",
- *     tags={"Order Details"},
- *     @OA\Parameter(
- *         name="shoppingCartId",
- *         description="Shopping cart ID",
- *         required=true,
- *         in="path",
- *         @OA\Schema(
- *             type="string"
- *         )
- *     ),
- *     @OA\Response(
- *         response=200,
- *         description="Successfully retrieved order details",
- *         @OA\JsonContent(
- *             type="array",
- *             @OA\Items(ref="#/components/schemas/OrderDetailResource")
- *         )
- *     ),
- *     @OA\Response(
- *         response=404,
- *         description="Shopping cart not found"
- *     )
- * )
- */
-    public function getOrderDetailsByShoppingCart(string $shoppingCartId)
-    {
-        $shoppingCart = ShoppingCart::findOrFail($shoppingCartId);
-        $orderDetails = $shoppingCart->ordersDetail()->get();
-    
-        return $orderDetails;
-    }
-    
     /**
      * Show the form for editing the specified resource.
      */
