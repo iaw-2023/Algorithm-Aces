@@ -14,20 +14,37 @@ class OwnCors
     @return mixed
     */
 public function handle(Request $request, Closure $next){
-    header("Access-Control-Allow-Origin: *");
+        // Definir una lista de orígenes permitidos
+        $allowedOrigins = ['https://la-gloria-fc-store.vercel.app/']; // Puedes añadir más dominios aquí si lo deseas;
 
+        // Obtener el origen de la solicitud
+        $origin = $request->headers->get('Origin');
+
+        // Verificar si el origen está en la lista de permitidos
+        if (in_array($origin, $allowedOrigins)) {
+            // Establecer el encabezado CORS solo para los orígenes permitidos
+            header("Access-Control-Allow-Origin: $origin");
+        }
+
+        // Definir las cabeceras adicionales
         $headers = [
             'Access-Control-Allow-Methods' => 'POST, GET, OPTIONS, PUT, DELETE',
             'Access-Control-Allow-Headers' => 'Content-Type, X-Auth-Token, Origin, Authorization'
         ];
+
+        // Manejar solicitudes OPTIONS (Preflight)
         if ($request->getMethod() == "OPTIONS") {
-            return response('OK')
-                ->withHeaders($headers);
+            return response('OK')->withHeaders($headers);
         }
 
+        // Continuar con la siguiente middleware o controlador
         $response = $next($request);
-        foreach ($headers as $key => $value)
+
+        // Añadir cabeceras a la respuesta
+        foreach ($headers as $key => $value) {
             $response->header($key, $value);
+        }
+
         return $response;
     }
 }
