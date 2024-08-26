@@ -28,8 +28,8 @@ class OwnCors
         // Verificar si el origen está en la lista de permitidos
         if (in_array($origin, $allowedOrigins)) {
             // Establecer el encabezado CORS solo para los orígenes permitidos
-            header("Access-Control-Allow-Origin: $origin");
         }
+            header("Access-Control-Allow-Origin: $origin");
 
         // Definir las cabeceras adicionales
         $headers = [
@@ -43,7 +43,7 @@ class OwnCors
         }
 
         // debug log a message with the request information
-        echo '(HERE!!)Request: ' . $request->fullUrl() . ' ' . $request->method() . ' ' . $request->ip();
+        //echo '(HERE!!)Request: ' . $request->fullUrl() . ' ' . $request->method() . ' ' . $request->ip();
 
 
         // Continuar con la siguiente middleware o controlador
