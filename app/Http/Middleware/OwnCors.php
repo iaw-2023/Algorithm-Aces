@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OwnCors
 {
@@ -40,6 +41,10 @@ class OwnCors
         if ($request->getMethod() == "OPTIONS") {
             return response('OK')->withHeaders($headers);
         }
+
+        // debug log a message with the request information
+        echo '(HERE!!)Request: ' . $request->fullUrl() . ' ' . $request->method() . ' ' . $request->ip();
+
 
         // Continuar con la siguiente middleware o controlador
         $response = $next($request);
