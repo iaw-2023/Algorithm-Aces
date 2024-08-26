@@ -13,9 +13,13 @@ class OwnCors
     @param \Closure $next
     @return mixed
     */
-public function handle(Request $request, Closure $next){
+    public function handle(Request $request, Closure $next)
+    {
         // Definir una lista de orígenes permitidos
-        $allowedOrigins = ['https://la-gloria-fc-store.vercel.app/', '*'];
+        $allowedOrigins = [
+            'https://la-gloria-fc-store.vercel.app/',
+            'la-gloria-fc-store.vercel.app',
+        ];
 
         // Obtener el origen de la solicitud
         $origin = $request->headers->get('Origin');
