@@ -15,7 +15,7 @@ class OwnCors
     */
 public function handle(Request $request, Closure $next){
         // Definir una lista de orígenes permitidos
-        $allowedOrigins = ['https://la-gloria-fc-store.vercel.app/']; // Puedes añadir más dominios aquí si lo deseas;
+        $allowedOrigins = ['https://la-gloria-fc-store.vercel.app/', 'http://localhost:3000'];
 
         // Obtener el origen de la solicitud
         $origin = $request->headers->get('Origin');
