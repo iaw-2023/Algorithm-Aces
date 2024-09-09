@@ -1,8 +1,8 @@
 {
     "version": 2,
     "functions": {
-        "api/index.php": { 
-            "runtime": "vercel-php@0.6.0" 
+        "api/index.php": {
+            "runtime": "vercel-php@0.6.0"
         }
     },
     "routes": [
@@ -17,6 +17,10 @@
         {
             "src": "/docs/(.*)",
             "dest": "/docs/$1"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/public/js/$1"
         },
         {
             "src": "/(.*)",
@@ -34,7 +38,6 @@
         "APP_ROUTES_CACHE": "/tmp/routes.php",
         "APP_SERVICES_CACHE": "/tmp/services.php",
         "VIEW_COMPILED_PATH": "/tmp/views",
-
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "database",
