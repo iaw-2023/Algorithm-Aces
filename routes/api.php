@@ -6,6 +6,7 @@ use App\Http\Controllers\APIControllers\APIClientController;
 use App\Http\Controllers\APIControllers\APIOrderDetailController;
 use App\Http\Controllers\APIControllers\APIProductController;
 use App\Http\Controllers\APIControllers\APIShoppingCartController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,17 @@ Route::middleware(['api'])->group(function () {
         Route::get('/create', [APIClientController::class, 'create']);
         Route::post('/', [APIClientController::class, 'store']);
     });
+
+
+
+    Route::prefix('auth')->group(function ()  {
+        Route::post('login', [AuthController::class, 'login']);
+        Route::post('register', [AuthController::class, 'register']);
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
+
+
+
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

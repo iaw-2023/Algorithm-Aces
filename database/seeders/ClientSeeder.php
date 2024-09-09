@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,13 +16,12 @@ class ClientSeeder extends Seeder
         $clientAmount = 10;
 
         for ($i = 1; $i <= $clientAmount; $i++) {
-            $clientData = [
+            $clients[] = [
                 'email' => 'client' . $i . '@gmail.com',
+                'password' => bcrypt('password'), // Cambiar 'password' por la contraseña deseada para todos los clientes
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
-            //Adds clientData at the end of clients
-            $clients[] = $clientData;
         }
 
         DB::table('clients')->insert($clients);
