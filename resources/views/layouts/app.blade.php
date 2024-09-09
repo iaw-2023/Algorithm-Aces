@@ -26,8 +26,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/enhanceDescription.js') }}" defer></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="{{ asset('js/enhanceDescription.js') }}" defer></script>
 
     <!-- Styles -->
     @stack('styles')

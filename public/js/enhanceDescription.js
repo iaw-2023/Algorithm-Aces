@@ -53,3 +53,6 @@ async function gemini(productName) {
 function enhanceBasic(nameValue) {
     return "Saracatunga tunga tunga tunga " + nameValue;
 }
+
+window.enhanceDescription = enhanceDescription;
+window.enhanceCheckEnable = enhanceCheckEnable;
