@@ -45,8 +45,9 @@ async function gemini(productName) {
     }
 
     const data = await response.json();
-
-    return data.response.candidates[0].content.parts[0].text;
+    // si me dan response()->json(['response' => "Endpoint interno correcto con " . $productName]);
+    // entonces data.response es "Endpoint interno correcto con " . $productName
+    return data.response;
 }
 
 
