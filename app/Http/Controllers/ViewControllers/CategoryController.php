@@ -23,6 +23,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+        if (!$user->can('create entity'))
+            return redirect()->route('categories.index')->with('error', 'You do not have permission to create a category.');
+
         return view('CategoryViews.category-create');
     }
 
@@ -31,12 +35,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $user = auth()->user();
+        if (!$user->can('create entity')) {
+            return redirect()->route('categories.index')->with('error', 'You do not have permission to create a category.');
+        }
+
         $validatedData = $request->validate(Category::$rules);
-
         Category::create($validatedData);
-
         return redirect()->route('categories.index')
-            ->with('success','Category created successfully');
+            ->with('success', 'Category created successfully');
     }
 
     /**
@@ -52,6 +59,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        $user = auth()->user();
+        if (!$user->can('edit entity')) {
+            return redirect()->route('categories.index')->with('error', 'You do not have permission to edit a category.');
+        }
+
         return view('CategoryViews.category-edit', compact('category'));
     }
 
@@ -61,6 +73,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $user = auth()->user();
+        if (!$user->can('edit entity')) {
+            return redirect()->route('categories.index')->with('error', 'You do not have permission to edit a category.');
+        }
+
         $validatedData = $request->validate([
             'name' => [
                 'required',
@@ -81,12 +98,15 @@ class CategoryController extends Controller
 
     public function setEnable(Request $request, Category $category)
     {
+        $user = auth()->user();
+        if (!$user->can('enable entity')) {
+            return redirect()->route('categories.index')->with('error', 'You do not have permission to edit a category.');
+        }
+
         $enable = $request->input('switch-state') === 'on';
-    
         $category->update(['enable' => $enable]);
-    
         $message = $enable ? 'Category enabled successfully' : 'Category disabled successfully';
-    
+
         return redirect()->route('categories.index')->with('success', $message);
     }
 

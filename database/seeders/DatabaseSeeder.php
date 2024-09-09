@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
                 ShoppingCartSeeder::class,
                 OrderDetailSeeder::class,
                 AdministratorSeeder::class,
-                RolesSeeder::class
+                RolesSeeder::class,
+                PermissionsSeeder::class,
             ]
         );
     }
