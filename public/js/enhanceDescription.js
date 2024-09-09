@@ -4,24 +4,19 @@ const nameInput = document.getElementById('name');
 const enhanceButton = document.getElementById('enhance-button');
 enhanceButton.disabled = nameInput.value.trim() === '';
 
-function enhanceCheckEnable(){
-    if (nameInput.value.trim() === '') {
-        enhanceButton.disabled = true;
-    } else {
-        enhanceButton.disabled = false;
-    }
+function enhanceCheckEnable() {
+    enhanceButton.disabled = nameInput.value.trim() === '';
 }
 
-async function enhanceDescription(){
+async function enhanceDescription() {
     if (nameInput.value.trim() !== '') {
         let nameValue = nameInput.value;
-       
+
         enhanceButton.disabled = true;
         enhanceButton.textContent = "Enhancing...";
 
         try {
-            let enhancedDescription = await gemini(nameValue);
-            document.getElementById('description').value = enhancedDescription;
+            document.getElementById('description').value = await gemini(nameValue);
         } catch (error) {
             console.error(error);
             document.getElementById('description').value = "Error generating description";
@@ -46,17 +41,15 @@ async function gemini(productName) {
     });
 
     if (!response.ok) {
-        return 'Error en la llamada a la API de Gemini llamando con '+ productName;
+        return 'Error en la llamada a la API de Gemini llamando con ' + productName;
     }
 
     const data = await response.json();
 
-    const descriptiveText = data.response.candidates[0].content.parts[0].text;
-
-    return descriptiveText;
+    return data.response.candidates[0].content.parts[0].text;
 }
 
 
-function enhanceBasic(nameValue){
+function enhanceBasic(nameValue) {
     return "Saracatunga tunga tunga tunga " + nameValue;
 }
