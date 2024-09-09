@@ -41,12 +41,10 @@ async function gemini(productName) {
     });
 
     if (!response.ok) {
-        return 'Error en la llamada a la API de Gemini llamando con ' + productName;
+        return "";
     }
 
     const data = await response.json();
-    // si me dan response()->json(['response' => "Endpoint interno correcto con " . $productName]);
-    // entonces data.response es "Endpoint interno correcto con " . $productName
     return data.response;
 }
 
