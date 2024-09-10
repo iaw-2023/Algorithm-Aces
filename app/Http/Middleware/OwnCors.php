@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class OwnCors
 {
@@ -13,9 +14,13 @@ class OwnCors
     @param \Closure $next
     @return mixed
     */
-public function handle(Request $request, Closure $next){
+    public function handle(Request $request, Closure $next)
+    {
         // Definir una lista de orígenes permitidos
-        $allowedOrigins = ['https://la-gloria-fc-store.vercel.app/']; // Puedes añadir más dominios aquí si lo deseas;
+        $allowedOrigins = [
+            'https://la-gloria-fc-store.vercel.app/',
+            'la-gloria-fc-store.vercel.app',
+        ];
 
         // Obtener el origen de la solicitud
         $origin = $request->headers->get('Origin');
@@ -23,8 +28,8 @@ public function handle(Request $request, Closure $next){
         // Verificar si el origen está en la lista de permitidos
         if (in_array($origin, $allowedOrigins)) {
             // Establecer el encabezado CORS solo para los orígenes permitidos
-            header("Access-Control-Allow-Origin: $origin");
         }
+            header("Access-Control-Allow-Origin: $origin");
 
         // Definir las cabeceras adicionales
         $headers = [
@@ -36,6 +41,10 @@ public function handle(Request $request, Closure $next){
         if ($request->getMethod() == "OPTIONS") {
             return response('OK')->withHeaders($headers);
         }
+
+        // debug log a message with the request information
+        //echo '(HERE!!)Request: ' . $request->fullUrl() . ' ' . $request->method() . ' ' . $request->ip();
+
 
         // Continuar con la siguiente middleware o controlador
         $response = $next($request);

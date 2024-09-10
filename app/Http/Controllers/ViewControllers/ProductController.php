@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('id')->paginate(9);;
-        return view('ProductViews.products',compact('products'));
+        return view('ProductViews.products', compact('products'));
     }
 
     /**
@@ -25,9 +25,13 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+        if (!$user->can('create entity'))
+            return redirect()->route('products.index')->with('error', 'You do not have permission to create a product.');
+
         $categories = Category::where('enable', true)->get();
         $brands = Brand::where('enable', true)->get();
-        return view('ProductViews.product-create',compact('categories','brands'));
+        return view('ProductViews.product-create', compact('categories', 'brands'));
     }
 
     /**
@@ -35,6 +39,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $user = auth()->user();
+        if (!$user->can('create entity'))
+            return redirect()->route('products.index')->with('error', 'You do not have permission to create a product.');
+
         $validatedData = $request->validate(Product::$rules);
         Product::create($validatedData);
 
@@ -57,15 +65,22 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $user = auth()->user();
+        if (!$user->can('edit entity'))
+            return redirect()->route('products.index')->with('error', 'You do not have permission to edit a product.');
+
         $categories = Category::where('enable', true)->get();
         $brands = Brand::where('enable', true)->get();
-        return view('ProductViews.product-edit',compact('product','categories','brands'));
+        return view('ProductViews.product-edit', compact('product', 'categories', 'brands'));
     }
-
 
 
     public function update(Request $request, Product $product)
     {
+        $user = auth()->user();
+        if (!$user->can('edit entity'))
+            return redirect()->route('products.index')->with('error', 'You do not have permission to edit a product.');
+
         $validatedData = $request->validate([
             'name' => [
                 'required',
@@ -76,9 +91,7 @@ class ProductController extends Controller
 
         $rules = Product::$rules;
         unset($rules['name']);
-
         $validatedData = array_merge($validatedData, $request->validate($rules));
-
         $product->update($validatedData);
 
         return redirect()->route('products.index')
@@ -86,32 +99,36 @@ class ProductController extends Controller
     }
 
 
-
     public function setEnable(Request $request, Product $product)
     {
+        $user = auth()->user();
+        if (!$user->can('enable entity'))
+            return redirect()->route('products.index')->with('error', 'You do not have permission to enable/disable a product.');
+
         $enable = $request->input('switch-state') === 'on';
-    
         $product->update(['enable' => $enable]);
-    
         $message = $enable ? 'Product enabled successfully' : 'Product disabled successfully';
-    
+
         return redirect()->route('products.index')->with('success', $message);
     }
 
-    public function editStock(Request $request, Product $product){
+    public function editStock(Request $request, Product $product)
+    {
+        $user = auth()->user();
+        if (!$user->can('modify stock'))
+            return redirect()->route('products.index')->with('error', 'You do not have permission to edit the stock.');
 
-            $newStock = $product->stock + $request->stock;
+        $newStock = $product->stock + $request->stock;
 
-            if ($newStock < 0) {
-                $newStock = 0;
-            } elseif ($newStock > 9999) {
-                return redirect()->back()->withErrors([$product->id => 'Stock cannot exceed 9999']);
+        if ($newStock < 0) {
+            $newStock = 0;
+        } elseif ($newStock > 9999) {
+            return redirect()->back()->withErrors([$product->id => 'Stock cannot exceed 9999']);
+        }
+        $product->update(['stock' => $newStock]);
 
-                //return redirect()->back()->withErrors(['stock' => 'Stock cannot exceed 9999']);
-            }
-            $product->update(['stock' => $newStock]);
-            return redirect()->route('products.index')
-                ->with('success', 'Stock changed successfully');
+        return redirect()->route('products.index')
+            ->with('success', 'Stock changed successfully');
 
     }
 
