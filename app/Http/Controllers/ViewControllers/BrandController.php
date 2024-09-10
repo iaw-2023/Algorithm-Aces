@@ -23,6 +23,11 @@ class BrandController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+        if (!$user->can('create entity')) {
+            return redirect()->route('brands.index')->with('error', 'You do not have permission to create a brand.');
+        }
+
         return view('BrandViews.brand-create');
     }
 
@@ -31,7 +36,12 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate (Brand::$rules);
+        $user = auth()->user();
+        if (!$user->can('create entity')) {
+            return redirect()->route('brands.index')->with('error', 'You do not have permission to create a brand.');
+        }
+
+        $validateData = $request->validate(Brand::$rules);
         Brand::create($validateData);
 
         return redirect()->route('brands.index')
@@ -51,7 +61,12 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        return view('BrandViews.brand-edit',compact('brand'));
+        $user = auth()->user();
+        if (!$user->can('edit entity')) {
+            return redirect()->route('brands.index')->with('error', 'You do not have permission to edit a brand.');
+        }
+
+        return view('BrandViews.brand-edit', compact('brand'));
     }
 
     /**
@@ -59,6 +74,11 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
+        $user = auth()->user();
+        if (!$user->can('edit entity')) {
+            return redirect()->route('brands.index')->with('error', 'You do not have permission to edit a brand.');
+        }
+
         $validatedData = $request->validate([
             'name' => [
                 'required',
@@ -78,12 +98,17 @@ class BrandController extends Controller
 
     public function setEnable(Request $request, Brand $brand)
     {
+        $user = auth()->user();
+        if (!$user->can('enable entity')) {
+            return redirect()->route('brands.index')->with('error', 'You do not have permission to edit a brand.');
+        }
+
         $enable = $request->input('switch-state') === 'on';
-    
+
         $brand->update(['enable' => $enable]);
-    
+
         $message = $enable ? 'Brand enabled successfully' : 'Brand disabled successfully';
-    
+
         return redirect()->route('brands.index')->with('success', $message);
     }
 

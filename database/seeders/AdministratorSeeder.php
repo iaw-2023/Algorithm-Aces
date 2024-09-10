@@ -19,5 +19,12 @@ class AdministratorSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('administrators')->insert([
+            'email' => 'super_admin@iaw.com',
+            'password' => bcrypt('admin123'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

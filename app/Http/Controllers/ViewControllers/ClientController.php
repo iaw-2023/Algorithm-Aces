@@ -13,8 +13,13 @@ class ClientController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        if (!$user->can('see clients')) {
+            return redirect()->route('home')->with('error', 'You do not have permission to see clients');
+        }
+
         $clients = Client::orderBy('id')->paginate(9);;
-        return view('ClientViews.clients',compact('clients'));
+        return view('ClientViews.clients', compact('clients'));
     }
 
     /**

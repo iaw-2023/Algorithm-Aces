@@ -16,7 +16,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -46,11 +46,14 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email|max:255|unique:clients,email',
-            'password' => 'required|string|min:6',
-        ]);
-
+        try {
+            $request->validate([
+                'email' => 'required|string|email|max:255|unique:clients,email',
+                'password' => 'required|string|min:6',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json($e->errors(), 400);
+        }
         $client = Client::create([
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -62,11 +65,11 @@ class AuthController extends Controller
             'status' => 'success',
             'message' => 'User registered and logged successfully',
             'user' => $client,
-            'authorisation' => [
+            'authorization' => [
                 'token' => $token,
                 'type' => 'bearer',
             ]
-        ]);
+        ], 201);
     }
 
     public function logout()
@@ -88,7 +91,7 @@ class AuthController extends Controller
     /**
      * Get the token array structure.
      *
-     * @param  string $token
+     * @param string $token
      *
      * @return \Illuminate\Http\JsonResponse
      */
