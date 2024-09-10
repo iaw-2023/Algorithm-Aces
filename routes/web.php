@@ -4,6 +4,7 @@ use App\Http\Controllers\ViewControllers\BrandController;
 use App\Http\Controllers\ViewControllers\CategoryController;
 use App\Http\Controllers\ViewControllers\ClientController;
 use App\Http\Controllers\ViewControllers\ProductController;
+use App\Http\Controllers\AI\GeminiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -78,6 +79,10 @@ Route::middleware(['auth'])->group(function () {
         Route::middleware(['can:modify stock'])->group(function () {
             Route::put('/{product}/edit-stock', [ProductController::class, 'editStock'])->name('products.edit-stock');
         });
+    });
+
+    Route::prefix('gemini')->group(function (){
+        Route::post('/enhance-description', [GeminiController::class, 'enhanceDescription'])->name('gemini.enhance-description');
     });
 });
 
