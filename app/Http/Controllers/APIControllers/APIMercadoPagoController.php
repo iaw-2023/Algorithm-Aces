@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\APIControllers;
 
-require_once 'vendor/autoload.php';
+#require_once 'vendor/autoload.php';
 
 use App\Http\Controllers\Controller;
 use Exception;
@@ -28,7 +28,8 @@ class APIMercadoPagoController extends Controller
             $client = new PaymentClient();
 
             $requestOptions = new RequestOptions();
-            $requestOptions->setCustomHeaders(["X-Idempotency-Key" => uniqid()]);
+            $requestOptions->setCustomHeaders(["X-Idempotency-Key: " . uniqid()]);
+            
 
             $body = $request->json()->all();
             // Log body
