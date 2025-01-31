@@ -11,16 +11,13 @@ use MercadoPago\Client\Common\RequestOptions;
 use MercadoPago\Client\Payment\PaymentClient;
 use MercadoPago\Exceptions\MPApiException;
 use MercadoPago\MercadoPagoConfig;
+use Illuminate\Support\Facades\DB;
 
 class APIMercadoPagoController extends Controller
 {
     public function createPayment(Request $request)
     {
-
-
-        //Console log saracatunga
-        $this->log("createPayment");
-
+        DB::beginTransaction();
         try {
             // Set access token
             MercadoPagoConfig::setAccessToken(env('MERCADOPAGO_ACCESS_TOKEN'));
@@ -29,7 +26,6 @@ class APIMercadoPagoController extends Controller
 
             $requestOptions = new RequestOptions();
             $requestOptions->setCustomHeaders(["X-Idempotency-Key: " . uniqid()]);
-            
 
             $body = $request->json()->all();
             // Log body
@@ -54,13 +50,28 @@ class APIMercadoPagoController extends Controller
             // Log payment
             $this->log("Payment: " . json_encode($payment));
 
+            if ($payment->status_detail == "accredited") {
+                // Call store method from APIShoppingCartController
+                $shoppingCartController = new APIShoppingCartController();
+                $shoppingCartResponse = $shoppingCartController->store($request);
+
+                DB::commit();
+                return response()->json([
+                    'payment' => $payment,
+                    'shopping_cart' => $shoppingCartResponse->getData()
+                ]);
+            }
+
+            DB::commit();
             return response()->json($payment);
         } catch (MPApiException $e) {
+            DB::rollBack();
             return response()->json([
                 'status_code' => $e->getApiResponse()->getStatusCode(),
                 'content' => $e->getApiResponse()->getContent()
             ], $e->getApiResponse()->getStatusCode());
         } catch (Exception $e) {
+            DB::rollBack();
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
