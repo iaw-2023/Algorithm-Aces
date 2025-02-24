@@ -7,6 +7,7 @@ use App\Models\ShoppingCart;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\Client;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -268,38 +269,90 @@ class APIShoppingCartController extends BaseAPIController
      */
     public function store(Request $request)
     {
-        {
-            try {
-                $shoppingCartData = $request->input('shoppingCartData');
+        try {
+            $body = $request->json()->all();
+            $shoppingCartData = $body['shoppingCartData'];
 
-                $validatedData = Validator::make($shoppingCartData, ShoppingCart::$rules)->validate();
+            $validator = Validator::make($shoppingCartData, ShoppingCart::$rules);
 
-                $shoppingCartData = [
-                    'total_price' => $validatedData['total_price'],
-                    'date' => $validatedData['date'],
-                    'client_id' => $validatedData['client_id'],
-                ];
-                $shoppingCart = ShoppingCart::create($shoppingCartData);
-
-                $orderDetailsData = $validatedData['order_details'];
-                foreach ($orderDetailsData as $orderDetailData) {
-                    $orderDetailValidatedData = Validator::make($orderDetailData, OrderDetail::$rules)->validated();
-
-                    // Check valid stock for the product
-                    if (!$this->validateProductAmount($orderDetailValidatedData)) {
-                        throw new \Exception("Product amount is greater than product stock.");
-                    }
-
-                    // Update the new stock for the product
-                    $this->updateStock($orderDetailValidatedData);
-
-                    $orderDetail = new OrderDetail($orderDetailValidatedData);
-                    $shoppingCart->ordersDetail()->save($orderDetail);
-                }
-                return new ShoppingCartResource($shoppingCart);
-            } catch (\Exception $e) {
-                throw $e;
+            if ($validator->fails()) {
+                // Return validation errors
+                return response()->json(['errors' => $validator->errors()], 422); //422 is unprocessable content
             }
+
+            $validatedData = $validator->validated();
+
+            $shoppingCartData = [
+                'total_price' => $validatedData['total_price'],
+                'date' => $validatedData['date'],
+                'client_id' => $validatedData['client_id'],
+            ];
+
+            $shoppingCart = ShoppingCart::create($shoppingCartData);
+
+            $orderDetailsData = $validatedData['order_details'];
+
+            /* typical orderDetailsData member structure
+            [
+                {
+                    "product_id": 15,
+                    "product_amount": 5
+                },
+                {
+                    "id": 15,
+                    "name": "Handmade enim",
+                    "size": "ykY",
+                    "image": "https://via.placeholder.com/640x480.png/006666?text=earum",
+                    "price": 6298,
+                    "enable": true,
+                    "stock": 13,
+                    "brand": {
+                        "id": 11,
+                        "name": "Earum",
+                        "enable": false,
+                        "created_at": "2024-08-13 21:56:13",
+                        "updated_at": "2024-08-13 21:56:13"
+                    },
+                    "category": {
+                        "id": 9,
+                        "name": "Category9",
+                        "enable": false,
+                        "created_at": "2024-08-13 21:56:13",
+                        "updated_at": "2024-08-13 21:56:13"
+                    },
+                    "created_at": "2024-08-13 21:57:11",
+                    "updated_at": "2024-08-13 21:57:11"
+                }
+            ]
+            */
+            foreach ($orderDetailsData as $orderDetailGroup) {
+                $orderDetail = $orderDetailGroup[0]; // Solo tomamos el primer objeto, que tiene product_id y product_amount
+                $orderDetail['shopping_cart_id'] = $shoppingCart->id; //guardamos el id del shopping cart en el order detail para pasar la validacion de rules
+                $orderDetailValidatedData = Validator::make($orderDetail, OrderDetail::$rules);
+
+                if ($orderDetailValidatedData->fails()) {
+                    // Return validation errors
+                    return response()->json(['errors' => $orderDetailValidatedData->errors(), 'orderDetail' => $orderDetail], 422); //422 is unprocessable content
+                }
+
+                $validatedOrderDetail = $orderDetailValidatedData->validated();
+
+                // Check valid stock for the product
+                if (!$this->validateProductAmount($validatedOrderDetail)) {
+                    throw new \Exception("Product amount is greater than product stock.");
+                }
+
+                // Update the new stock for the product
+                $this->updateStock($validatedOrderDetail);
+
+                $orderDetail = new OrderDetail($validatedOrderDetail);
+                $shoppingCart->ordersDetail()->save($orderDetail);
+            }
+
+            return response()->json(new ShoppingCartResource($shoppingCart), 201);
+
+        } catch (\Exception $e) {
+            throw $e;
         }
     }
 

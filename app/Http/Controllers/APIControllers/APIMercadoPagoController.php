@@ -49,21 +49,37 @@ class APIMercadoPagoController extends Controller
             $payment = $client->create($paymentRequest, $requestOptions);
             // Log payment
             $this->log("Payment: " . json_encode($payment));
+//
+//            DB::commit();
+//            return response()->json($payment, 201);
 
             if ($payment->status_detail == "accredited") {
-                // Call store method from APIShoppingCartController
+                $shoppingCartData = $body['shoppingCartData'];
+                $shoppingCartRequest = new Request($shoppingCartData);
                 $shoppingCartController = new APIShoppingCartController();
-                $shoppingCartResponse = $shoppingCartController->store($request);
+
+                $shoppingCartResponse = $shoppingCartController->store($shoppingCartRequest);
+
+                //if response is not ok, return payment and shopping cart
+                if (!$shoppingCartResponse->isSuccessful()) {
+                    DB::rollBack();
+                    return response()->json([
+                        'payment' => $payment,
+                        'shopping_cart_error' => $shoppingCartResponse->original
+                    ], $shoppingCartResponse->getStatusCode());
+                }
 
                 DB::commit();
                 return response()->json([
                     'payment' => $payment,
-                    'shopping_cart' => $shoppingCartResponse->getData()
-                ]);
+                    'shopping_cart' => $shoppingCartResponse->original
+                ], 201);
             }
+            DB::rollBack();
+            return response()->json([
+                'payment' => $payment
+            ], 400);
 
-            DB::commit();
-            return response()->json($payment);
         } catch (MPApiException $e) {
             DB::rollBack();
             return response()->json([
