@@ -49,9 +49,6 @@ class APIMercadoPagoController extends Controller
             $payment = $client->create($paymentRequest, $requestOptions);
             // Log payment
             $this->log("Payment: " . json_encode($payment));
-//
-//            DB::commit();
-//            return response()->json($payment, 201);
 
             if ($payment->status_detail == "accredited") {
                 $shoppingCartData = $body['shoppingCartData'];
