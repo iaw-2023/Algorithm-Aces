@@ -24,7 +24,7 @@ class OrderDetail extends Model
         'shopping_cart_id' => 'required|exists:shopping_carts,id',
         'product_id' => 'required|exists:products,id',
     ];
-    
+
     public function product()
     {
         return $this->belongsTo(Product::class);
