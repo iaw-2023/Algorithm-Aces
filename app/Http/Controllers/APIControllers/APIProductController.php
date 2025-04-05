@@ -42,7 +42,7 @@ class APIProductController extends BaseAPIController
  */
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')->paginate(9);
+        $products = Product::orderBy('id', 'asc')->paginate(9);
         return ProductResource::collection($products);
     }
 
