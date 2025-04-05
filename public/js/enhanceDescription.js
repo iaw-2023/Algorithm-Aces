@@ -16,10 +16,10 @@ async function enhanceDescription() {
         enhanceButton.textContent = "Enhancing...";
 
         try {
-            document.getElementById('description').value = await gemini(nameValue);
+            document.getElementById('desc').value = await gemini(nameValue);
         } catch (error) {
             console.error(error);
-            document.getElementById('description').value = "Error generating description";
+            document.getElementById('desc').value = "Error generating description";
         }
 
         // Rehabilitar el botón después de que se complete la generación

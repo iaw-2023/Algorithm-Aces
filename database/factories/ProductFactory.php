@@ -56,7 +56,11 @@ class ProductFactory extends Factory
         return [
             'name' => $name,
             'image' => 'https://dummyimage.com/480x480/' . $color . '/' . $textColor . '&text=' . $encodedName,
-            'size' => $this->faker->regexify('[a-zA-Z0-9]{1,20}'),
+            'size' => $this->faker->randomElement([
+                'XS', 'S', 'M', 'L', 'XL', 'XXL',     // Cloth size
+                '38', '39', '40', '41', '42', '43',  // Shoe sizee
+            ]),
+            'desc' => $this->faker->sentence(),
             'price' => $this->faker->numberBetween(0, 9999),
             'stock' => $this->faker->numberBetween(10, 20),
             'brand_id' => function () {

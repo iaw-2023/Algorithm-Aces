@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label for="description">Description</label>
                 <div class="input-group">
-                    <textarea name="description" class="form-control" id="description" required>{{ old('description') }}</textarea>
+                    <textarea name="desc" class="form-control" id="desc" required>{{ old('desc') }}</textarea>
                     <button type="button" class="btn btn-primary ml-2" id="enhance-button" onclick="enhanceDescription()">Enhance Description</button>
                 </div>
             </div>
