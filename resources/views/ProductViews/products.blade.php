@@ -30,7 +30,7 @@
                     <th>Brand</th>
                     <th>Category</th>
                     @can('edit entity')
-                        <th>Edit</th>
+                        <th></th>
                     @endcan
                     @can('enable entity')
                         <th>Enable</th>

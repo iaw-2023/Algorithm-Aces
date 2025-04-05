@@ -1,8 +1,14 @@
 @extends('layouts.edit-form')
 
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/scrollableDescription.css') }}">
+@endpush
+
 @section('content')
     <div class="container">
 <h1>Edit Product</h1>
+
 
 <form action="{{ route('products.update', $product->id) }}" method="POST">
     @csrf
@@ -15,6 +21,13 @@
     <div class="form-group">
         <label for="image">Image</label>
         <input type="text" name="image" class="form-control" id="image" value="{{ $product->image }}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+            <textarea name="desc" class="form-control" id="desc" value="{{ $product->desc }}" required>{{ old('desc') }}</textarea>
+            <button type="button" class="btn btn-primary ml-2" id="enhance-button" onclick="enhanceDescription()">Enhance Description</button>
+        </div>
     </div>
     <div class="form-group">
         <label for="size">Size</label>
