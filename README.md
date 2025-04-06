@@ -1,5 +1,5 @@
 # LA GLORIA STORE
-![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.jpeg)
+![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.png)
 
 ## Links de interés
 - [Página oficial](https://la-gloria-store-algorithm-aces.vercel.app/)
@@ -137,7 +137,7 @@ En la imagen, guardar con el botón señalado hará que se actualice correspondi
 <br>
 
 # LA GLORIA STORE
-![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.jpeg)
+![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.png)
 
 - [Official Page](https://la-gloria-store-algorithm-aces.vercel.app/)
 - [Try our API! (Swagger UI)](https://la-gloria-store-algorithm-aces.vercel.app/rest/documentation/)
