@@ -20,7 +20,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'LGS Admin Dashboard') }}</title>
-    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="icon" src="/images/logo.png" type="image/png">
+
 
 
     <!-- Fonts -->
@@ -39,7 +40,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="navbar-logo">
+                <img src="/images/logo.png" alt="Logo" class="navbar-logo">
                 {{ config('app.name', 'LGS Admin Dashboard') }}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
