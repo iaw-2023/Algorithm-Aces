@@ -20,7 +20,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'LGS Admin Dashboard') }}</title>
-    <link rel="icon" src="/images/logo.png" type="image/png">
+
+    <link rel="icon" href="{{ url('images/logo.png') }}" type="image/png">
 
 
 
