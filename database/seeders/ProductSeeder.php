@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'price' => 2499,
                 'stock' => 5,
                 'brand_id' => 1,
-                'category_id' => 2,
+                'category_id' => 3,
                 'enable' => true,
             ],
             [
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
                 'price' => 1499,
                 'stock' => 8,
                 'brand_id' => 1,
-                'category_id' => 3,
+                'category_id' => 2,
                 'enable' => true,
             ],
             [
@@ -78,7 +78,7 @@ class ProductSeeder extends Seeder
                 'price' => 2699,
                 'stock' => 7,
                 'brand_id' => 2,
-                'category_id' => 5,
+                'category_id' => 4,
                 'enable' => true,
             ],
             [
@@ -89,7 +89,7 @@ class ProductSeeder extends Seeder
                 'price' => 1699,
                 'stock' => 10,
                 'brand_id' => 1,
-                'category_id' => 2,
+                'category_id' => 5,
                 'enable' => true,
             ],
             [
@@ -111,7 +111,7 @@ class ProductSeeder extends Seeder
                 'price' => 2399,
                 'stock' => 9,
                 'brand_id' => 1,
-                'category_id' => 2,
+                'category_id' => 3,
                 'enable' => true,
             ],
         ];
