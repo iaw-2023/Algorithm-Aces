@@ -49,7 +49,7 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport shoes type A',
+                'name' => 'Sport shoes A',
                 'size' => '42',
                 'desc' => 'Sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes2.jpg',
@@ -60,7 +60,7 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Shoes Type B',
+                'name' => 'Sport Shoes B',
                 'size' => '40',
                 'desc' => 'Alternative sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes3.jpg',
@@ -71,7 +71,7 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Shoes Type C',
+                'name' => 'Sport Shoes C',
                 'size' => '41',
                 'desc' => 'Alternative sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes4.jpg',
@@ -82,7 +82,7 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Shoes Type C',
+                'name' => 'Sport Shoes C',
                 'size' => '39',
                 'desc' => 'Alternative sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes5.webp',
@@ -104,7 +104,7 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Pants Type B',
+                'name' => 'Sport Pants B',
                 'size' => 'M',
                 'desc' => 'Alternative design sport pants from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/pants.jpg',
