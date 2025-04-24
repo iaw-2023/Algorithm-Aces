@@ -1,8 +1,8 @@
 "use strict";
 
+
 const nameInput = document.getElementById('name');
 const enhanceButton = document.getElementById('enhance-button');
-enhanceButton.disabled = nameInput.value.trim() === '';
 
 function enhanceCheckEnable() {
     enhanceButton.disabled = nameInput.value.trim() === '';
@@ -24,6 +24,8 @@ async function enhanceDescription() {
 
         enhanceButton.disabled = false;
         enhanceButton.textContent = "Enhance Description";
+    } else{
+        alert("You must input a product title first");
     }
 }
 
