@@ -32,6 +32,8 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="{{ asset('js/enhanceDescription.js') }}" defer></script>
+    <script type="module" src="{{ asset('js/uploadImage.js') }}" ></script>
+    @stack('scripts')
 
     <!-- Styles -->
     @stack('styles')

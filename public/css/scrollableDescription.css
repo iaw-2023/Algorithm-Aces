@@ -3,3 +3,26 @@
     resize: vertical;
     overflow-y: auto;
 }
+
+#image {
+    height: 150px;
+    resize: vertical;
+    overflow-y: auto;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#select-file-button {
+    margin: 10px;
+}
+
+#upload-button {
+    margin: 10px;
+}
+
+#image-preview {
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}

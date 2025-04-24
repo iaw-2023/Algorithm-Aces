@@ -22,7 +22,6 @@ async function enhanceDescription() {
             document.getElementById('desc').value = "Error generating description";
         }
 
-        // Rehabilitar el botón después de que se complete la generación
         enhanceButton.disabled = false;
         enhanceButton.textContent = "Enhance Description";
     }
@@ -46,11 +45,6 @@ async function gemini(productName) {
 
     const data = await response.json();
     return data.response;
-}
-
-
-function enhanceBasic(nameValue) {
-    return "Saracatunga tunga tunga tunga " + nameValue;
 }
 
 window.enhanceDescription = enhanceDescription;
