@@ -16,9 +16,18 @@
                 <input type="text" name="name" class="form-control" id="name" onchange=enhanceCheckEnable() value="{{ old('name') }}" required>
             </div>
             <div class="form-group">
-                <label for="image">Image</label>
-                <input type="text" name="image" class="form-control" id="image" value="{{ old('image') }}" required>
-            </div>
+                <label for="image">Image URL</label>
+                <div class="input-group align-items-start">
+                    <textarea name="image" class="form-control" id="image" required></textarea>
+                    <input type="file" id="image-file" accept="image/*" style="display: none;">
+                    <button type="button" id="select-file-button" class="btn btn-outline-primary ml-2" onclick="document.getElementById('image-file').click()">Select File</button>
+                    <button type="button" id="upload-button" class="btn btn-success ml-2" onclick="uploadImage()">Upload</button>
+            
+                    <img id="image-preview" alt="Preview"
+                         style="max-height: 100px; margin-top: 10px; margin-left: 10px; display: none;"
+                         onerror="this.onerror=null; this.style.display='none'; this.src='{{ asset('images/notfound.png') }}';">
+                </div>        
+            </div>  
             <div class="form-group">
                 <label for="description">Description</label>
                 <div class="input-group">
