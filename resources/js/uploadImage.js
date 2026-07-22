@@ -7,9 +7,13 @@ const fileInput = document.getElementById('image-file');
 const uploadButton = document.getElementById('upload-button');
 const preview = document.getElementById('image-preview');
 
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-const supabaseUrl = import.meta?.env?.VITE_SUPABASE_URL || 'not-defined';
-const supabaseKey = import.meta?.env?.VITE_SUPABASE_PUBLISHABLE_KEY || 'not-defined';
+if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Supabase environment variables are not configured.');
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function uploadImage() {
@@ -67,7 +71,7 @@ async function uploadToSupabaseBucket(file) {
         return publicUrlData.publicUrl;
     }
 
-    const { data, error } = await supabase.storage.from(bucket).upload(filePath, file);
+    const { error } = await supabase.storage.from(bucket).upload(filePath, file);
     if (error) {
         throw new Error("Error uploading file: " + error.message);
     }
