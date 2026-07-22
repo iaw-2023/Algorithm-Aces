@@ -30,7 +30,7 @@
                     <th>Brand</th>
                     <th>Category</th>
                     @can('edit entity')
-                        <th>Edit</th>
+                        <th></th>
                     @endcan
                     @can('enable entity')
                         <th>Enable</th>
@@ -45,7 +45,20 @@
                     <tr>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->size }}</td>
-                        <td>{{ $product->image }}</td>
+                        <td style="width: 100px;">
+                            @if ($product->image)
+                            <a href="{{ $product->image }}" target="_blank" rel="noopener noreferrer"
+                                style="display: inline-block;">
+                                 <img src="{{ $product->image }}"
+                                      alt="{{ $product->name }}"
+                                      class="img-thumbnail"
+                                      style="max-width: 80px; max-height: 80px;"
+                                      onerror="this.onerror=null; this.src='{{ asset('images/notfound.png') }}'; this.closest('a').removeAttribute('href'); this.closest('a').style.pointerEvents='none'; this.closest('a').style.cursor='default';">
+                             </a>
+                            @else
+                                <span class="text-muted">No image</span>
+                            @endif
+                        </td>                                         
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->brand->name }}</td>
@@ -71,27 +84,34 @@
                             </td>
                         @endcan
                         @can('modify stock')
-                            <td>
-                                <form action="{{ route('products.edit-stock', $product) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="input-group">
-                                        <input type="text" name="stock" class="form-control"
-                                               placeholder="Stock to add/remove" required
-                                               oninvalid="this.setCustomValidity('Only numbers are allowed')"
-                                               oninput="this.setCustomValidity('')" pattern="-?[0-9]*">
+                        <td>
+                            <form action="{{ route('products.edit-stock', $product) }}" method="POST" class="d-flex flex-column gap-2">
+                                @csrf
+                                @method('PUT')
 
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-primary">Apply Stock
-                                            </button>
-                                        </div>
-                                    </div>
-                                    @error($product->id)
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </form>
-                            </td>
-                        @endcan
+                                <div class="input-group">
+                                    <input
+                                        type="text"
+                                        name="stock"
+                                        class="form-control"
+                                        placeholder="Add or remove stock"
+                                        required
+                                        pattern="-?[0-9]*"
+                                        oninvalid="this.setCustomValidity('Only numbers are allowed')"
+                                        oninput="this.setCustomValidity('')"
+                                    >
+                                </div>
+
+                                <button type="submit" class="btn btn-outline-primary w-100">
+                                    Apply Stock
+                                </button>
+
+                                @error($product->id)
+                                    <div class="text-danger small">{{ $message }}</div>
+                                @enderror
+                            </form>
+                        </td>
+                    @endcan
                     </tr>
                 @endforeach
                 </tbody>

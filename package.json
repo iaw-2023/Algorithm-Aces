@@ -1,5 +1,8 @@
 {
     "private": true,
+    "engines": {
+        "node": ">=24.0.0"
+    },
     "scripts": {
         "dev": "vite",
         "build": "vite build"
@@ -13,5 +16,8 @@
         "sass": "^1.56.1",
         "vite": "^4.0.0",
         "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.49.4"
     }
 }

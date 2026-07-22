@@ -3,6 +3,7 @@
 use App\Http\Controllers\APIControllers\APIBrandController;
 use App\Http\Controllers\APIControllers\APICategoryController;
 use App\Http\Controllers\APIControllers\APIClientController;
+use App\Http\Controllers\APIControllers\APIMercadoPagoController;
 use App\Http\Controllers\APIControllers\APIOrderDetailController;
 use App\Http\Controllers\APIControllers\APIProductController;
 use App\Http\Controllers\APIControllers\APIShoppingCartController;
@@ -54,7 +55,10 @@ Route::middleware(['api'])->group(function () {
         Route::get('/create', [APIShoppingCartController::class, 'create']);
         Route::get('/history/{email}', [APIShoppingCartController::class, 'clientHistory'])->name('clientHistory');
         Route::post('/', [APIShoppingCartController::class, 'store'])->name('store');
-       
+    });
+
+    Route::prefix('payment')->group(function () {
+        Route::post('/create', [APIMercadoPagoController::class, 'createPayment']);
     });
 
     Route::prefix('clients')->group(function ()  {

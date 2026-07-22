@@ -1,8 +1,8 @@
 "use strict";
 
+
 const nameInput = document.getElementById('name');
 const enhanceButton = document.getElementById('enhance-button');
-enhanceButton.disabled = nameInput.value.trim() === '';
 
 function enhanceCheckEnable() {
     enhanceButton.disabled = nameInput.value.trim() === '';
@@ -16,15 +16,16 @@ async function enhanceDescription() {
         enhanceButton.textContent = "Enhancing...";
 
         try {
-            document.getElementById('description').value = await gemini(nameValue);
+            document.getElementById('desc').value = await gemini(nameValue);
         } catch (error) {
             console.error(error);
-            document.getElementById('description').value = "Error generating description";
+            document.getElementById('desc').value = "Error generating description";
         }
 
-        // Rehabilitar el botón después de que se complete la generación
         enhanceButton.disabled = false;
         enhanceButton.textContent = "Enhance Description";
+    } else{
+        alert("You must input a product title first");
     }
 }
 
@@ -46,11 +47,6 @@ async function gemini(productName) {
 
     const data = await response.json();
     return data.response;
-}
-
-
-function enhanceBasic(nameValue) {
-    return "Saracatunga tunga tunga tunga " + nameValue;
 }
 
 window.enhanceDescription = enhanceDescription;

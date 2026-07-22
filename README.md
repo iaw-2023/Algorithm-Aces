@@ -1,5 +1,5 @@
 # LA GLORIA STORE
-![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.jpeg)
+![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.png)
 
 ## Links de interés
 - [Página oficial](https://la-gloria-store-algorithm-aces.vercel.app/)
@@ -137,7 +137,7 @@ En la imagen, guardar con el botón señalado hará que se actualice correspondi
 <br>
 
 # LA GLORIA STORE
-![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.jpeg)
+![LA GLORIA F.C. OFFICIAL STORE](public/images/logo.png)
 
 - [Official Page](https://la-gloria-store-algorithm-aces.vercel.app/)
 - [Try our API! (Swagger UI)](https://la-gloria-store-algorithm-aces.vercel.app/rest/documentation/)
@@ -261,3 +261,4 @@ In the image, saving with the highlighted button will update Category 2 accordin
 - Note that an integer can be inserted into the stock field. If it is positive, it will be added, if it is negative, it will be subtracted, and it will reach 0 or 9999. This was done this way because a button to set the number could generate inconsistent cases (if a user bought items that reduced the stock in the time window between when the admin edits the stock, it could result in lost information as it sets it).
 
 - Logical Deletion: Since we will not have deletions in the database on the admin side, a way to disable entities logically is required to avoid generating cascading deletions and generating information loss. We solved this with a boolean variable "enable" in the models.
+ 

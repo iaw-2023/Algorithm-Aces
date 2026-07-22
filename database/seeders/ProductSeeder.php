@@ -18,6 +18,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Ball',
                 'size' => 'Medium',
+                'desc' => 'Red ball from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/ball.jpg',
                 'price' => 1999,
                 'stock' => 10,
@@ -28,26 +29,29 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'Sport Pants',
                 'size' => 'L',
+                'desc' => 'Black sport pants from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/pants.jpg',
                 'price' => 2499,
                 'stock' => 5,
-                'brand_id' => 1,
-                'category_id' => 2,
-                'enable' => true,
-            ],
-            [
-                'name' => 'Sport Shirt',
-                'size' => 'S',
-                'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shirt.jpg',
-                'price' => 1499,
-                'stock' => 8,
                 'brand_id' => 1,
                 'category_id' => 3,
                 'enable' => true,
             ],
             [
-                'name' => 'Sport shoes type A',
+                'name' => 'Sport Shirt',
+                'size' => 'S',
+                'desc' => 'Sport shirt from La Gloria Store Customs',
+                'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shirt.jpg',
+                'price' => 1499,
+                'stock' => 8,
+                'brand_id' => 1,
+                'category_id' => 2,
+                'enable' => true,
+            ],
+            [
+                'name' => 'Sport shoes A',
                 'size' => '42',
+                'desc' => 'Sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes2.jpg',
                 'price' => 2999,
                 'stock' => 3,
@@ -56,8 +60,9 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Shoes Type B',
+                'name' => 'Sport Shoes B',
                 'size' => '40',
+                'desc' => 'Alternative sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes3.jpg',
                 'price' => 2199,
                 'stock' => 12,
@@ -66,28 +71,31 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Shoes Type C',
+                'name' => 'Sport Shoes C',
                 'size' => '41',
+                'desc' => 'Alternative sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes4.jpg',
                 'price' => 2699,
                 'stock' => 7,
                 'brand_id' => 2,
-                'category_id' => 5,
+                'category_id' => 4,
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Shoes Type C',
+                'name' => 'Sport Shoes C',
                 'size' => '39',
+                'desc' => 'Alternative sport shoes from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/shoes5.webp',
                 'price' => 1699,
                 'stock' => 10,
                 'brand_id' => 1,
-                'category_id' => 2,
+                'category_id' => 5,
                 'enable' => true,
             ],
             [
                 'name' => 'Ball 2',
                 'size' => 'Small',
+                'desc' => 'Alternative design sport ball from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/ball.jpg',
                 'price' => 3199,
                 'stock' => 4,
@@ -96,13 +104,14 @@ class ProductSeeder extends Seeder
                 'enable' => true,
             ],
             [
-                'name' => 'Sport Pants Type B',
+                'name' => 'Sport Pants B',
                 'size' => 'M',
+                'desc' => 'Alternative design sport pants from La Gloria Store Customs',
                 'image' => 'https://vvivrtywfxzzjrnepzmm.supabase.co/storage/v1/object/public/placeholderproducts/pants.jpg',
                 'price' => 2399,
                 'stock' => 9,
                 'brand_id' => 1,
-                'category_id' => 2,
+                'category_id' => 3,
                 'enable' => true,
             ],
         ];
@@ -111,6 +120,6 @@ class ProductSeeder extends Seeder
             Product::create($product);
         }
 
-        Product::factory()->count(20)->create();
+        Product::factory()->count(80)->create();
     }
 }

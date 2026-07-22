@@ -1,8 +1,12 @@
 @extends('layouts.edit-form')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/scrollableDescription.css') }}">
+@endpush
+
 @section('content')
     <div class="container">
-<h1>Edit Product</h1>
+<h1>Edit Product</h1>   
 
 <form action="{{ route('products.update', $product->id) }}" method="POST">
     @csrf
@@ -13,8 +17,24 @@
         <input type="text" name="name" class="form-control" id="name" value="{{ $product->name }}" required>
     </div>
     <div class="form-group">
-        <label for="image">Image</label>
-        <input type="text" name="image" class="form-control" id="image" value="{{ $product->image }}" required>
+        <label for="image">Image URL</label>
+        <div class="input-group align-items-start">
+            <textarea name="image" class="form-control" id="image" required>{{ $product->image }}</textarea>
+            <input type="file" id="image-file" accept="image/*" style="display: none;">
+            <button type="button" id="select-file-button" class="btn btn-outline-primary ml-2" onclick="document.getElementById('image-file').click()">Select File</button>
+            <button type="button" id="upload-button" class="btn btn-success ml-2" onclick="uploadImage()">Upload</button>
+    
+            <img id="image-preview" src="{{ $product->image }}" alt="Preview"
+                 style="max-height: 100px; margin-top: 10px; margin-left: 10px; display: none;"
+                 onerror="this.onerror=null; this.style.display='none'; this.src='{{ asset('images/notfound.png') }}';">
+        </div>        
+    </div>    
+    <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+            <textarea name="desc" class="form-control" id="desc" value="{{ $product->desc }}" required>{{ old('desc') }}</textarea>
+            <button type="button" class="btn btn-primary ml-2" id="enhance-button" onclick="enhanceDescription()">Enhance Description</button>
+        </div>
     </div>
     <div class="form-group">
         <label for="size">Size</label>
